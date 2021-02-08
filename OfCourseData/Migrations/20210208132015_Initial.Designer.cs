@@ -10,8 +10,8 @@ using OfCourseData;
 namespace OfCourseData.Migrations
 {
     [DbContext(typeof(OfCourseContext))]
-    [Migration("20210208120546_Reset")]
-    partial class Reset
+    [Migration("20210208132015_Initial")]
+    partial class Initial
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -111,8 +111,8 @@ namespace OfCourseData.Migrations
                     b.Property<float>("PricePerSession")
                         .HasColumnType("real");
 
-                    b.Property<float>("SessionLength")
-                        .HasColumnType("real");
+                    b.Property<int>("SessionLengthMinutes")
+                        .HasColumnType("int");
 
                     b.Property<string>("Title")
                         .HasColumnType("nvarchar(max)");

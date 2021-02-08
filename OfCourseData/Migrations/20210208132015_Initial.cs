@@ -3,7 +3,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 
 namespace OfCourseData.Migrations
 {
-    public partial class Reset : Migration
+    public partial class Initial : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
@@ -86,7 +86,7 @@ namespace OfCourseData.Migrations
                     PricePerSession = table.Column<float>(type: "real", nullable: false),
                     MaxPeople = table.Column<int>(type: "int", nullable: false),
                     TotalSessions = table.Column<int>(type: "int", nullable: false),
-                    SessionLength = table.Column<float>(type: "real", nullable: false),
+                    SessionLengthMinutes = table.Column<int>(type: "int", nullable: false),
                     City = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     PostCode = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     Discriminator = table.Column<string>(type: "nvarchar(max)", nullable: false),
