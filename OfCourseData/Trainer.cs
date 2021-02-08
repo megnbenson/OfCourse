@@ -12,7 +12,7 @@ namespace OfCourseData
            // LikedCourses = new HashSet<Course>();
         }
 
-        public int TrainerId { get; set; }
+        public string TrainerId { get; set; }
 
         public string PostCode { get; set; }
         public string City { get; set; }

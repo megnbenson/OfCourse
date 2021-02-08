@@ -9,6 +9,14 @@ namespace OfCourseData
 {
     public partial class OfCourseContext : DbContext
     {
+        //public OfCourseContext()
+        //{
+
+        //}
+        //public OfCourseContext(DbContextOptions<OfCourseContext> options)
+        //    : base(options)
+        //{
+        //}
         public static OfCourseContext Instance { get; } = new OfCourseContext();
 
         public DbSet<Course> Courses { get; set; }

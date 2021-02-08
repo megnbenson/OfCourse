@@ -35,12 +35,12 @@
   <Class Name="OfCourseData.Admin">
     <Position X="9.5" Y="3" Width="1.5" />
     <TypeIdentifier>
-      <HashCode>AAgAAAAAEAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <HashCode>AAgAAEAAEAAAAAAIAQAAAAAAAAAAAAACAAAAgAAAAAg=</HashCode>
       <FileName>Admin.cs</FileName>
     </TypeIdentifier>
   </Class>
   <Class Name="OfCourseData.CourseSessionDetails">
-    <Position X="0.75" Y="5.5" Width="2" />
+    <Position X="0.75" Y="4.75" Width="2" />
     <TypeIdentifier>
       <HashCode>AAAIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAACAAAAAA=</HashCode>
       <FileName>CourseSessionDetails.cs</FileName>

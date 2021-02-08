@@ -58,8 +58,7 @@ namespace OfCourseData.Migrations
                 name: "Trainers",
                 columns: table => new
                 {
-                    TrainerId = table.Column<int>(type: "int", nullable: false)
-                        .Annotation("SqlServer:Identity", "1, 1"),
+                    TrainerId = table.Column<string>(type: "nvarchar(450)", nullable: false),
                     PostCode = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     City = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     Username = table.Column<string>(type: "nvarchar(max)", nullable: true),
@@ -79,11 +78,11 @@ namespace OfCourseData.Migrations
                     CourseId = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
                     CategoryId = table.Column<int>(type: "int", nullable: true),
-                    TrainerId = table.Column<int>(type: "int", nullable: true),
+                    TrainerId = table.Column<string>(type: "nvarchar(450)", nullable: true),
                     Title = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     Description = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     IsApproved = table.Column<bool>(type: "bit", nullable: false),
-                    PricePerSession = table.Column<float>(type: "real", nullable: false),
+                    PricePerSession = table.Column<double>(type: "float", nullable: false),
                     MaxPeople = table.Column<int>(type: "int", nullable: false),
                     TotalSessions = table.Column<int>(type: "int", nullable: false),
                     SessionLengthMinutes = table.Column<int>(type: "int", nullable: false),

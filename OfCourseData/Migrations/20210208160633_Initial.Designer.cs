@@ -10,7 +10,7 @@ using OfCourseData;
 namespace OfCourseData.Migrations
 {
     [DbContext(typeof(OfCourseContext))]
-    [Migration("20210208132015_Initial")]
+    [Migration("20210208160633_Initial")]
     partial class Initial
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -108,8 +108,8 @@ namespace OfCourseData.Migrations
                     b.Property<string>("PostCode")
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<float>("PricePerSession")
-                        .HasColumnType("real");
+                    b.Property<double>("PricePerSession")
+                        .HasColumnType("float");
 
                     b.Property<int>("SessionLengthMinutes")
                         .HasColumnType("int");
@@ -120,8 +120,8 @@ namespace OfCourseData.Migrations
                     b.Property<int>("TotalSessions")
                         .HasColumnType("int");
 
-                    b.Property<int?>("TrainerId")
-                        .HasColumnType("int");
+                    b.Property<string>("TrainerId")
+                        .HasColumnType("nvarchar(450)");
 
                     b.HasKey("CourseId");
 
@@ -164,10 +164,8 @@ namespace OfCourseData.Migrations
 
             modelBuilder.Entity("OfCourseData.Trainer", b =>
                 {
-                    b.Property<int>("TrainerId")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int")
-                        .UseIdentityColumn();
+                    b.Property<string>("TrainerId")
+                        .HasColumnType("nvarchar(450)");
 
                     b.Property<string>("City")
                         .HasColumnType("nvarchar(max)");
