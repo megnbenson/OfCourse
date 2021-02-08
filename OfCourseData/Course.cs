@@ -4,112 +4,54 @@ using System.Text;
 
 namespace OfCourseData
 {
-    public class Course
+    public partial class Course
     {
+       
+
         public Course()
         {
-            throw new System.NotImplementedException();
+            //Title = title;
+            //Description = description;
+            //City = city;
+            //PostCode = postcode;
+            //PricePerSession = pricePerSession;
+            CourseSessionDetailList = new HashSet<CourseSessionDetails>();
+            BookedCustomers = new HashSet<Customer>();
         }
 
-        public string Trainer
-        {
+        public int CourseId { get; set; }
+        public int? CategoryId { get; set; }
+        public int? TrainerId { get; set; }
+        public String Title { get; set; }
+        public String? Description { get; set; }
+       
+        public bool IsApproved {
             get => default;
             set
             {
+                value = false;
             }
         }
+        public float PricePerSession { get; set; }
+        public int MaxPeople { get; set; }
+        public int TotalSessions { get; set; }
+        public int SessionLengthMinutes { get; set; }
 
-        public bool IsApproved
-        {
-            get => default;
-            set
-            {
-            }
-        }
+        public string City { get; set; }
+        public string? PostCode { get; set; }
 
-        public float PricePerSession
-        {
-            get => default;
-            set
-            {
-            }
-        }
+        public virtual Category Category { get; set; }
 
-        public int MaxPeople
-        {
-            get => default;
-            set
-            {
-            }
-        }
+        public virtual Trainer Trainer { get; set; }
+        public virtual ICollection<CourseSessionDetails> CourseSessionDetailList { get; set; }
+        public virtual ICollection<Customer> BookedCustomers { get; set; }
 
-        public float SessionLength
-        {
-            get => default;
-            set
-            {
-            }
-        }
 
-        public int TotalSessions
-        {
-            get => default;
-            set
-            {
-            }
-        }
 
-        public string Location
-        {
-            get => default;
-            set
-            {
-            }
-        }
 
-        public DateTime Time
-        {
-            get => default;
-            set
-            {
-            }
-        }
-
-        public int CourseId
-        {
-            get => default;
-            set
-            {
-            }
-        }
-
-        public string[] InterestTags
-        {
-            get => default;
-            set
-            {
-            }
-        }
-
-        public int Description
-        {
-            get => default;
-            set
-            {
-            }
-        }
-
-        public int Title
-        {
-            get => default;
-            set
-            {
-            }
-        }
-
-        public void ToSring()
-        {
-            throw new System.NotImplementedException();
-        }
+        //public void ToSring()
+        //{
+        //    throw new System.NotImplementedException();
+        //}
     }
 }

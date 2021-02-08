@@ -4,16 +4,14 @@ using System.Text;
 
 namespace OfCourseData
 {
-    public class Trainer
+    public class Admin
     {
-        public Trainer()
+        public Admin()
         {
-            //BookedCourses = new HashSet<Course>();
-           // LikedCourses = new HashSet<Course>();
+            
         }
 
-        public int TrainerId { get; set; }
-
+        public string AdminId { get; set; }
         public string PostCode { get; set; }
         public string City { get; set; }
         public string Username { get; set; }
@@ -23,10 +21,9 @@ namespace OfCourseData
         public string LastName { get; set; }
 
 
-
-        //public virtual ICollection<Course> WhoIsBookedses { get; set; }
-        //public virtual ICollection<Course> LikedCourses { get; set; }
-
-
+        public void Approve()
+        {
+            throw new System.NotImplementedException();
+        }
     }
 }

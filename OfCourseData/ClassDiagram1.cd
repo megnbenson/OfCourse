@@ -1,31 +1,56 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <ClassDiagram MajorVersion="1" MinorVersion="1">
   <Class Name="OfCourseData.Course">
-    <Position X="0.75" Y="0.5" Width="1.5" />
+    <Position X="0.5" Y="0.5" Width="2.25" />
     <TypeIdentifier>
-      <HashCode>AIAEAAAAAAAgIEgAAAKgAAAAAACAAAACAACAAAAAAQA=</HashCode>
+      <HashCode>AIAEAAAAAAIgAkAIAACohAAAAACAAAACAAAAgAAACAA=</HashCode>
       <FileName>Course.cs</FileName>
     </TypeIdentifier>
+    <ShowAsAssociation>
+      <Property Name="Category" />
+      <Property Name="Trainer" />
+    </ShowAsAssociation>
+    <ShowAsCollectionAssociation>
+      <Property Name="CourseSessionDetailList" />
+      <Property Name="BookedCustomers" />
+    </ShowAsCollectionAssociation>
   </Class>
   <Class Name="OfCourseData.Trainer">
-    <Position X="3" Y="0.5" Width="1.5" />
+    <Position X="4.25" Y="2.75" Width="1.5" />
     <TypeIdentifier>
-      <HashCode>AAAAAAAAAAAAACAEAAAABAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <HashCode>AAAAAEAAAAAAAAAIAQAABAAAAAAAAAACAAAAgAAAAAg=</HashCode>
       <FileName>Trainer.cs</FileName>
     </TypeIdentifier>
   </Class>
   <Class Name="OfCourseData.Customer">
-    <Position X="7.5" Y="0.5" Width="1.5" />
+    <Position X="7.25" Y="3" Width="1.5" />
     <TypeIdentifier>
-      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAABAAAAAAAAAAAAA=</HashCode>
+      <HashCode>AAAAAEAAAAAAAAAIASAAAAAAAAAAABACAAAAgAAAAAg=</HashCode>
       <FileName>Customer.cs</FileName>
     </TypeIdentifier>
+    <ShowAsCollectionAssociation>
+      <Property Name="BookedCourses" />
+    </ShowAsCollectionAssociation>
   </Class>
-  <Class Name="OfCourseData.User">
-    <Position X="5.5" Y="0.75" Width="1.5" />
+  <Class Name="OfCourseData.Admin">
+    <Position X="9.5" Y="3" Width="1.5" />
     <TypeIdentifier>
-      <HashCode>AAAAAAAAAAIAAAgAAAIAAAAAAAAAgAAAAAAAABAAAAA=</HashCode>
-      <FileName>User.cs</FileName>
+      <HashCode>AAgAAAAAEAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Admin.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="OfCourseData.CourseSessionDetails">
+    <Position X="0.75" Y="5.5" Width="2" />
+    <TypeIdentifier>
+      <HashCode>AAAIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAACAAAAAA=</HashCode>
+      <FileName>CourseSessionDetails.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="OfCourseData.Category">
+    <Position X="4.25" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAgAAAAAAAAAAACAAAAAAAAAAABAAAAA=</HashCode>
+      <FileName>Category.cs</FileName>
     </TypeIdentifier>
     <ShowAsCollectionAssociation>
       <Property Name="Courses" />

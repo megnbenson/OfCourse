@@ -6,7 +6,10 @@ namespace OfCourseData
     {
         static void Main(string[] args)
         {
-            Console.WriteLine("Hello World!");
+            Console.Write("Hello Data");
+            
+            
+            //cust.InterestTags = "saucy";
         }
     }
 }
