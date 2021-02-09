@@ -70,6 +70,15 @@ namespace OfCourseWPF
             // make a login pop up
             // is in system, yes no, if yes out with ID?
             //_courseManager.Login()
+            var loginWindow = new LoginWindow();
+            loginWindow.Show();
+            loginWindow.Login += new EventHandler(UserLoggedIn);
+
+        }
+
+        private void UserLoggedIn(object sender, EventArgs e)
+        {
+            // is user customer or trainer
 
         }
 
@@ -79,7 +88,8 @@ namespace OfCourseWPF
         //    public ObservableCollection<GameItem> GameItems { get; set; }
         //}
     }
-    }
+
+}
 
     
 

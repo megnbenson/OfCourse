@@ -121,8 +121,8 @@
                             <ColumnDefinition Width="*" />
                         </Grid.ColumnDefinitions>
                         <!--THIS LOGIN CHANGES TO WELCOME, ONCE LOGGED IN-->
-                        <!--Click="ButtonLogin_Click"-->
-                        <Button x:Name="ButtonLogin" Grid.Row="0" Grid.Column="1" Background="#8db0e8" Content="Login"/>
+                        <!---->
+                        <Button x:Name="ButtonLogin" Grid.Row="0" Grid.Column="1" Background="#8db0e8" Click="ButtonLogin_Click" Content="Login"/>
                         <TextBox x:Name="TextId" Grid.Row="0" Grid.Column="0" Background="LightGreen" IsEnabled="False" IsReadOnlyCaretVisible="True"></TextBox>
                         <TextBox x:Name="TextName" Grid.Row="1" Grid.Column="0" Background="Bisque" IsEnabled="False" IsReadOnlyCaretVisible="True">Name</TextBox>
                         <TextBox x:Name="TextDescription" Grid.ColumnSpan="2" Grid.Row="2"  Grid.RowSpan="2" Background="Bisque" IsEnabled="False" IsReadOnlyCaretVisible="True">Description</TextBox>
