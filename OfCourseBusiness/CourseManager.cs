@@ -14,11 +14,13 @@ namespace OfCourseBusiness
 
 
         
-        public void Create(int courseId, string title, string description, string city, string postcode, double pricePerSession, int sessionLengthMinutes, int totalSessions, int maxPeople = 10)
+        public void Create(int trainerId, string categorytitle, string title, string description, string city, string postcode, double pricePerSession, int sessionLengthMinutes, int totalSessions, int maxPeople = 10)
         {
-            var newCourse = new Course() { CourseId = courseId, Title = title, Description = description, City = city, PostCode = postcode, PricePerSession = pricePerSession, SessionLengthMinutes = sessionLengthMinutes, TotalSessions = totalSessions };
             using (var db = new OfCourseContext())
             {
+                var catId = db.Categories.Where(c => c.CategoryName.Equals(categorytitle)).First().CategoryId;
+                var newCourse = new Course() { TrainerId = trainerId, CategoryId = catId, Title = title, Description = description, City = city, PostCode = postcode, PricePerSession = pricePerSession, SessionLengthMinutes = sessionLengthMinutes, TotalSessions = totalSessions };
+
                 db.Courses.Add(newCourse);
                 db.SaveChanges();
             }

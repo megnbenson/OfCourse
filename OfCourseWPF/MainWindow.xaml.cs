@@ -22,12 +22,15 @@ namespace OfCourseWPF
                 InitializeComponent();
                 PopulateListBox();
             }
+
+            
             private void PopulateListBox()
             {
-                categoryNames = _courseManager.GetAllCategories();
-                categoryDataBinding.ItemsSource = categoryNames;
+                    categoryNames = _courseManager.GetAllCategories();
+                    categoryDataBinding.ItemsSource = categoryNames;
+                    tCategory.ItemsSource = categoryNames;
 
-                ListBoxCourse.ItemsSource = _courseManager.RetrieveAll();
+                    ListBoxCourse.ItemsSource = _courseManager.RetrieveAll();
             }
 
             private void PopulateCustomerFields()
@@ -58,7 +61,7 @@ namespace OfCourseWPF
             }
         private void ButtonCreate_Click(object sender, RoutedEventArgs e)
         {
-            _courseManager.Create(TextName.Text, TextDescription.Text, TextCity.Text, TextPostCode.Text, Convert.ToDouble(TextPrice.Text), Int32.Parse(TextMinutes.Text), Int32.Parse(TextTotalSessions.Text), Int32.Parse(TextMaxPeople.Text));
+            _courseManager.Create(Int32.Parse(TextId.Text),tCategory.Text, TName.Text, TDescription.Text, TCity.Text, TPostCode.Text, Convert.ToDouble(TPrice.Text), Int32.Parse(TMinutes.Text), Int32.Parse(TTotalSessions.Text), Int32.Parse(TMaxPeople.Text));
             ListBoxCourse.ItemsSource = null;
             // put back the screen data
             PopulateListBox();

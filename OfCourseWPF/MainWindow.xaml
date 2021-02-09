@@ -190,6 +190,7 @@
                             <RowDefinition Height="*" />
                             <RowDefinition Height="*" />
                             <RowDefinition Height="*" />
+                            <RowDefinition Height="*" />
                         </Grid.RowDefinitions>
                         <Grid.ColumnDefinitions>
                             <ColumnDefinition Width="*" />
@@ -204,6 +205,7 @@
                         <Label x:Name="LabelMaxPeople" Grid.Row="6" Grid.Column="0" Background="Bisque">Max. People</Label>
                         <Label x:Name="LabelSessionLength" Grid.Row="7" Grid.Column="0" Background="Bisque">Session Length (in mins)</Label>
                         <Label x:Name="LabelTotalSessions" Grid.Row="8" Grid.Column="0" Background="Bisque">TotalSessions</Label>
+                        <Label x:Name="LabelCategory" Grid.Row="9" Grid.Column="0" Background="Bisque">Category</Label>
 
                         <TextBox x:Name="TId" Grid.Row="0" Grid.Column="1" Background="LightGreen" IsEnabled="False" IsReadOnlyCaretVisible="True"></TextBox>
                         <TextBox x:Name="TName" Grid.Row="1" Grid.Column="1" Background="LightGreen"></TextBox>
@@ -213,9 +215,18 @@
                         <TextBox x:Name="TPrice" Grid.Row="5" Grid.Column="1" Background="LightGreen"></TextBox>
                         <TextBox x:Name="TMaxPeople" Grid.Row="6" Grid.Column="1" Background="LightGreen"></TextBox>
                         <TextBox x:Name="TMinutes" Grid.Row="7" Grid.Column="1" Background="LightGreen"></TextBox>
-                        <TextBox x:Name="tTotalSessions" Grid.Row="8" Grid.Column="1" Background="LightGreen"></TextBox>
+                        <TextBox x:Name="TTotalSessions" Grid.Row="8" Grid.Column="1" Background="LightGreen"></TextBox>
+                        
+                        <ComboBox ItemsSource="{Binding Path=categoryDataBinding}" x:Name="tCategory" Grid.Row="9" Grid.Column="1" Background="LightGreen">
+                            <ComboBox.ItemTemplate>
+                                <DataTemplate>
+                                    <!--IsChecked="{Binding IsChecked}"-->
+                                    <ComboBoxItem Content="{Binding}" />
+                                </DataTemplate>
+                            </ComboBox.ItemTemplate>
+                        </ComboBox>
 
-                        <Button x:Name="ButtonCreate" Grid.Row="9" Grid.Column="2" Background="#8db0e8" Content="Update" Click="ButtonCreate_Click"/>
+                        <Button x:Name="ButtonCreate" Grid.Row="10" Grid.Column="2" Background="#8db0e8" Content="Update" Click="ButtonCreate_Click"/>
                     </Grid>
                 </Grid>
             </TabItem>
