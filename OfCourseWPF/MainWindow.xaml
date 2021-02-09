@@ -1,0 +1,288 @@
+﻿<Window x:Class="OfCourseWPF.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:OfCourseWPF"
+        mc:Ignorable="d"
+        Title="MainWindow" Height="450" Width="800">
+    <Grid>
+      
+        <TabControl>
+            <TabItem Header="General">
+                <!--<Label Content="Content goes here..." />-->
+                <Grid>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="*" />
+                    </Grid.RowDefinitions>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="100*" />
+                        <ColumnDefinition Width="100*"/>
+                        <ColumnDefinition Width="100*" />
+                        <ColumnDefinition Width="100*" />
+                    </Grid.ColumnDefinitions>
+                    <Grid Grid.Column= "0" Background="#FFF3DDDD">
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="*" />
+                            <RowDefinition Height="*" />
+                            <RowDefinition Height="*" />
+                            <RowDefinition Height="*" />
+                            <RowDefinition Height="*" />
+                            <RowDefinition Height="*" />
+                            <RowDefinition Height="*" />
+                            <RowDefinition Height="*" />
+                            <RowDefinition Height="*" />
+                            <RowDefinition Height="*" />
+
+                        </Grid.RowDefinitions>
+                        
+                        <Label Content="Filter Options" Grid.Column="0" Grid.RowSpan="1"  Background="#FFF3DDDD" FontSize="30" FontFamily="Sitka Heading"/>
+                        
+                        <!--<Label Grid.Row ="1" Content="Category"/>
+                        <CheckBox Grid.Row ="2" Content="CheckBox" Background="#FFF3DDDD"/>
+                        <Label Grid.Row ="3" Content="Location"/>
+                        <CheckBox Grid.Row ="4" Content="CheckBox" Background="#FFF3DDDD"/>
+
+                        <Label Grid.Row ="5" Content="Time Preference"/>
+                        <CheckBox Grid.Row ="6" Content="CheckBox" Background="#FFF3DDDD"/>-->
+                        <ScrollViewer  Background="Green"  Grid.RowSpan="5" >
+                            <StackPanel Grid.Row="2" Grid.RowSpan="4">
+                                <Expander Header="Category">
+                                    <!--<StackPanel>-->
+                                        <!--Need the Check Box Content to add for each category-->
+                                        <!--<CheckBox Content="South London" Background="#FFF3DDDD"/>
+                                        <CheckBox Content="West London" Background="#FFF3DDDD"/>
+                                        <CheckBox Content="East London" Background="#FFF3DDDD"/>
+                                        <CheckBox Content="North London" Background="#FFF3DDDD"/>
+                                        <CheckBox Content="Near Me" Background="#FFF3DDDD"/>-->
+                                    <!--UGH TRYING TO BIND so it updates with category-->
+                                    <ListView Name="categoryDataBinding">
+                                        <ListView.ItemTemplate>
+                                            <DataTemplate>
+                                                <!--IsChecked="{Binding IsChecked}"-->
+                                                <CheckBox Content="{Binding}" />
+                                            </DataTemplate>
+                                        </ListView.ItemTemplate>
+                                    </ListView>
+                                    <!--</StackPanel>-->
+                                </Expander>
+
+                                <Expander Header="Location">
+                                    <StackPanel>
+                                        <!-- EXT. Use location to add box, near me, within 50 miles-->
+                                        <CheckBox Content="South London" Background="#FFF3DDDD"/>
+                                        <CheckBox Content="West London" Background="#FFF3DDDD"/>
+                                        <CheckBox Content="East London" Background="#FFF3DDDD"/>
+                                        <CheckBox Content="North London" Background="#FFF3DDDD"/>
+                                        <CheckBox Content="Near Me" Background="#FFF3DDDD"/>
+
+                                    </StackPanel>
+                                </Expander>
+                                <Expander Header="Time Preference">
+                                    <!--VerticalScrollBarVisibility="Auto"-->
+                                
+                                        <StackPanel>
+                                            <CheckBox Content="Early Morning" Background="#FFF3DDDD"/>
+                                            <CheckBox Content="Late Morning" Background="#FFF3DDDD"/>
+                                            <CheckBox Content="Afternoon" Background="#FFF3DDDD"/>
+                                            <CheckBox Content="Evening" Background="#FFF3DDDD"/>
+                                            <CheckBox Content="Evening" Background="#FFF3DDDD"/>
+
+                                    
+                                            <Button>Save Settings</Button>
+                                        </StackPanel>
+                                </Expander>
+                            
+                            </StackPanel>
+                        </ScrollViewer>
+
+
+
+
+
+                    </Grid>
+
+                    <ListBox x:Name="ListBoxCourse" Background="Beige" Grid.Column="1" SelectionChanged="ListBoxCustomer_SelectionChanged" Grid.ColumnSpan="2"/>
+                    <Grid Grid.Column= "3" Background="Bisque">
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="*" />
+                            <RowDefinition Height="*" />
+                            <RowDefinition Height="*" />
+                            <RowDefinition Height="*" />
+                            <RowDefinition Height="*" />
+                            <RowDefinition Height="*" />
+                            <RowDefinition Height="*" />
+                            <RowDefinition Height="*" />
+                            <RowDefinition Height="*" />
+                            <RowDefinition Height="*" />
+                        </Grid.RowDefinitions>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="*" />
+                            <ColumnDefinition Width="*" />
+                        </Grid.ColumnDefinitions>
+                        <!--THIS LOGIN CHANGES TO WELCOME, ONCE LOGGED IN-->
+                        <!--Click="ButtonLogin_Click"-->
+                        <Button x:Name="ButtonLogin" Grid.Row="0" Grid.Column="1" Background="#8db0e8" Content="Login"/>
+                        <TextBox x:Name="TextId" Grid.Row="0" Grid.Column="0" Background="LightGreen" IsEnabled="False" IsReadOnlyCaretVisible="True"></TextBox>
+                        <TextBox x:Name="TextName" Grid.Row="1" Grid.Column="0" Background="Bisque" IsEnabled="False" IsReadOnlyCaretVisible="True">Name</TextBox>
+                        <TextBox x:Name="TextDescription" Grid.ColumnSpan="2" Grid.Row="2"  Grid.RowSpan="2" Background="Bisque" IsEnabled="False" IsReadOnlyCaretVisible="True">Description</TextBox>
+
+                        <TextBox x:Name="TextCity" Grid.Row="4"   Grid.Column="0" Background="Bisque" IsEnabled="False" IsReadOnlyCaretVisible="True">City</TextBox>
+                        <TextBox x:Name="TextPostCode" Grid.Row="4" Grid.Column="1" Background="Bisque" IsEnabled="False" IsReadOnlyCaretVisible="True">Post Code</TextBox>
+                        <TextBox x:Name="TextPrice" Grid.Row="6" Grid.Column="0" Background="Bisque" IsEnabled="False" IsReadOnlyCaretVisible="True">Price</TextBox>
+                        <TextBox x:Name="TextMaxPeople" Grid.Row="6" Grid.Column="1" Background="Bisque" IsEnabled="False" IsReadOnlyCaretVisible="True">Max. People</TextBox>
+                        <TextBox x:Name="TextMinutes" Grid.Row="5" Grid.Column="0" Background="Bisque" IsEnabled="False" IsReadOnlyCaretVisible="True">Session Length (in mins)</TextBox>
+                        <TextBox x:Name="TextTotalSessions" Grid.Row="5" Grid.Column="1" Background="Bisque" IsEnabled="False" IsReadOnlyCaretVisible="True">TotalSessions</TextBox>
+
+                        <!--<TextBox x:Name="TextId" Grid.Row="0" Grid.Column="1" Background="LightGreen" IsEnabled="False" IsReadOnlyCaretVisible="True"></TextBox>
+                        <TextBox x:Name="TextName" Grid.Row="1" Grid.Column="1" Background="LightGreen"></TextBox>
+                        <TextBox x:Name="TextCity" Grid.Row="2" Grid.Column="1" Background="LightGreen"></TextBox>
+                        <TextBox x:Name="TextPostCode" Grid.Row="3" Grid.Column="1" Background="LightGreen"></TextBox>
+                        <TextBox x:Name="TextDescription" Grid.Row="4" Grid.Column="1" Background="LightGreen"></TextBox>
+                        <TextBox x:Name="TextPrice" Grid.Row="5" Grid.Column="1" Background="LightGreen"></TextBox>
+                        <TextBox x:Name="TextMaxPeople" Grid.Row="6" Grid.Column="1" Background="LightGreen"></TextBox>
+                        <TextBox x:Name="TextMinutes" Grid.Row="7" Grid.Column="1" Background="LightGreen"></TextBox>
+                        <TextBox x:Name="TextTotalSessions" Grid.Row="8" Grid.Column="1" Background="LightGreen"></TextBox>-->
+
+                        <!--<Button x:Name="ButtonUpdate" Grid.Row="9" Grid.Column="2" Background="#8db0e8" Content="Update" Click="ButtonUpdate_Click"/>-->
+                    </Grid>
+                </Grid>
+            </TabItem>
+            <TabItem Header="Bookings" />
+            <!--only visible if logged in and user is trainer-->
+            <TabItem Header="Add Course">
+                <Grid>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="*" />
+                    </Grid.RowDefinitions>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="*" />
+                        <ColumnDefinition Width="*" />
+                        <ColumnDefinition Width="*" />
+                        <ColumnDefinition Width="*" />
+                        <ColumnDefinition Width="*" />
+                    </Grid.ColumnDefinitions>
+                    <ListBox x:Name="BookingListBoxCourse" Background="Beige"  Grid.Row="4" Grid.Column="0" SelectionChanged="ListBoxCustomer_SelectionChanged">
+                    </ListBox>
+                    <Grid Grid.Column= "1" Grid.ColumnSpan="3">
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="*" />
+                            <RowDefinition Height="*" />
+                            <RowDefinition Height="*" />
+                            <RowDefinition Height="*" />
+                            <RowDefinition Height="*" />
+                            <RowDefinition Height="*" />
+                            <RowDefinition Height="*" />
+                            <RowDefinition Height="*" />
+                            <RowDefinition Height="*" />
+                            <RowDefinition Height="*" />
+                        </Grid.RowDefinitions>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="*" />
+                            <ColumnDefinition Width="*" />
+                        </Grid.ColumnDefinitions>
+                        <Label x:Name="LabelId" Grid.Row="0" Grid.Column="0" Background="Bisque" >Id</Label>
+                        <Label x:Name="LabelName" Grid.Row="1" Grid.Column="0" Background="Bisque">Name</Label>
+                        <Label x:Name="LabelCity" Grid.Row="2" Grid.Column="0" Background="Bisque">City</Label>
+                        <Label x:Name="LabelPostCode" Grid.Row="3" Grid.Column="0" Background="Bisque" Content="Post Code"/>
+                        <Label x:Name="LabelDescription" Grid.Row="4" Grid.Column="0" Background="Bisque">Description</Label>
+                        <Label x:Name="LabelPrice" Grid.Row="5" Grid.Column="0" Background="Bisque">Price</Label>
+                        <Label x:Name="LabelMaxPeople" Grid.Row="6" Grid.Column="0" Background="Bisque">Max. People</Label>
+                        <Label x:Name="LabelSessionLength" Grid.Row="7" Grid.Column="0" Background="Bisque">Session Length (in mins)</Label>
+                        <Label x:Name="LabelTotalSessions" Grid.Row="8" Grid.Column="0" Background="Bisque">TotalSessions</Label>
+
+                        <TextBox x:Name="TId" Grid.Row="0" Grid.Column="1" Background="LightGreen" IsEnabled="False" IsReadOnlyCaretVisible="True"></TextBox>
+                        <TextBox x:Name="TName" Grid.Row="1" Grid.Column="1" Background="LightGreen"></TextBox>
+                        <TextBox x:Name="TCity" Grid.Row="2" Grid.Column="1" Background="LightGreen"></TextBox>
+                        <TextBox x:Name="TPostCode" Grid.Row="3" Grid.Column="1" Background="LightGreen"></TextBox>
+                        <TextBox x:Name="TDescription" Grid.Row="4" Grid.Column="1" Background="LightGreen"></TextBox>
+                        <TextBox x:Name="TPrice" Grid.Row="5" Grid.Column="1" Background="LightGreen"></TextBox>
+                        <TextBox x:Name="TMaxPeople" Grid.Row="6" Grid.Column="1" Background="LightGreen"></TextBox>
+                        <TextBox x:Name="TMinutes" Grid.Row="7" Grid.Column="1" Background="LightGreen"></TextBox>
+                        <TextBox x:Name="tTotalSessions" Grid.Row="8" Grid.Column="1" Background="LightGreen"></TextBox>
+
+                        <Button x:Name="ButtonUpdate" Grid.Row="9" Grid.Column="2" Background="#8db0e8" Content="Update" Click="ButtonUpdate_Click"/>
+                    </Grid>
+                </Grid>
+            </TabItem>
+            
+            <TabItem Header="Account">
+            
+            </TabItem>
+        </TabControl>
+            
+
+    </Grid>
+    
+</Window>
+
+
+
+
+
+
+
+
+<!--BELOW IS ORIGINAL TO COME BACK TO FOR ADD COURSE-->
+
+<!--<Window x:Class="OfCourseWPF.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:OfCourseWPF"
+        mc:Ignorable="d"
+        Title="MainWindow" Height="450" Width="800">
+    <Grid>
+        <Grid>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="*" />
+            </Grid.RowDefinitions>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*" />
+                <ColumnDefinition Width="*" />
+            </Grid.ColumnDefinitions>
+            <ListBox x:Name="ListBoxCourse" Background="Beige"  Grid.Row="4" Grid.Column="0" SelectionChanged="ListBoxCustomer_SelectionChanged">
+            </ListBox>
+            <Grid Grid.Column= "1">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="*" />
+                    <RowDefinition Height="*" />
+                    <RowDefinition Height="*" />
+                    <RowDefinition Height="*" />
+                    <RowDefinition Height="*" />
+                    <RowDefinition Height="*" />
+                    <RowDefinition Height="*" />
+                    <RowDefinition Height="*" />
+                    <RowDefinition Height="*" />
+                    <RowDefinition Height="*" />
+                </Grid.RowDefinitions>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*" />
+                    <ColumnDefinition Width="*" />
+                </Grid.ColumnDefinitions>
+                <Label x:Name="LabelId" Grid.Row="0" Grid.Column="0" Background="Bisque" >Id</Label>
+                <Label x:Name="LabelName" Grid.Row="1" Grid.Column="0" Background="Bisque">Name</Label>
+                <Label x:Name="LabelCity" Grid.Row="2" Grid.Column="0" Background="Bisque">City</Label>
+                <Label x:Name="LabelPostCode" Grid.Row="3" Grid.Column="0" Background="Bisque" Content="Post Code"/>
+                <Label x:Name="LabelDescription" Grid.Row="4" Grid.Column="0" Background="Bisque">Description</Label>
+                <Label x:Name="LabelPrice" Grid.Row="5" Grid.Column="0" Background="Bisque">Price</Label>
+                <Label x:Name="LabelMaxPeople" Grid.Row="6" Grid.Column="0" Background="Bisque">Max. People</Label>
+                <Label x:Name="LabelSessionLength" Grid.Row="7" Grid.Column="0" Background="Bisque">Session Length (in mins)</Label>
+                <Label x:Name="LabelTotalSessions" Grid.Row="8" Grid.Column="0" Background="Bisque">TotalSessions</Label>
+
+                <TextBox x:Name="TextId" Grid.Row="0" Grid.Column="1" Background="LightGreen" IsEnabled="False" IsReadOnlyCaretVisible="True"></TextBox>
+                <TextBox x:Name="TextName" Grid.Row="1" Grid.Column="1" Background="LightGreen"></TextBox>
+                <TextBox x:Name="TextCity" Grid.Row="2" Grid.Column="1" Background="LightGreen"></TextBox>
+                <TextBox x:Name="TextPostCode" Grid.Row="3" Grid.Column="1" Background="LightGreen"></TextBox>
+                <TextBox x:Name="TextDescription" Grid.Row="4" Grid.Column="1" Background="LightGreen"></TextBox>
+                <TextBox x:Name="TextPrice" Grid.Row="5" Grid.Column="1" Background="LightGreen"></TextBox>
+                <TextBox x:Name="TextMaxPeople" Grid.Row="6" Grid.Column="1" Background="LightGreen"></TextBox>
+                <TextBox x:Name="TextMinutes" Grid.Row="7" Grid.Column="1" Background="LightGreen"></TextBox>
+                <TextBox x:Name="TextTotalSessions" Grid.Row="8" Grid.Column="1" Background="LightGreen"></TextBox>
+
+                <Button x:Name="ButtonUpdate" Grid.Row="9" Grid.Column="2" Background="#8db0e8" Content="Update" Click="ButtonUpdate_Click"/>
+            </Grid>
+        </Grid>
+    </Grid>
+</Window>-->
