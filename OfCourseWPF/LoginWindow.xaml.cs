@@ -20,11 +20,24 @@ namespace OfCourseWPF
     {
         private CourseManager _courseManager = new CourseManager();
         public event EventHandler Login;
-        public LoginWindow()
+        private readonly MainWindow _mainWindow;
+        
+        public LoginWindow(MainWindow mainWindow)
         {
+            _mainWindow = mainWindow;
             InitializeComponent();
         }
 
+        private void Button_Click(object sender, RoutedEventArgs e)
+        {
+            //gives back user type and Id
+            Tuple<string,int> userTypeId = _courseManager.Login(userNameBox.Text,passwordBox.Password);
+            
+            _mainWindow.SetSelectedUserTextboxes(userTypeId);
+            
+            Login(this, e);
 
+            
+        }
     }
 }

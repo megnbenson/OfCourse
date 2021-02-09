@@ -37,10 +37,11 @@
                 <ColumnDefinition Width="*" />
             </Grid.ColumnDefinitions>
             <Label Content="Username:" Grid.Row="1" Grid.Column="0" Margin="50,0,50,0"/>
-            <TextBox Text="" TextWrapping="Wrap" Grid.Row="2" Grid.Column="0" Margin="50,0,50,0"/>
+            <TextBox Name="userNameBox" Text="" TextWrapping="Wrap" Grid.Row="2" Grid.Column="0" Margin="50,0,50,0"/>
             <Label Content="Password:" Grid.Row="4" Grid.Column="0" Margin="50,0,50,0"/>
 
-            <PasswordBox Grid.Row="5" Grid.Column="0" Margin="50,0,50,0"/>
+            <PasswordBox x:Name="passwordBox" Grid.Row="5" Grid.Column="0" Margin="50,0,50,0"/>
+            <Button Grid.Row="7" Content="Log in" Margin="120,0,120,3" Click="Button_Click"/>
         </Grid>
 
 

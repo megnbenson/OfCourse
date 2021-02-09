@@ -1,7 +1,9 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Windows;
+using System.Windows.Media;
 using OfCourseBusiness;
+using System.Diagnostics;
 
 namespace OfCourseWPF
 {
@@ -12,7 +14,7 @@ namespace OfCourseWPF
     {
         private CourseManager _courseManager = new CourseManager();
         public List<string> categoryNames = new List<string>();
-
+        private LoginWindow loginWindow;
             
 
             public MainWindow()
@@ -54,8 +56,17 @@ namespace OfCourseWPF
                     PopulateCustomerFields();
                 }
             }
+        private void ButtonCreate_Click(object sender, RoutedEventArgs e)
+        {
+            _courseManager.Create(TextName.Text, TextDescription.Text, TextCity.Text, TextPostCode.Text, Convert.ToDouble(TextPrice.Text), Int32.Parse(TextMinutes.Text), Int32.Parse(TextTotalSessions.Text), Int32.Parse(TextMaxPeople.Text));
+            ListBoxCourse.ItemsSource = null;
+            // put back the screen data
+            PopulateListBox();
+            ListBoxCourse.SelectedItem = _courseManager.SelectedCourse;
+            PopulateCustomerFields();
+        }
 
-            private void ButtonUpdate_Click(object sender, RoutedEventArgs e)
+        private void ButtonUpdate_Click(object sender, RoutedEventArgs e)
             {
                 _courseManager.Update(Int32.Parse(TextId.Text), TextName.Text, TextDescription.Text, TextCity.Text, TextPostCode.Text, Convert.ToDouble(TextPrice.Text), Int32.Parse(TextMaxPeople.Text), Int32.Parse(TextMinutes.Text), Int32.Parse(TextTotalSessions.Text));
                 ListBoxCourse.ItemsSource = null;
@@ -69,17 +80,34 @@ namespace OfCourseWPF
         {
             // make a login pop up
             // is in system, yes no, if yes out with ID?
-            //_courseManager.Login()
-            var loginWindow = new LoginWindow();
+            //https://stackoverflow.com/questions/58198741/how-to-change-textbox-value-when-i-change-it-from-another-window
+            // ^ used for sending this into new window, to send selectedUser info to original class
+            loginWindow = new LoginWindow(this);
             loginWindow.Show();
             loginWindow.Login += new EventHandler(UserLoggedIn);
+            
 
         }
 
         private void UserLoggedIn(object sender, EventArgs e)
         {
             // is user customer or trainer
+            //
+            ButtonLogin.Background = Brushes.Yellow;
+            loginWindow.Close();
+            ButtonLogin.Visibility = Visibility.Hidden;
+        }
 
+        public void SetSelectedUserTextboxes(Tuple<string, int> value )
+        {
+            
+            TextHello.Text = "hello " +  _courseManager.GetName(value);
+            TextType.Text = value.Item1;
+            TextId.Text = value.Item2.ToString();
+            if(value.Item1 == "C" || value.Item1 == "A")
+            {
+                AddCourseTab.Visibility = Visibility.Hidden;
+            }
         }
 
         //public class ListViewModel : INotifyPropertyChanged

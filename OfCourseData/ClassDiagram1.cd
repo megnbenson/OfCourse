@@ -3,24 +3,15 @@
   <Class Name="OfCourseData.Course">
     <Position X="0.5" Y="0.5" Width="2.25" />
     <TypeIdentifier>
-      <HashCode>AIAEAAAAAAIgAkAIAACohAAAAACAAAACAAAAgAAACAA=</HashCode>
+      <HashCode>AIAEAAAAAAIgAkAMAACohAAAAACAAAACAAAAgAAACAA=</HashCode>
       <FileName>Course.cs</FileName>
     </TypeIdentifier>
     <ShowAsAssociation>
       <Property Name="Category" />
-      <Property Name="Trainer" />
     </ShowAsAssociation>
     <ShowAsCollectionAssociation>
       <Property Name="CourseSessionDetailList" />
-      <Property Name="BookedCustomers" />
     </ShowAsCollectionAssociation>
-  </Class>
-  <Class Name="OfCourseData.Trainer">
-    <Position X="4.25" Y="2.75" Width="1.5" />
-    <TypeIdentifier>
-      <HashCode>AAAAAEAAAAAAAAAIAQAABAAAAAAAAAACAAAAgAAAAAg=</HashCode>
-      <FileName>Trainer.cs</FileName>
-    </TypeIdentifier>
   </Class>
   <Class Name="OfCourseData.Customer">
     <Position X="7.25" Y="3" Width="1.5" />
@@ -32,17 +23,10 @@
       <Property Name="BookedCourses" />
     </ShowAsCollectionAssociation>
   </Class>
-  <Class Name="OfCourseData.Admin">
-    <Position X="9.5" Y="3" Width="1.5" />
-    <TypeIdentifier>
-      <HashCode>AAgAAEAAEAAAAAAIAQAAAAAAAAAAAAACAAAAgAAAAAg=</HashCode>
-      <FileName>Admin.cs</FileName>
-    </TypeIdentifier>
-  </Class>
   <Class Name="OfCourseData.CourseSessionDetails">
     <Position X="0.75" Y="4.75" Width="2" />
     <TypeIdentifier>
-      <HashCode>AAAIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAACAAAAAA=</HashCode>
+      <HashCode>AAAMAAAAAAAAAAAAAIAgAAAAAAAAAAAAAAAACAAAAAA=</HashCode>
       <FileName>CourseSessionDetails.cs</FileName>
     </TypeIdentifier>
   </Class>
@@ -55,6 +39,20 @@
     <ShowAsCollectionAssociation>
       <Property Name="Courses" />
     </ShowAsCollectionAssociation>
+  </Class>
+  <Class Name="OfCourseData.Admin">
+    <Position X="9.5" Y="3" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAgAAEAAEAAAAAAIAQAAAAAAAAAAAAACAAAAgAAAAAg=</HashCode>
+      <FileName>Admin.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="OfCourseData.Trainer">
+    <Position X="4.25" Y="2.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAEAAAAAAAAAIAQAABAAAAAAAAAACAAAAgAAAAAg=</HashCode>
+      <FileName>Trainer.cs</FileName>
+    </TypeIdentifier>
   </Class>
   <Font Name="Segoe UI" Size="9" />
 </ClassDiagram>
