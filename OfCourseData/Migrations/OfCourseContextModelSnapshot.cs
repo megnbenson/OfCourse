@@ -24,8 +24,8 @@ namespace OfCourseData.Migrations
                     b.Property<int>("BookedCoursesCourseId")
                         .HasColumnType("int");
 
-                    b.Property<string>("BookedCustomersCustomerId")
-                        .HasColumnType("nvarchar(450)");
+                    b.Property<int>("BookedCustomersCustomerId")
+                        .HasColumnType("int");
 
                     b.HasKey("BookedCoursesCourseId", "BookedCustomersCustomerId");
 
@@ -36,8 +36,10 @@ namespace OfCourseData.Migrations
 
             modelBuilder.Entity("OfCourseData.Admin", b =>
                 {
-                    b.Property<string>("AdminId")
-                        .HasColumnType("nvarchar(450)");
+                    b.Property<int>("AdminId")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int")
+                        .UseIdentityColumn();
 
                     b.Property<string>("City")
                         .HasColumnType("nvarchar(max)");
@@ -59,7 +61,7 @@ namespace OfCourseData.Migrations
 
                     b.HasKey("AdminId");
 
-                    b.ToTable("Admin");
+                    b.ToTable("Admins");
                 });
 
             modelBuilder.Entity("OfCourseData.Category", b =>
@@ -74,7 +76,7 @@ namespace OfCourseData.Migrations
 
                     b.HasKey("CategoryId");
 
-                    b.ToTable("Category");
+                    b.ToTable("Categories");
                 });
 
             modelBuilder.Entity("OfCourseData.Course", b =>
@@ -84,7 +86,7 @@ namespace OfCourseData.Migrations
                         .HasColumnType("int")
                         .UseIdentityColumn();
 
-                    b.Property<int?>("CategoryId")
+                    b.Property<int>("CategoryId")
                         .HasColumnType("int");
 
                     b.Property<string>("City")
@@ -114,8 +116,8 @@ namespace OfCourseData.Migrations
                     b.Property<int>("TotalSessions")
                         .HasColumnType("int");
 
-                    b.Property<string>("TrainerId")
-                        .HasColumnType("nvarchar(450)");
+                    b.Property<int>("TrainerId")
+                        .HasColumnType("int");
 
                     b.HasKey("CourseId");
 
@@ -151,8 +153,10 @@ namespace OfCourseData.Migrations
 
             modelBuilder.Entity("OfCourseData.Customer", b =>
                 {
-                    b.Property<string>("CustomerId")
-                        .HasColumnType("nvarchar(450)");
+                    b.Property<int>("CustomerId")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int")
+                        .UseIdentityColumn();
 
                     b.Property<string>("City")
                         .HasColumnType("nvarchar(max)");
@@ -179,8 +183,10 @@ namespace OfCourseData.Migrations
 
             modelBuilder.Entity("OfCourseData.Trainer", b =>
                 {
-                    b.Property<string>("TrainerId")
-                        .HasColumnType("nvarchar(450)");
+                    b.Property<int>("TrainerId")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int")
+                        .UseIdentityColumn();
 
                     b.Property<string>("City")
                         .HasColumnType("nvarchar(max)");
@@ -224,11 +230,15 @@ namespace OfCourseData.Migrations
                 {
                     b.HasOne("OfCourseData.Category", "Category")
                         .WithMany("Courses")
-                        .HasForeignKey("CategoryId");
+                        .HasForeignKey("CategoryId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
 
                     b.HasOne("OfCourseData.Trainer", "Trainer")
                         .WithMany()
-                        .HasForeignKey("TrainerId");
+                        .HasForeignKey("TrainerId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
 
                     b.Navigation("Category");
 

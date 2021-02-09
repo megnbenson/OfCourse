@@ -24,7 +24,7 @@ namespace OfCourseData
         public DbSet<Customer> Customers { get; set; }
         public DbSet<Trainer> Trainers { get; set; }
         public DbSet<Admin> Admins { get; set; }
-        public DbSet<Admin> Categories { get; set; }
+        public DbSet<Category> Categories { get; set; }
 
         protected override void OnConfiguring(DbContextOptionsBuilder options)
         {

@@ -13,8 +13,8 @@ namespace OfCourseData
         }
 
         public int CourseId { get; set; }
-        public int? CategoryId { get; set; }
-        public string TrainerId { get; set; }
+        public int CategoryId { get; set; }
+        public int TrainerId { get; set; }
         public String Title { get; set; }
         public String Description { get; set; }
        

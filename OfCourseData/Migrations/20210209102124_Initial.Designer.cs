@@ -10,7 +10,7 @@ using OfCourseData;
 namespace OfCourseData.Migrations
 {
     [DbContext(typeof(OfCourseContext))]
-    [Migration("20210208160633_Initial")]
+    [Migration("20210209102124_Initial")]
     partial class Initial
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -26,8 +26,8 @@ namespace OfCourseData.Migrations
                     b.Property<int>("BookedCoursesCourseId")
                         .HasColumnType("int");
 
-                    b.Property<string>("BookedCustomersCustomerId")
-                        .HasColumnType("nvarchar(450)");
+                    b.Property<int>("BookedCustomersCustomerId")
+                        .HasColumnType("int");
 
                     b.HasKey("BookedCoursesCourseId", "BookedCustomersCustomerId");
 
@@ -38,8 +38,10 @@ namespace OfCourseData.Migrations
 
             modelBuilder.Entity("OfCourseData.Admin", b =>
                 {
-                    b.Property<string>("AdminId")
-                        .HasColumnType("nvarchar(450)");
+                    b.Property<int>("AdminId")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int")
+                        .UseIdentityColumn();
 
                     b.Property<string>("City")
                         .HasColumnType("nvarchar(max)");
@@ -86,17 +88,13 @@ namespace OfCourseData.Migrations
                         .HasColumnType("int")
                         .UseIdentityColumn();
 
-                    b.Property<int?>("CategoryId")
+                    b.Property<int>("CategoryId")
                         .HasColumnType("int");
 
                     b.Property<string>("City")
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("Description")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("Discriminator")
-                        .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<bool>("IsApproved")
@@ -120,8 +118,8 @@ namespace OfCourseData.Migrations
                     b.Property<int>("TotalSessions")
                         .HasColumnType("int");
 
-                    b.Property<string>("TrainerId")
-                        .HasColumnType("nvarchar(450)");
+                    b.Property<int>("TrainerId")
+                        .HasColumnType("int");
 
                     b.HasKey("CourseId");
 
@@ -130,14 +128,37 @@ namespace OfCourseData.Migrations
                     b.HasIndex("TrainerId");
 
                     b.ToTable("Courses");
+                });
 
-                    b.HasDiscriminator<string>("Discriminator").HasValue("Course");
+            modelBuilder.Entity("OfCourseData.CourseSessionDetails", b =>
+                {
+                    b.Property<int>("CourseSessionDetailsId")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int")
+                        .UseIdentityColumn();
+
+                    b.Property<int>("CourseId")
+                        .HasColumnType("int");
+
+                    b.Property<DateTime>("DateOfSession")
+                        .HasColumnType("datetime2");
+
+                    b.Property<DateTime>("TimeOfSession")
+                        .HasColumnType("datetime2");
+
+                    b.HasKey("CourseSessionDetailsId");
+
+                    b.HasIndex("CourseId");
+
+                    b.ToTable("CourseSessionDetails");
                 });
 
             modelBuilder.Entity("OfCourseData.Customer", b =>
                 {
-                    b.Property<string>("CustomerId")
-                        .HasColumnType("nvarchar(450)");
+                    b.Property<int>("CustomerId")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int")
+                        .UseIdentityColumn();
 
                     b.Property<string>("City")
                         .HasColumnType("nvarchar(max)");
@@ -164,8 +185,10 @@ namespace OfCourseData.Migrations
 
             modelBuilder.Entity("OfCourseData.Trainer", b =>
                 {
-                    b.Property<string>("TrainerId")
-                        .HasColumnType("nvarchar(450)");
+                    b.Property<int>("TrainerId")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int")
+                        .UseIdentityColumn();
 
                     b.Property<string>("City")
                         .HasColumnType("nvarchar(max)");
@@ -190,24 +213,6 @@ namespace OfCourseData.Migrations
                     b.ToTable("Trainers");
                 });
 
-            modelBuilder.Entity("OfCourseData.CourseSessionDetails", b =>
-                {
-                    b.HasBaseType("OfCourseData.Course");
-
-                    b.Property<int?>("CourseId1")
-                        .HasColumnType("int");
-
-                    b.Property<DateTime>("DateOfSession")
-                        .HasColumnType("datetime2");
-
-                    b.Property<DateTime>("TimeOfSession")
-                        .HasColumnType("datetime2");
-
-                    b.HasIndex("CourseId1");
-
-                    b.HasDiscriminator().HasValue("CourseSessionDetails");
-                });
-
             modelBuilder.Entity("CourseCustomer", b =>
                 {
                     b.HasOne("OfCourseData.Course", null)
@@ -227,11 +232,15 @@ namespace OfCourseData.Migrations
                 {
                     b.HasOne("OfCourseData.Category", "Category")
                         .WithMany("Courses")
-                        .HasForeignKey("CategoryId");
+                        .HasForeignKey("CategoryId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
 
                     b.HasOne("OfCourseData.Trainer", "Trainer")
                         .WithMany()
-                        .HasForeignKey("TrainerId");
+                        .HasForeignKey("TrainerId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
 
                     b.Navigation("Category");
 
@@ -240,9 +249,13 @@ namespace OfCourseData.Migrations
 
             modelBuilder.Entity("OfCourseData.CourseSessionDetails", b =>
                 {
-                    b.HasOne("OfCourseData.Course", null)
+                    b.HasOne("OfCourseData.Course", "Course")
                         .WithMany("CourseSessionDetailList")
-                        .HasForeignKey("CourseId1");
+                        .HasForeignKey("CourseId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("Course");
                 });
 
             modelBuilder.Entity("OfCourseData.Category", b =>

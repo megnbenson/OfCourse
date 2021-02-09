@@ -11,7 +11,7 @@ namespace OfCourseData
             
         }
 
-        public string AdminId { get; set; }
+        public int AdminId { get; set; }
         public string PostCode { get; set; }
         public string City { get; set; }
         public string Username { get; set; }

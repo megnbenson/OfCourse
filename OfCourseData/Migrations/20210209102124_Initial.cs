@@ -11,7 +11,8 @@ namespace OfCourseData.Migrations
                 name: "Admin",
                 columns: table => new
                 {
-                    AdminId = table.Column<string>(type: "nvarchar(450)", nullable: false),
+                    AdminId = table.Column<int>(type: "int", nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
                     PostCode = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     City = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     Username = table.Column<string>(type: "nvarchar(max)", nullable: true),
@@ -41,7 +42,8 @@ namespace OfCourseData.Migrations
                 name: "Customers",
                 columns: table => new
                 {
-                    CustomerId = table.Column<string>(type: "nvarchar(450)", nullable: false),
+                    CustomerId = table.Column<int>(type: "int", nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
                     PostCode = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     City = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     Username = table.Column<string>(type: "nvarchar(max)", nullable: true),
@@ -58,7 +60,8 @@ namespace OfCourseData.Migrations
                 name: "Trainers",
                 columns: table => new
                 {
-                    TrainerId = table.Column<string>(type: "nvarchar(450)", nullable: false),
+                    TrainerId = table.Column<int>(type: "int", nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
                     PostCode = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     City = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     Username = table.Column<string>(type: "nvarchar(max)", nullable: true),
@@ -77,8 +80,8 @@ namespace OfCourseData.Migrations
                 {
                     CourseId = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
-                    CategoryId = table.Column<int>(type: "int", nullable: true),
-                    TrainerId = table.Column<string>(type: "nvarchar(450)", nullable: true),
+                    CategoryId = table.Column<int>(type: "int", nullable: false),
+                    TrainerId = table.Column<int>(type: "int", nullable: false),
                     Title = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     Description = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     IsApproved = table.Column<bool>(type: "bit", nullable: false),
@@ -87,11 +90,7 @@ namespace OfCourseData.Migrations
                     TotalSessions = table.Column<int>(type: "int", nullable: false),
                     SessionLengthMinutes = table.Column<int>(type: "int", nullable: false),
                     City = table.Column<string>(type: "nvarchar(max)", nullable: true),
-                    PostCode = table.Column<string>(type: "nvarchar(max)", nullable: true),
-                    Discriminator = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    TimeOfSession = table.Column<DateTime>(type: "datetime2", nullable: true),
-                    DateOfSession = table.Column<DateTime>(type: "datetime2", nullable: true),
-                    CourseId1 = table.Column<int>(type: "int", nullable: true)
+                    PostCode = table.Column<string>(type: "nvarchar(max)", nullable: true)
                 },
                 constraints: table =>
                 {
@@ -101,19 +100,13 @@ namespace OfCourseData.Migrations
                         column: x => x.CategoryId,
                         principalTable: "Category",
                         principalColumn: "CategoryId",
-                        onDelete: ReferentialAction.Restrict);
-                    table.ForeignKey(
-                        name: "FK_Courses_Courses_CourseId1",
-                        column: x => x.CourseId1,
-                        principalTable: "Courses",
-                        principalColumn: "CourseId",
-                        onDelete: ReferentialAction.Restrict);
+                        onDelete: ReferentialAction.Cascade);
                     table.ForeignKey(
                         name: "FK_Courses_Trainers_TrainerId",
                         column: x => x.TrainerId,
                         principalTable: "Trainers",
                         principalColumn: "TrainerId",
-                        onDelete: ReferentialAction.Restrict);
+                        onDelete: ReferentialAction.Cascade);
                 });
 
             migrationBuilder.CreateTable(
@@ -121,7 +114,7 @@ namespace OfCourseData.Migrations
                 columns: table => new
                 {
                     BookedCoursesCourseId = table.Column<int>(type: "int", nullable: false),
-                    BookedCustomersCustomerId = table.Column<string>(type: "nvarchar(450)", nullable: false)
+                    BookedCustomersCustomerId = table.Column<int>(type: "int", nullable: false)
                 },
                 constraints: table =>
                 {
@@ -140,6 +133,27 @@ namespace OfCourseData.Migrations
                         onDelete: ReferentialAction.Cascade);
                 });
 
+            migrationBuilder.CreateTable(
+                name: "CourseSessionDetails",
+                columns: table => new
+                {
+                    CourseSessionDetailsId = table.Column<int>(type: "int", nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
+                    CourseId = table.Column<int>(type: "int", nullable: false),
+                    TimeOfSession = table.Column<DateTime>(type: "datetime2", nullable: false),
+                    DateOfSession = table.Column<DateTime>(type: "datetime2", nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_CourseSessionDetails", x => x.CourseSessionDetailsId);
+                    table.ForeignKey(
+                        name: "FK_CourseSessionDetails_Courses_CourseId",
+                        column: x => x.CourseId,
+                        principalTable: "Courses",
+                        principalColumn: "CourseId",
+                        onDelete: ReferentialAction.Cascade);
+                });
+
             migrationBuilder.CreateIndex(
                 name: "IX_CourseCustomer_BookedCustomersCustomerId",
                 table: "CourseCustomer",
@@ -151,14 +165,14 @@ namespace OfCourseData.Migrations
                 column: "CategoryId");
 
             migrationBuilder.CreateIndex(
-                name: "IX_Courses_CourseId1",
-                table: "Courses",
-                column: "CourseId1");
-
-            migrationBuilder.CreateIndex(
                 name: "IX_Courses_TrainerId",
                 table: "Courses",
                 column: "TrainerId");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_CourseSessionDetails_CourseId",
+                table: "CourseSessionDetails",
+                column: "CourseId");
         }
 
         protected override void Down(MigrationBuilder migrationBuilder)
@@ -170,10 +184,13 @@ namespace OfCourseData.Migrations
                 name: "CourseCustomer");
 
             migrationBuilder.DropTable(
-                name: "Courses");
+                name: "CourseSessionDetails");
 
             migrationBuilder.DropTable(
                 name: "Customers");
+
+            migrationBuilder.DropTable(
+                name: "Courses");
 
             migrationBuilder.DropTable(
                 name: "Category");
