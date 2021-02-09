@@ -16,7 +16,7 @@ namespace OfCourseData
         public int? CategoryId { get; set; }
         public string TrainerId { get; set; }
         public String Title { get; set; }
-        public String? Description { get; set; }
+        public String Description { get; set; }
        
         public bool IsApproved {
             get => default;
@@ -38,6 +38,11 @@ namespace OfCourseData
         public virtual Trainer Trainer { get; set; }
         public virtual ICollection<CourseSessionDetails> CourseSessionDetailList { get; set; }
         public virtual ICollection<Customer> BookedCustomers { get; set; }
+
+        public override string ToString()
+        {
+            return Title;
+        }
 
     }
 }
