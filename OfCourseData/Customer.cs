@@ -17,7 +17,7 @@ namespace OfCourseData
             City = city;
             Username = username;
             Password = password;
-            BookedCourses = new HashSet<Course>();
+            BookedCourses = new HashSet<CourseSessionDetails>();
             //LikedCourses = new HashSet<Course>();
         }
 
@@ -31,7 +31,7 @@ namespace OfCourseData
         public string LastName { get; set; }
 
 
-        public virtual ICollection<Course> BookedCourses { get; set; }
+        public virtual ICollection<CourseSessionDetails> BookedCourses { get; set; }
         //public virtual ICollection<Course> LikedCourses { get; set; }
     }
 }
