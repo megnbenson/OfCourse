@@ -131,7 +131,75 @@
                     </Grid>
                 </Grid>
             </TabItem>
-            <TabItem Header="Bookings" />
+            <TabItem Header="Bookings">
+                
+                    <Grid>
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="*" />
+                        </Grid.RowDefinitions>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="100*" />
+                            <ColumnDefinition Width="100*"/>
+                            <ColumnDefinition Width="100*" />
+                            <ColumnDefinition Width="100*" />
+                        </Grid.ColumnDefinitions>
+
+
+                        <ListBox x:Name="AddCourseListBoxCourses" Background="Beige" Grid.Column="1" SelectionChanged="ListBoxCourse_SelectionChanged" Grid.ColumnSpan="2"/>
+                        <Grid Grid.Column= "3" Background="Bisque">
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="*" />
+                                <RowDefinition Height="*" />
+                                <RowDefinition Height="*" />
+                                <RowDefinition Height="*" />
+                                <RowDefinition Height="*" />
+                                <RowDefinition Height="*" />
+                                <RowDefinition Height="*" />
+                                <RowDefinition Height="*" />
+                                <RowDefinition Height="*" />
+                                <RowDefinition Height="*" />
+                            </Grid.RowDefinitions>
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="*" />
+                                <ColumnDefinition Width="*" />
+                            </Grid.ColumnDefinitions>
+                            <!--THIS LOGIN CHANGES TO WELCOME, ONCE LOGGED IN-->
+                            <!--TextId to type, Login button to be-->
+                            <Grid Grid.Column="0" Grid.ColumnSpan="2" Grid.RowSpan="2">
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="*"/>
+                                </Grid.ColumnDefinitions>
+                                <Grid.RowDefinitions>
+                                    <RowDefinition Height ="*"/>
+                                    <RowDefinition Height ="*"/>
+                                    <RowDefinition Height ="*"/>
+                                </Grid.RowDefinitions>
+
+                                <!--Change these to use selected customer??-->
+                                <TextBox x:Name="BookingTextHello" Grid.Row="0"  Grid.ColumnSpan="2" Grid.Column="0" Background="LightGreen" IsEnabled="False" IsReadOnlyCaretVisible="True"></TextBox>
+                                <TextBox x:Name="BookingTextType" Grid.Row="1" Grid.ColumnSpan="2" Grid.Column="0" Background="LightGreen" IsEnabled="False" IsReadOnlyCaretVisible="True"></TextBox>
+                                <TextBox x:Name="BookingTextId" Grid.Row="2" Grid.ColumnSpan="2" Grid.Column="0" Background="LightGreen" IsEnabled="False" IsReadOnlyCaretVisible="True"></TextBox>
+                            </Grid>
+                            <Button x:Name="ButtonCancelBooking" Grid.Row="8" Grid.Column="0" Background="#8db0e8"  Content="Cancel Booking" />
+
+                            <TextBox x:Name="BookingTextName" Grid.Row="2" Grid.Column="0" Background="Bisque" IsEnabled="False" IsReadOnlyCaretVisible="True">Name</TextBox>
+                            <TextBox x:Name="BookingTextDescription" Grid.ColumnSpan="2" Grid.Row="3"  Grid.RowSpan="2" Background="Bisque" IsEnabled="False" IsReadOnlyCaretVisible="True">Description</TextBox>
+
+                            <TextBox x:Name="BookingTextCity" Grid.Row="5"   Grid.Column="0" Background="Bisque" IsEnabled="False" IsReadOnlyCaretVisible="True">City</TextBox>
+                            <TextBox x:Name="BookingTextPostCode" Grid.Row="5" Grid.Column="1" Background="Bisque" IsEnabled="False" IsReadOnlyCaretVisible="True">Post Code</TextBox>
+                            <TextBox x:Name="BookingTextPrice" Grid.Row="7" Grid.Column="0" Background="Bisque" IsEnabled="False" IsReadOnlyCaretVisible="True">Price</TextBox>
+                            <TextBox x:Name="BookingTextMaxPeople" Grid.Row="7" Grid.Column="1" Background="Bisque" IsEnabled="False" IsReadOnlyCaretVisible="True">Max. People</TextBox>
+                            <TextBox x:Name="BookingTextMinutes" Grid.Row="6" Grid.Column="0" Background="Bisque" IsEnabled="False" IsReadOnlyCaretVisible="True">Session Length (in mins)</TextBox>
+                            <TextBox x:Name="BookingTextTotalSessions" Grid.Row="6" Grid.Column="1" Background="Bisque" IsEnabled="False" IsReadOnlyCaretVisible="True">TotalSessions</TextBox>
+
+
+
+
+                        </Grid>
+                    </Grid>
+                
+
+            </TabItem>
             <!--only visible if logged in and user is trainer-->
             <TabItem x:Name="AddCourseTab" Header="Add Course" Visibility="Hidden">
                 <Grid>
@@ -237,9 +305,7 @@
                 
             </TabItem>
             
-            <TabItem Header="Account">
             
-            </TabItem>
             <TabItem Header="My Courses" Name="MyCoursesTab" Visibility="Hidden">
                 <Grid>
                     <Grid.RowDefinitions>
@@ -404,6 +470,9 @@
                     </Grid>
                 </Grid>
 
+            </TabItem>
+            <TabItem Header="Account">
+                <Label>Add Log out button here</Label>
             </TabItem>
         </TabControl>
             

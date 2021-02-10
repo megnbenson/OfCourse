@@ -15,6 +15,7 @@ namespace OfCourseWPF
         private CourseManager _courseManager = new CourseManager();
         public List<string> categoryNames = new List<string>();
         private LoginWindow loginWindow;
+        private SessionWindow bookSessionWindow;
 
 
         public MainWindow()
@@ -240,7 +241,33 @@ namespace OfCourseWPF
             }
         }
 
-        
+
+        ////////BOOKING TAB
+        ///
+
+        // In General, as customer, Book a course
+        private void ButtonBook_Click(object sender, RoutedEventArgs e)
+        {
+            // Book the selected course
+            _courseManager.SetSelectedCourse(ListBoxCourse.SelectedItem);
+            // New window, so you can set time of session, date of session, course ID
+            bookSessionWindow = new SessionWindow(this, _courseManager.SelectedCourse.CourseId);
+            bookSessionWindow.Show();
+            bookSessionWindow.Book += new EventHandler(CourseBooked);
+
+        }
+
+
+        private void CourseBooked(object sender, EventArgs e)
+        {
+            // is user customer or trainer
+            //
+            //ButtonLogin.Background = Brushes.Yellow;
+            bookSessionWindow.Close();
+            //ButtonLogin.Visibility = Visibility.Hidden;
+            //PopulateMyListBoxOnMyCoursesTab();
+        }
+
     }
 
 }
