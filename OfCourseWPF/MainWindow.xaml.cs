@@ -16,6 +16,7 @@ namespace OfCourseWPF
         public List<string> categoryNames = new List<string>();
         private LoginWindow loginWindow;
         private SessionWindow bookSessionWindow;
+        private bool loggedIn = false;
 
 
         public MainWindow()
@@ -34,6 +35,13 @@ namespace OfCourseWPF
             tCategory.ItemsSource = categoryNames;
 
             ListBoxCourse.ItemsSource = _courseManager.RetrieveAll();
+        }
+
+         // FILTER list by checked category
+        private void CheckBox_Checked(object sender, RoutedEventArgs e)
+        {
+            ListBoxCourse.ItemsSource = _courseManager.RetrieveCategories(categoryDataBinding.SelectedItems);
+            //categoryDataBinding.SelectedItem
         }
 
 
@@ -56,14 +64,19 @@ namespace OfCourseWPF
             }
         }
 
+        //General course list selection changed
         private void ListBoxCourse_SelectionChanged(object sender, System.Windows.Controls.SelectionChangedEventArgs e)
         {
             if (ListBoxCourse.SelectedItem != null)
             {
                 _courseManager.SetSelectedCourse(ListBoxCourse.SelectedItem);
                 PopulateGeneralCourseFields();
-                ButtonSave.Visibility = Visibility.Visible;
-                ButtonBook.Visibility = Visibility.Visible;
+                //ButtonSave.Visibility = Visibility.Visible;
+                if (loggedIn)
+                {
+                    ButtonBook.Visibility = Visibility.Visible;
+
+                }
             }
         }
         private void ButtonCreate_Click(object sender, RoutedEventArgs e)
@@ -137,10 +150,12 @@ namespace OfCourseWPF
         {
             // is user customer or trainer
             //
+            loggedIn = true;
             ButtonLogin.Background = Brushes.Yellow;
             loginWindow.Close();
             ButtonLogin.Visibility = Visibility.Hidden;
             PopulateMyListBoxOnMyCoursesTab();
+            PopulateBookingsList();
         }
 
         public void SetSelectedUserTextboxes(Tuple<string, int> value)
@@ -154,6 +169,7 @@ namespace OfCourseWPF
             {
                 AddCourseTab.Visibility = Visibility.Hidden;
                 MyCoursesTab.Visibility = Visibility.Hidden;
+                BookingsTab.Visibility = Visibility.Visible;
             }
             else
             {
@@ -162,6 +178,7 @@ namespace OfCourseWPF
                 AddCourseTab.Foreground = Brushes.Yellow;
                 MyCoursesTab.Foreground = Brushes.Blue;
                 MyCoursesTab.Visibility = Visibility.Visible;
+                BookingsTab.Visibility = Visibility.Visible;
             }
         }
 
@@ -245,6 +262,32 @@ namespace OfCourseWPF
         ////////BOOKING TAB
         ///
 
+        private void PopulateBookingsList()
+        {
+
+            MyCoursesListBox.ItemsSource = _courseManager.RetrieveThisCustomersBookings(Int32.Parse(MyTextId.Text));
+
+        }
+
+        // Fill the fields of As A Trainer, My Courses Tab
+        private void PopulateBookingFields()
+        {
+            if (_courseManager.SelectedCourse != null)
+            {
+                BookingTextId.Text = _courseManager.SelectedCourse.CourseId.ToString();
+                BookingTextName.Text = _courseManager.SelectedCourse.Title;
+                BookingTextDescription.Text = _courseManager.SelectedCourse.Title;
+                BookingTextCity.Text = _courseManager.SelectedCourse.City;
+                BookingTextPostCode.Text = _courseManager.SelectedCourse.PostCode;
+                BookingTextPostCode.Text = _courseManager.SelectedCourse.PostCode;
+                BookingTextPrice.Text = _courseManager.SelectedCourse.PricePerSession.ToString();
+                BookingTextMaxPeople.Text = _courseManager.SelectedCourse.MaxPeople.ToString();
+                BookingTextMinutes.Text = _courseManager.SelectedCourse.SessionLengthMinutes.ToString();
+                BookingTextTotalSessions.Text = _courseManager.SelectedCourse.TotalSessions.ToString();
+                //BookingCategoryTextBox.Text = _courseManager.CategoryTitleFromId(_courseManager.SelectedCourse.CategoryId);
+
+            }
+        }
         // In General, as customer, Book a course
         private void ButtonBook_Click(object sender, RoutedEventArgs e)
         {
@@ -254,6 +297,7 @@ namespace OfCourseWPF
             bookSessionWindow = new SessionWindow(this, _courseManager.SelectedCourse.CourseId, Int32.Parse(MyTextId.Text));
             bookSessionWindow.Show();
             bookSessionWindow.Book += new EventHandler(CourseBooked);
+            PopulateBookingsList();
 
         }
 
@@ -263,11 +307,13 @@ namespace OfCourseWPF
             // is user customer or trainer
             //
             //ButtonLogin.Background = Brushes.Yellow;
+            PopulateBookingsList();
             bookSessionWindow.Close();
             //ButtonLogin.Visibility = Visibility.Hidden;
             //PopulateMyListBoxOnMyCoursesTab();
         }
 
+        
     }
 
 }

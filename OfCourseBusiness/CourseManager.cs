@@ -5,6 +5,7 @@ using System.Linq;
 using System.Text;
 using OfCourseData;
 using System.Windows;
+using System.Collections;
 
 namespace OfCourseBusiness
 {
@@ -28,6 +29,22 @@ namespace OfCourseBusiness
                 db.Courses.Add(newCourse);
                 db.SaveChanges();
             }
+        }
+
+        public List<Course> RetrieveCategories(IList checkedCategories)
+        {
+            using (var db = new OfCourseContext())
+            {
+                List<Course> coursesOfSelectedCats = new List<Course>();
+                foreach (var item in checkedCategories)
+                {
+                    var catId = db.Categories.Where(c => c.CategoryName.Equals(item)).First().CategoryId;
+                    coursesOfSelectedCats.Add(db.Courses.Find(catId));
+                }
+
+                return coursesOfSelectedCats.ToList();
+            }
+            //throw new NotImplementedException();
         }
 
         public Tuple<string,int> Login(string username, string password)
@@ -284,19 +301,30 @@ namespace OfCourseBusiness
         {
             using (var db = new OfCourseContext())
             {
-                Course selectedCourse = db.Courses.Find(courseId);
+               Course selectedCourse = db.Courses.Find(courseId);
                 Customer selectedCustomer = db.Customers.Find(custId);
 
-                selectedCourse.BookedCustomers.Add(selectedCustomer);
+               // selectedCourse.BookedCustomers.Add(selectedCustomer);
+                db.Courses.Find(courseId).BookedCustomers.Add(selectedCustomer);
                 selectedCustomer.BookedCourses.Add(selectedCourse);
 
-                
-                Debug.WriteLine(selectedCourse.BookedCustomers.FirstOrDefault());
-                Debug.WriteLine(selectedCustomer.BookedCourses.FirstOrDefault());
+                db.SaveChanges();
+                Debug.WriteLine(selectedCourse.BookedCustomers.First());
+                Debug.WriteLine(selectedCustomer.BookedCourses.First().Title);
+                Debug.WriteLine(selectedCustomer.BookedCourses);
             }
 
         }
 
-
+        public IEnumerable RetrieveThisCustomersBookings(int custId)
+        {
+            using (var db = new OfCourseContext())
+            {
+                //IF error here, customer doesn't exist
+                var bookedCourses = db.Customers.Find(custId).BookedCourses;
+                
+                return bookedCourses;
+            }
+        }
     }
 }

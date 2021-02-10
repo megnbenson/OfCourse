@@ -45,7 +45,7 @@
                                     <ListView Name="categoryDataBinding">
                                         <ListView.ItemTemplate>
                                             <DataTemplate>
-                                                <CheckBox Content="{Binding}" />
+                                                <CheckBox Content="{Binding}" Checked="CheckBox_Checked" />
                                             </DataTemplate>
                                         </ListView.ItemTemplate>
                                     </ListView>
@@ -131,7 +131,7 @@
                     </Grid>
                 </Grid>
             </TabItem>
-            <TabItem Header="Bookings">
+            <TabItem Header="Bookings" Name="BookingsTab" Visibility="Hidden">
                 
                     <Grid>
                         <Grid.RowDefinitions>
@@ -145,7 +145,7 @@
                         </Grid.ColumnDefinitions>
 
 
-                        <ListBox x:Name="AddCourseListBoxCourses" Background="Beige" Grid.Column="1" SelectionChanged="ListBoxCourse_SelectionChanged" Grid.ColumnSpan="2"/>
+                        <ListBox x:Name="BookingsList" Background="Beige" Grid.Column="1" SelectionChanged="ListBoxCourse_SelectionChanged" Grid.ColumnSpan="2"/>
                         <Grid Grid.Column= "3" Background="Bisque">
                             <Grid.RowDefinitions>
                                 <RowDefinition Height="*" />
@@ -471,7 +471,7 @@
                 </Grid>
 
             </TabItem>
-            <TabItem Header="Account">
+            <TabItem Header="Account" Name="AccountTab" Visibility="Hidden">
                 <Label>Add Log out button here</Label>
             </TabItem>
         </TabControl>

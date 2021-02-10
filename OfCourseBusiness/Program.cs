@@ -56,9 +56,9 @@ namespace OfCourseBusiness
                     
                     PostCode = "TN13",
                     City = "Sevenoaks",
-                    Username = "meg",
-                    Password = "password",
-                    FirstName = "Megan",
+                    Username = "leon",
+                    Password = "leon",
+                    FirstName = "Leon",
                     LastName = "Benson"
                 };
                 //var newCourse = new Course()
