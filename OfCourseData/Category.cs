@@ -13,6 +13,8 @@ namespace OfCourseData
 
         public int CategoryId { get; set; }
         public string CategoryName { get; set; }
+
+        public bool isSelected { get; set; }
        
         public virtual ICollection<Course> Courses { get; set; }
     }

@@ -3,15 +3,17 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using OfCourseData;
 
 namespace OfCourseData.Migrations
 {
     [DbContext(typeof(OfCourseContext))]
-    partial class OfCourseContextModelSnapshot : ModelSnapshot
+    [Migration("20210210202858_AddedIsSelected")]
+    partial class AddedIsSelected
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder

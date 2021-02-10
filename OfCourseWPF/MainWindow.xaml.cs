@@ -23,6 +23,7 @@ namespace OfCourseWPF
         {
             InitializeComponent();
             PopulateListBox();
+            DataBindingCheckBoxes.DataContext = this;
         }
 
         //General fill list of courses
@@ -30,17 +31,23 @@ namespace OfCourseWPF
         private void PopulateListBox()
         {
             //Fill the category filters
-            categoryNames = _courseManager.GetAllCategories();
+            var categoryNames = _courseManager.GetAllCategoryNames();
             categoryDataBinding.ItemsSource = categoryNames;
             tCategory.ItemsSource = categoryNames;
 
+            var bindingCheckBoxesList = _courseManager.GetAllCategories();
+
             ListBoxCourse.ItemsSource = _courseManager.RetrieveAll();
+            TimePreferenceBind.ItemsSource = _courseManager.GetAllCourseTimes();
         }
 
          // FILTER list by checked category
         private void CheckBox_Checked(object sender, RoutedEventArgs e)
         {
-            ListBoxCourse.ItemsSource = _courseManager.RetrieveCategories(categoryDataBinding.SelectedItems);
+            var selectedCategory = DataBindingCheckBoxes.Items;
+            var selectedCategory2 = DataBindingCheckBoxes.SelectedItem;
+            var selectedCategory3 = DataBindingCheckBoxes.SelectedItems;
+            ListBoxCourse.ItemsSource = _courseManager.RetrieveCategories(DataBindingCheckBoxes.SelectedItems);
             //categoryDataBinding.SelectedItem
         }
 
@@ -155,7 +162,7 @@ namespace OfCourseWPF
             loginWindow.Close();
             ButtonLogin.Visibility = Visibility.Hidden;
             PopulateMyListBoxOnMyCoursesTab();
-            PopulateBookingsList();
+            //PopulateBookingsList();
         }
 
         public void SetSelectedUserTextboxes(Tuple<string, int> value)

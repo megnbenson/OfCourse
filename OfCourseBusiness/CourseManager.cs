@@ -19,7 +19,7 @@ namespace OfCourseBusiness
 
 
         
-        public void Create(int trainerId, string categorytitle, string title, string description, string city, string postcode, double pricePerSession, int sessionLengthMinutes, int totalSessions, DateTime availableDate, string availableTime, int maxPeople = 10)
+        public void Create(int trainerId, string categorytitle, string title, string description, string city, string postcode, double pricePerSession, int sessionLengthMinutes, int totalSessions, DateTime availableDate, string availableTime, int maxPeople)
         {
             using (var db = new OfCourseContext())
             {
@@ -36,7 +36,8 @@ namespace OfCourseBusiness
             using (var db = new OfCourseContext())
             {
                 List<Course> coursesOfSelectedCats = new List<Course>();
-                foreach (var item in checkedCategories)
+                var selecteds = db.Categories.Where(c => c.isSelected == true);
+                foreach (var item in selecteds)
                 {
                     var catId = db.Categories.Where(c => c.CategoryName.Equals(item)).First().CategoryId;
                     coursesOfSelectedCats.Add(db.Courses.Find(catId));
@@ -173,14 +174,37 @@ namespace OfCourseBusiness
             }
             return name;
         }
+        public HashSet<String> GetAllCourseTimes()
+        {
 
-        public List<String> GetAllCategories()
+            using (var db = new OfCourseContext())
+            {
+                var availableTimes = new HashSet<string>();
+                foreach (var item in db.Courses)
+                {
+                    availableTimes.Add(item.AvailableTime);
+                }
+                return availableTimes;
+            }
+        }
+
+        public List<Category> GetAllCategories()
+        {
+            
+            using(var db = new OfCourseContext())
+            {
+                return db.Categories.ToList();
+            }
+        }
+
+
+        public List<String> GetAllCategoryNames()
         {
             List<string> catList = new List<string>();
             using (var db = new OfCourseContext())
             {
                 var categoryQuery = db.Categories;
-                foreach(var cat in categoryQuery)
+                foreach (var cat in categoryQuery)
                 {
                     catList.Add(cat.CategoryName);
                 }
@@ -306,7 +330,11 @@ namespace OfCourseBusiness
 
                // selectedCourse.BookedCustomers.Add(selectedCustomer);
                 db.Courses.Find(courseId).BookedCustomers.Add(selectedCustomer);
-                selectedCustomer.BookedCourses.Add(selectedCourse);
+
+                db.Customers.Find(custId).BookedCourses.Add(selectedCourse);
+                //selectedCustomer.BookedCourses.Add(selectedCourse);
+
+                
 
                 db.SaveChanges();
                 Debug.WriteLine(selectedCourse.BookedCustomers.First());
@@ -322,8 +350,15 @@ namespace OfCourseBusiness
             {
                 //IF error here, customer doesn't exist
                 var bookedCourses = db.Customers.Find(custId).BookedCourses;
-                
-                return bookedCourses;
+
+                Customer selectedCustomer = db.Customers.Find(custId);
+                selectedCustomer = db.Customers.Where(c => c.CustomerId == custId).FirstOrDefault();
+
+                var selectCustomer = db.Customers.Where(c => c.CustomerId == custId);
+              
+
+                db.SaveChanges();
+                return selectedCustomer.BookedCourses;
             }
         }
     }
