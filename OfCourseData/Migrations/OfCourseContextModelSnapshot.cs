@@ -86,6 +86,12 @@ namespace OfCourseData.Migrations
                         .HasColumnType("int")
                         .UseIdentityColumn();
 
+                    b.Property<DateTime?>("AvailableDate")
+                        .HasColumnType("datetime2");
+
+                    b.Property<string>("AvailableTime")
+                        .HasColumnType("nvarchar(max)");
+
                     b.Property<int>("CategoryId")
                         .HasColumnType("int");
 
@@ -126,29 +132,6 @@ namespace OfCourseData.Migrations
                     b.HasIndex("TrainerId");
 
                     b.ToTable("Courses");
-                });
-
-            modelBuilder.Entity("OfCourseData.CourseSessionDetails", b =>
-                {
-                    b.Property<int>("CourseSessionDetailsId")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int")
-                        .UseIdentityColumn();
-
-                    b.Property<int>("CourseId")
-                        .HasColumnType("int");
-
-                    b.Property<DateTime>("DateOfSession")
-                        .HasColumnType("datetime2");
-
-                    b.Property<DateTime>("TimeOfSession")
-                        .HasColumnType("datetime2");
-
-                    b.HasKey("CourseSessionDetailsId");
-
-                    b.HasIndex("CourseId");
-
-                    b.ToTable("CourseSessionDetails");
                 });
 
             modelBuilder.Entity("OfCourseData.Customer", b =>
@@ -245,25 +228,9 @@ namespace OfCourseData.Migrations
                     b.Navigation("Trainer");
                 });
 
-            modelBuilder.Entity("OfCourseData.CourseSessionDetails", b =>
-                {
-                    b.HasOne("OfCourseData.Course", "Course")
-                        .WithMany("CourseSessionDetailList")
-                        .HasForeignKey("CourseId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.Navigation("Course");
-                });
-
             modelBuilder.Entity("OfCourseData.Category", b =>
                 {
                     b.Navigation("Courses");
-                });
-
-            modelBuilder.Entity("OfCourseData.Course", b =>
-                {
-                    b.Navigation("CourseSessionDetailList");
                 });
 #pragma warning restore 612, 618
         }

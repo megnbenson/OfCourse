@@ -8,7 +8,7 @@ namespace OfCourseData
     {
         public Course()
         {
-            CourseSessionDetailList = new HashSet<CourseSessionDetails>();
+           // CourseSessionDetailList = new HashSet<CourseSessionDetails>();
             BookedCustomers = new HashSet<Customer>();
         }
 
@@ -17,6 +17,10 @@ namespace OfCourseData
         public int TrainerId { get; set; }
         public String Title { get; set; }
         public String Description { get; set; }
+
+        public DateTime? AvailableDate { get; set; }
+
+        public string? AvailableTime { get; set; }
        
         public bool IsApproved {
             get => default;
@@ -36,7 +40,7 @@ namespace OfCourseData
         public virtual Category Category { get; set; }
 
         public virtual Trainer Trainer { get; set; }
-        public virtual ICollection<CourseSessionDetails> CourseSessionDetailList { get; set; }
+        //public virtual ICollection<CourseSessionDetails> CourseSessionDetailList { get; set; }
         public virtual ICollection<Customer> BookedCustomers { get; set; }
 
         public override string ToString()

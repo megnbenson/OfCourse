@@ -125,15 +125,15 @@
                         <TextBox x:Name="TextMinutes" Grid.Row="6" Grid.Column="0" Background="Bisque" IsEnabled="False" IsReadOnlyCaretVisible="True">Session Length (in mins)</TextBox>
                         <TextBox x:Name="TextTotalSessions" Grid.Row="6" Grid.Column="1" Background="Bisque" IsEnabled="False" IsReadOnlyCaretVisible="True">TotalSessions</TextBox>
 
-                        <!--<Button x:Name="ButtonBook" Grid.Row="9" Grid.Column="0" Background="#8db0e8" Content="Book" Click="ButtonBook_Click" Visibility="Hidden"/>-->
-                        <!--<Button x:Name="ButtonSave" Grid.Row="9" Grid.Column="1" Background="BlueViolet"  Content="Save" Visibility="Hidden"/>-->
+                        <Button x:Name="ButtonBook" Grid.Row="9" Grid.Column="0" Background="#8db0e8" Content="Book" Click="ButtonBook_Click" Visibility="Hidden"/>
+                        <Button x:Name="ButtonSave" Grid.Row="9" Grid.Column="1" Background="BlueViolet"  Content="Save" Visibility="Hidden"/>
 
                     </Grid>
                 </Grid>
             </TabItem>
             <TabItem Header="Bookings" />
             <!--only visible if logged in and user is trainer-->
-            <TabItem x:Name="AddCourseTab" Header="Add Course">
+            <TabItem x:Name="AddCourseTab" Header="Add Course" Visibility="Hidden">
                 <Grid>
                     <Grid.RowDefinitions>
                         <RowDefinition Height="*" />
@@ -160,6 +160,8 @@
                             <RowDefinition Height="*" />
                             <RowDefinition Height="*" />
                             <RowDefinition Height="*" />
+                            <RowDefinition Height="*" />
+                            <RowDefinition Height="*" />
                         </Grid.RowDefinitions>
                         <Grid.ColumnDefinitions>
                             <ColumnDefinition Width="*" />
@@ -175,6 +177,8 @@
                         <Label x:Name="LabelSessionLength" Grid.Row="7" Grid.Column="0" Background="Bisque">Session Length (in mins)</Label>
                         <Label x:Name="LabelTotalSessions" Grid.Row="8" Grid.Column="0" Background="Bisque">TotalSessions</Label>
                         <Label x:Name="LabelCategory" Grid.Row="9" Grid.Column="0" Background="Bisque">Category</Label>
+                        <Label x:Name="LabelAvailableDates" Grid.Row="10" Grid.Column="0" Background="Bisque">Available Dates</Label>
+                        <Label x:Name="LabelCategoryAvailableTimes" Grid.Row="11" Grid.Column="0" Background="Bisque">Available Times</Label>
 
                         <TextBox x:Name="TId" Grid.Row="0" Grid.Column="1" Background="LightGreen" IsEnabled="False" IsReadOnlyCaretVisible="True"></TextBox>
                         <TextBox x:Name="TName" Grid.Row="1" Grid.Column="1" Background="LightGreen"></TextBox>
@@ -194,10 +198,43 @@
                                 </DataTemplate>
                             </ComboBox.ItemTemplate>
                         </ComboBox>
+                        <ComboBox Grid.Row="10" Grid.Column="1">
+                            <Calendar x:Name="AvailableDatesCalendar">
+                                <Calendar.Background>
+                                    <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
+                                        <GradientStop Color="#FFE4EAF0"/>
+                                        <GradientStop Color="#FFECF0F4" Offset="0.16"/>
+                                        <GradientStop Color="#FFFCFCFD" Offset="0.16"/>
+                                        <GradientStop Color="#FFBD3030" Offset="1"/>
+                                    </LinearGradientBrush>
+                                </Calendar.Background>
+                            </Calendar>
+                        </ComboBox>
+                        <ComboBox Name="AvailableTimes" Grid.Row="11" Grid.Column="1">
+                            <ComboBoxItem>Morning</ComboBoxItem>
+                            <ComboBoxItem>Afternoon</ComboBoxItem>
+                            <ComboBoxItem>Evening</ComboBoxItem>
+                            
+                        </ComboBox>
 
-                        <Button x:Name="ButtonCreate" Grid.Row="10" Grid.Column="2" Background="#8db0e8" Content="Create" Click="ButtonCreate_Click"/>
+                        <Button x:Name="ButtonCreate" Grid.Row="12" Grid.Column="2" Background="#8db0e8" Content="Create" Click="ButtonCreate_Click"/>
+                    </Grid>
+                    <Grid Grid.Column="4">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="*"/>
+                        </Grid.ColumnDefinitions>
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="*"/>
+                            <RowDefinition Height="*"/>
+                            <RowDefinition Height="*"/>
+                            <RowDefinition Height="*"/>
+                        </Grid.RowDefinitions>
+                        <Label Content="Selected Date" Grid.Row="1"></Label>
+                        <TextBox Name="availableDate" Text="{Binding ElementName=AvailableDatesCalendar, Path=SelectedDate, StringFormat=d, UpdateSourceTrigger=PropertyChanged}" />
+                        <!--<ListBox Name="AvailableDatesList"  Grid.RowSpan="2" Grid.Row="2" />-->
                     </Grid>
                 </Grid>
+                
             </TabItem>
             
             <TabItem Header="Account">

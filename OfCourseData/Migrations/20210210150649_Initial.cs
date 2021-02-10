@@ -8,7 +8,7 @@ namespace OfCourseData.Migrations
         protected override void Up(MigrationBuilder migrationBuilder)
         {
             migrationBuilder.CreateTable(
-                name: "Admin",
+                name: "Admins",
                 columns: table => new
                 {
                     AdminId = table.Column<int>(type: "int", nullable: false)
@@ -22,11 +22,11 @@ namespace OfCourseData.Migrations
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_Admin", x => x.AdminId);
+                    table.PrimaryKey("PK_Admins", x => x.AdminId);
                 });
 
             migrationBuilder.CreateTable(
-                name: "Category",
+                name: "Categories",
                 columns: table => new
                 {
                     CategoryId = table.Column<int>(type: "int", nullable: false)
@@ -35,7 +35,7 @@ namespace OfCourseData.Migrations
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_Category", x => x.CategoryId);
+                    table.PrimaryKey("PK_Categories", x => x.CategoryId);
                 });
 
             migrationBuilder.CreateTable(
@@ -84,6 +84,8 @@ namespace OfCourseData.Migrations
                     TrainerId = table.Column<int>(type: "int", nullable: false),
                     Title = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     Description = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    AvailableDate = table.Column<DateTime>(type: "datetime2", nullable: true),
+                    AvailableTime = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     IsApproved = table.Column<bool>(type: "bit", nullable: false),
                     PricePerSession = table.Column<double>(type: "float", nullable: false),
                     MaxPeople = table.Column<int>(type: "int", nullable: false),
@@ -96,9 +98,9 @@ namespace OfCourseData.Migrations
                 {
                     table.PrimaryKey("PK_Courses", x => x.CourseId);
                     table.ForeignKey(
-                        name: "FK_Courses_Category_CategoryId",
+                        name: "FK_Courses_Categories_CategoryId",
                         column: x => x.CategoryId,
-                        principalTable: "Category",
+                        principalTable: "Categories",
                         principalColumn: "CategoryId",
                         onDelete: ReferentialAction.Cascade);
                     table.ForeignKey(
@@ -133,27 +135,6 @@ namespace OfCourseData.Migrations
                         onDelete: ReferentialAction.Cascade);
                 });
 
-            migrationBuilder.CreateTable(
-                name: "CourseSessionDetails",
-                columns: table => new
-                {
-                    CourseSessionDetailsId = table.Column<int>(type: "int", nullable: false)
-                        .Annotation("SqlServer:Identity", "1, 1"),
-                    CourseId = table.Column<int>(type: "int", nullable: false),
-                    TimeOfSession = table.Column<DateTime>(type: "datetime2", nullable: false),
-                    DateOfSession = table.Column<DateTime>(type: "datetime2", nullable: false)
-                },
-                constraints: table =>
-                {
-                    table.PrimaryKey("PK_CourseSessionDetails", x => x.CourseSessionDetailsId);
-                    table.ForeignKey(
-                        name: "FK_CourseSessionDetails_Courses_CourseId",
-                        column: x => x.CourseId,
-                        principalTable: "Courses",
-                        principalColumn: "CourseId",
-                        onDelete: ReferentialAction.Cascade);
-                });
-
             migrationBuilder.CreateIndex(
                 name: "IX_CourseCustomer_BookedCustomersCustomerId",
                 table: "CourseCustomer",
@@ -168,32 +149,24 @@ namespace OfCourseData.Migrations
                 name: "IX_Courses_TrainerId",
                 table: "Courses",
                 column: "TrainerId");
-
-            migrationBuilder.CreateIndex(
-                name: "IX_CourseSessionDetails_CourseId",
-                table: "CourseSessionDetails",
-                column: "CourseId");
         }
 
         protected override void Down(MigrationBuilder migrationBuilder)
         {
             migrationBuilder.DropTable(
-                name: "Admin");
+                name: "Admins");
 
             migrationBuilder.DropTable(
                 name: "CourseCustomer");
 
             migrationBuilder.DropTable(
-                name: "CourseSessionDetails");
+                name: "Courses");
 
             migrationBuilder.DropTable(
                 name: "Customers");
 
             migrationBuilder.DropTable(
-                name: "Courses");
-
-            migrationBuilder.DropTable(
-                name: "Category");
+                name: "Categories");
 
             migrationBuilder.DropTable(
                 name: "Trainers");

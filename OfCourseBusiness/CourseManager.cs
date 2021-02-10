@@ -4,6 +4,7 @@ using System.Diagnostics;
 using System.Linq;
 using System.Text;
 using OfCourseData;
+using System.Windows;
 
 namespace OfCourseBusiness
 {
@@ -17,7 +18,7 @@ namespace OfCourseBusiness
 
 
         
-        public void Create(int trainerId, string categorytitle, string title, string description, string city, string postcode, double pricePerSession, int sessionLengthMinutes, int totalSessions, int maxPeople = 10)
+        public void Create(int trainerId, string categorytitle, string title, string description, string city, string postcode, double pricePerSession, int sessionLengthMinutes, int totalSessions, DateTime availableDate, string availableTime, int maxPeople = 10)
         {
             using (var db = new OfCourseContext())
             {

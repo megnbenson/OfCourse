@@ -20,7 +20,7 @@ namespace OfCourseData
         public static OfCourseContext Instance { get; } = new OfCourseContext();
 
         public DbSet<Course> Courses { get; set; }
-        public DbSet<CourseSessionDetails> CourseSessionDetails { get; set; }
+        //public DbSet<CourseSessionDetails> CourseSessionDetails { get; set; }
         public DbSet<Customer> Customers { get; set; }
         public DbSet<Trainer> Trainers { get; set; }
         public DbSet<Admin> Admins { get; set; }

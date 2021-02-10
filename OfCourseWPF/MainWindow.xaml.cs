@@ -61,13 +61,13 @@ namespace OfCourseWPF
             {
                 _courseManager.SetSelectedCourse(ListBoxCourse.SelectedItem);
                 PopulateGeneralCourseFields();
-                //ButtonSave.Visibility = Visibility.Visible;
-                //ButtonBook.Visibility = Visibility.Visible;
+                ButtonSave.Visibility = Visibility.Visible;
+                ButtonBook.Visibility = Visibility.Visible;
             }
         }
         private void ButtonCreate_Click(object sender, RoutedEventArgs e)
         {
-            _courseManager.Create(Int32.Parse(TextId.Text), tCategory.Text, TName.Text, TDescription.Text, TCity.Text, TPostCode.Text, Convert.ToDouble(TPrice.Text), Int32.Parse(TMinutes.Text), Int32.Parse(TTotalSessions.Text), Int32.Parse(TMaxPeople.Text));
+            _courseManager.Create(Int32.Parse(TextId.Text), tCategory.Text, TName.Text, TDescription.Text, TCity.Text, TPostCode.Text, Convert.ToDouble(TPrice.Text), Int32.Parse(TMinutes.Text), Int32.Parse(TTotalSessions.Text), AvailableDatesCalendar.DisplayDate, AvailableTimes.SelectedItem.ToString(), Int32.Parse(TMaxPeople.Text))  ;
             ListBoxCourse.ItemsSource = null;
             // put back the screen data
             PopulateListBox();
@@ -77,6 +77,8 @@ namespace OfCourseWPF
             PopulateMyCourseFields();
             //Puts tab to general after adding a new course
             MainTabs.SelectedIndex = 0;
+
+            //Take list of selected dates, and Available time
         }
 
         private void ButtonUpdate_Click(object sender, RoutedEventArgs e)
@@ -237,6 +239,8 @@ namespace OfCourseWPF
                 PopulateMyCourseFields();
             }
         }
+
+        
     }
 
 }

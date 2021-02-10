@@ -10,7 +10,7 @@ using OfCourseData;
 namespace OfCourseData.Migrations
 {
     [DbContext(typeof(OfCourseContext))]
-    [Migration("20210209102124_Initial")]
+    [Migration("20210210150649_Initial")]
     partial class Initial
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -63,7 +63,7 @@ namespace OfCourseData.Migrations
 
                     b.HasKey("AdminId");
 
-                    b.ToTable("Admin");
+                    b.ToTable("Admins");
                 });
 
             modelBuilder.Entity("OfCourseData.Category", b =>
@@ -78,7 +78,7 @@ namespace OfCourseData.Migrations
 
                     b.HasKey("CategoryId");
 
-                    b.ToTable("Category");
+                    b.ToTable("Categories");
                 });
 
             modelBuilder.Entity("OfCourseData.Course", b =>
@@ -87,6 +87,12 @@ namespace OfCourseData.Migrations
                         .ValueGeneratedOnAdd()
                         .HasColumnType("int")
                         .UseIdentityColumn();
+
+                    b.Property<DateTime?>("AvailableDate")
+                        .HasColumnType("datetime2");
+
+                    b.Property<string>("AvailableTime")
+                        .HasColumnType("nvarchar(max)");
 
                     b.Property<int>("CategoryId")
                         .HasColumnType("int");
@@ -128,29 +134,6 @@ namespace OfCourseData.Migrations
                     b.HasIndex("TrainerId");
 
                     b.ToTable("Courses");
-                });
-
-            modelBuilder.Entity("OfCourseData.CourseSessionDetails", b =>
-                {
-                    b.Property<int>("CourseSessionDetailsId")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int")
-                        .UseIdentityColumn();
-
-                    b.Property<int>("CourseId")
-                        .HasColumnType("int");
-
-                    b.Property<DateTime>("DateOfSession")
-                        .HasColumnType("datetime2");
-
-                    b.Property<DateTime>("TimeOfSession")
-                        .HasColumnType("datetime2");
-
-                    b.HasKey("CourseSessionDetailsId");
-
-                    b.HasIndex("CourseId");
-
-                    b.ToTable("CourseSessionDetails");
                 });
 
             modelBuilder.Entity("OfCourseData.Customer", b =>
@@ -247,25 +230,9 @@ namespace OfCourseData.Migrations
                     b.Navigation("Trainer");
                 });
 
-            modelBuilder.Entity("OfCourseData.CourseSessionDetails", b =>
-                {
-                    b.HasOne("OfCourseData.Course", "Course")
-                        .WithMany("CourseSessionDetailList")
-                        .HasForeignKey("CourseId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.Navigation("Course");
-                });
-
             modelBuilder.Entity("OfCourseData.Category", b =>
                 {
                     b.Navigation("Courses");
-                });
-
-            modelBuilder.Entity("OfCourseData.Course", b =>
-                {
-                    b.Navigation("CourseSessionDetailList");
                 });
 #pragma warning restore 612, 618
         }
