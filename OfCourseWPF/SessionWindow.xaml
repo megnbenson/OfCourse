@@ -44,26 +44,16 @@
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="*" />
             </Grid.ColumnDefinitions>
-            <Label Content="Choose From Available dates:" Grid.Row="1" Grid.Column="0" Margin="50,0,50,0"/>
-            <ListView Name="availableDatesDataBinding" Grid.Row="2" Margin="50,0,50,0">
-                <ListView.ItemTemplate>
-                    <DataTemplate>
-                        <!--IsChecked="{Binding IsChecked}"-->
-                        <CheckBox Content="{Binding}" />
-                    </DataTemplate>
-                </ListView.ItemTemplate>
-            </ListView>
-            <Label Content="Choose from Available Times:" Grid.Row="4" Grid.Column="0" Margin="50,0,50,0"/>
-            <ListView Name="availableTimesDataBinding" Grid.Row="5" Margin="50,0,50,0">
-                <ListView.ItemTemplate>
-                    <DataTemplate>
-                        <!--IsChecked="{Binding IsChecked}"-->
-                        <CheckBox Content="{Binding}" />
-                    </DataTemplate>
-                </ListView.ItemTemplate>
-            </ListView>
+            <Label Content="For the:" Grid.Row="1" Grid.Column="0" Margin="50,0,50,0"/>
+            <Label x:Name="availableDateLabel" Content="(Available date)" Grid.Column="0" Grid.Row="2" Margin="50,0,50,0" />
 
-            <!--<Button Grid.Row="7" Content="Book" Margin="120,0,120,3" Click="Button_Click"/>-->
+            <Label Content="In the:" Grid.Row="4" Grid.Column="0" Margin="50,0,50,0"/>
+            <Label x:Name="availableTimeLabel" Content="(Available time)" Grid.Column="0" Grid.Row="5" Margin="50,0,50,0" />
+
+            <!--StringFormat='yyyy-MM-dd HH:mm:ss '-->
+            
+
+            <Button Grid.Row="7" Content="Book" Margin="120,0,120,3" Click="Button_Click"/>
         </Grid>
 
     </Grid>

@@ -23,7 +23,7 @@ namespace OfCourseBusiness
             using (var db = new OfCourseContext())
             {
                 var catId = db.Categories.Where(c => c.CategoryName.Equals(categorytitle)).First().CategoryId;
-                var newCourse = new Course() { TrainerId = trainerId, CategoryId = catId, Title = title, Description = description, City = city, PostCode = postcode, PricePerSession = pricePerSession, SessionLengthMinutes = sessionLengthMinutes, TotalSessions = totalSessions };
+                var newCourse = new Course() { AvailableTime = availableTime, AvailableDate=availableDate, TrainerId = trainerId, CategoryId = catId, Title = title, Description = description, City = city, PostCode = postcode, PricePerSession = pricePerSession, SessionLengthMinutes = sessionLengthMinutes, TotalSessions = totalSessions };
 
                 db.Courses.Add(newCourse);
                 db.SaveChanges();
@@ -240,5 +240,44 @@ namespace OfCourseBusiness
                 return justTrainerCourses;
             }
         }
+
+        /////////FOR BOOKING TAB
+        ///
+
+        public string GetCourseTitle(int id)
+        {
+
+
+            using (var db = new OfCourseContext())
+            {
+
+                return db.Courses.Find(id).Title;
+            }
+
+        }
+        public string GetDate(int id)
+        {
+
+
+            using (var db = new OfCourseContext())
+            {
+
+                return String.Format("{0:ddd, MMM d, yyyy}", db.Courses.Find(id).AvailableDate);
+            }
+
+        }
+        public string GetTime(int id)
+        {
+
+
+            using (var db = new OfCourseContext())
+            {
+
+                return db.Courses.Find(id).AvailableTime;
+            }
+
+        }
+
+
     }
 }

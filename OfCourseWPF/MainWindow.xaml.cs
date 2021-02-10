@@ -68,7 +68,7 @@ namespace OfCourseWPF
         }
         private void ButtonCreate_Click(object sender, RoutedEventArgs e)
         {
-            _courseManager.Create(Int32.Parse(TextId.Text), tCategory.Text, TName.Text, TDescription.Text, TCity.Text, TPostCode.Text, Convert.ToDouble(TPrice.Text), Int32.Parse(TMinutes.Text), Int32.Parse(TTotalSessions.Text), AvailableDatesCalendar.DisplayDate, AvailableTimes.SelectedItem.ToString(), Int32.Parse(TMaxPeople.Text))  ;
+            _courseManager.Create(Int32.Parse(TextId.Text), tCategory.Text, TName.Text, TDescription.Text, TCity.Text, TPostCode.Text, Convert.ToDouble(TPrice.Text), Int32.Parse(TMinutes.Text), Int32.Parse(TTotalSessions.Text), AvailableDatesCalendar.DisplayDate, AvailableTimes.Text, Int32.Parse(TMaxPeople.Text))  ;
             ListBoxCourse.ItemsSource = null;
             // put back the screen data
             PopulateListBox();

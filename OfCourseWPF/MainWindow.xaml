@@ -279,9 +279,9 @@
                             </Calendar>
                         </ComboBox>
                         <ComboBox Name="AvailableTimes" Grid.Row="11" Grid.Column="1">
-                            <ComboBoxItem>Morning</ComboBoxItem>
-                            <ComboBoxItem>Afternoon</ComboBoxItem>
-                            <ComboBoxItem>Evening</ComboBoxItem>
+                            <ComboBoxItem Content="Morning"/>
+                            <ComboBoxItem Content="Afternoon"/>
+                            <ComboBoxItem Content="Evening"/>
                             
                         </ComboBox>
 
@@ -298,7 +298,7 @@
                             <RowDefinition Height="*"/>
                         </Grid.RowDefinitions>
                         <Label Content="Selected Date" Grid.Row="1"></Label>
-                        <TextBox Name="availableDate" Text="{Binding ElementName=AvailableDatesCalendar, Path=SelectedDate, StringFormat=d, UpdateSourceTrigger=PropertyChanged}" />
+                        <TextBox Grid.Row="3" Name="availableDate" Text="{Binding ElementName=AvailableDatesCalendar, Path=SelectedDate, StringFormat=d, UpdateSourceTrigger=PropertyChanged}" />
                         <!--<ListBox Name="AvailableDatesList"  Grid.RowSpan="2" Grid.Row="2" />-->
                     </Grid>
                 </Grid>

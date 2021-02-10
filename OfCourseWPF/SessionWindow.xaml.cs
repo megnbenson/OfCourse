@@ -29,7 +29,10 @@ namespace OfCourseWPF
             _mainWindow = mainWindow;
             InitializeComponent();
             _courseId = courseId;
-            //SessionCourseTitleLabel.Content = _courseManager.GetCourseTitle(courseId);
+            SessionCourseTitleLabel.Content = _courseManager.GetCourseTitle(courseId);
+            //availableDateLabel.Content = _courseManager.GetCourseTitle(courseId);
+            availableDateLabel.Content = _courseManager.GetDate(courseId);
+            availableTimeLabel.Content = _courseManager.GetTime(courseId);
         }
 
 
