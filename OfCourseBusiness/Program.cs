@@ -42,15 +42,15 @@ namespace OfCourseBusiness
                 //    CategoryName = "Floristry"
 
                 //};
-                var newTrainer = new Trainer()
-                {
-                    PostCode = "W1",
-                    City = "London",
-                    Username = "megTrainer",
-                    Password = "password",
-                    FirstName = "Megan",
-                    LastName = "Benson"
-                };
+                //var newTrainer = new Trainer()
+                //{
+                //    PostCode = "W1",
+                //    City = "London",
+                //    Username = "megTrainer",
+                //    Password = "password",
+                //    FirstName = "Megan",
+                //    LastName = "Benson"
+                //};
                 var newCustomer = new Customer()
                 {
                     
@@ -61,19 +61,19 @@ namespace OfCourseBusiness
                     FirstName = "Megan",
                     LastName = "Benson"
                 };
-                var newCourse = new Course()
-                {
-                    CategoryId = 2,
-                    TrainerId = 2,
-                    PostCode = "W1",
-                    Title = "Floristry 101",
-                    Description = "Learn basic Floristry  techniques in just two sessions!",
-                    City = "London",
-                    PricePerSession = 15.0,
-                    MaxPeople = 5,
-                    TotalSessions = 2,
-                    SessionLengthMinutes = 60
-                };
+                //var newCourse = new Course()
+                //{
+                //    CategoryId = 2,
+                //    TrainerId = 2,
+                //    PostCode = "W1",
+                //    Title = "Floristry 101",
+                //    Description = "Learn basic Floristry  techniques in just two sessions!",
+                //    City = "London",
+                //    PricePerSession = 15.0,
+                //    MaxPeople = 5,
+                //    TotalSessions = 2,
+                //    SessionLengthMinutes = 60
+                //};
 
                 //var newAdmin = new Admin()
                 //{
@@ -103,7 +103,7 @@ namespace OfCourseBusiness
                 //db.Categories.Add(newCategory1);
                 //db.Categories.Add(newCategory3);
                 //db.Trainers.Add(newTrainer);
-                db.Courses.Add(newCourse);
+                //db.Courses.Add(newCourse);
               // db.Admins.Add(newAdmin);
                 db.SaveChanges();
 

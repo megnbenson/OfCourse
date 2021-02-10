@@ -251,7 +251,7 @@ namespace OfCourseWPF
             // Book the selected course
             _courseManager.SetSelectedCourse(ListBoxCourse.SelectedItem);
             // New window, so you can set time of session, date of session, course ID
-            bookSessionWindow = new SessionWindow(this, _courseManager.SelectedCourse.CourseId);
+            bookSessionWindow = new SessionWindow(this, _courseManager.SelectedCourse.CourseId, Int32.Parse(MyTextId.Text));
             bookSessionWindow.Show();
             bookSessionWindow.Book += new EventHandler(CourseBooked);
 

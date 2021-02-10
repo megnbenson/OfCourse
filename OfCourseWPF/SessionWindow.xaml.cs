@@ -22,13 +22,15 @@ namespace OfCourseWPF
         public event EventHandler Book;
         private readonly MainWindow _mainWindow;
         private int _courseId;
+        private int _custId;
 
 
-        public SessionWindow(MainWindow mainWindow, int courseId)
+        public SessionWindow(MainWindow mainWindow, int courseId, int custId)
         {
             _mainWindow = mainWindow;
             InitializeComponent();
             _courseId = courseId;
+            _custId = custId;
             SessionCourseTitleLabel.Content = _courseManager.GetCourseTitle(courseId);
             //availableDateLabel.Content = _courseManager.GetCourseTitle(courseId);
             availableDateLabel.Content = _courseManager.GetDate(courseId);
@@ -39,7 +41,7 @@ namespace OfCourseWPF
         private void Button_Click(object sender, RoutedEventArgs e)
         {
 
-            //_courseManager.BookCourse(_courseId, Convert.ToDateTime(availableDatesDataBinding.SelectedItem), Convert.ToDateTime(availableTimesDataBinding.SelectedItem));
+            _courseManager.BookCourse(_courseId, _custId);
 
 
 

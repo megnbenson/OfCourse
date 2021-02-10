@@ -51,7 +51,7 @@ namespace OfCourseBusiness
                         {
                             if(findAdmin.First().Password == password)
                             {
-
+                                SetSelectedAdmin(findAdmin.First());
                                 var userPass = Tuple.Create("A", findAdmin.First().AdminId);
                                 return userPass;
                                 
@@ -67,6 +67,7 @@ namespace OfCourseBusiness
                     {
                         if (findTrainer.First().Password == password)
                         {
+                            SetSelectedTrainer(findTrainer.First());
                             var userPass = Tuple.Create("T", findTrainer.First().TrainerId);
                             return userPass;
                         }
@@ -82,6 +83,7 @@ namespace OfCourseBusiness
                 {
                     if (findCustomer.First().Password == password)
                     {
+                        SetSelectedCustomer(findCustomer.First());
                         var userPass = Tuple.Create("C", findCustomer.First().CustomerId);
                         return userPass;
                     }
@@ -274,6 +276,23 @@ namespace OfCourseBusiness
             {
 
                 return db.Courses.Find(id).AvailableTime;
+            }
+
+        }
+
+        public void BookCourse(int courseId, int custId)
+        {
+            using (var db = new OfCourseContext())
+            {
+                Course selectedCourse = db.Courses.Find(courseId);
+                Customer selectedCustomer = db.Customers.Find(custId);
+
+                selectedCourse.BookedCustomers.Add(selectedCustomer);
+                selectedCustomer.BookedCourses.Add(selectedCourse);
+
+                
+                Debug.WriteLine(selectedCourse.BookedCustomers.FirstOrDefault());
+                Debug.WriteLine(selectedCustomer.BookedCourses.FirstOrDefault());
             }
 
         }

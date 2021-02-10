@@ -6,17 +6,11 @@ namespace OfCourseData
 {
     public partial class Customer
     {
+        
         public Customer()
         {
-
-        }
-        public Customer(string postCode, string city, string username, string password)
-        {
             
-            PostCode = postCode;
-            City = city;
-            Username = username;
-            Password = password;
+           
             BookedCourses = new HashSet<Course>();
             //LikedCourses = new HashSet<Course>();
         }
