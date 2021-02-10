@@ -15,69 +15,107 @@ namespace OfCourseWPF
         private CourseManager _courseManager = new CourseManager();
         public List<string> categoryNames = new List<string>();
         private LoginWindow loginWindow;
-            
 
-            public MainWindow()
+
+        public MainWindow()
+        {
+            InitializeComponent();
+            PopulateListBox();
+        }
+
+        //General fill list of courses
+
+        private void PopulateListBox()
+        {
+            //Fill the category filters
+            categoryNames = _courseManager.GetAllCategories();
+            categoryDataBinding.ItemsSource = categoryNames;
+            tCategory.ItemsSource = categoryNames;
+
+            ListBoxCourse.ItemsSource = _courseManager.RetrieveAll();
+        }
+
+
+        //General fill fields of selected course
+        private void PopulateGeneralCourseFields()
+        {
+            if (_courseManager.SelectedCourse != null)
             {
-                InitializeComponent();
-                PopulateListBox();
-            }
+                TextId.Text = _courseManager.SelectedCourse.CourseId.ToString();
+                TextName.Text = _courseManager.SelectedCourse.Title;
+                TextDescription.Text = _courseManager.SelectedCourse.Title;
+                TextCity.Text = _courseManager.SelectedCourse.City;
+                TextPostCode.Text = _courseManager.SelectedCourse.PostCode;
+                TextPostCode.Text = _courseManager.SelectedCourse.PostCode;
+                TextPrice.Text = _courseManager.SelectedCourse.PricePerSession.ToString();
+                TextMaxPeople.Text = _courseManager.SelectedCourse.MaxPeople.ToString();
+                TextMinutes.Text = _courseManager.SelectedCourse.SessionLengthMinutes.ToString();
+                TextTotalSessions.Text = _courseManager.SelectedCourse.TotalSessions.ToString();
 
-            
-            private void PopulateListBox()
+            }
+        }
+
+        private void ListBoxCourse_SelectionChanged(object sender, System.Windows.Controls.SelectionChangedEventArgs e)
+        {
+            if (ListBoxCourse.SelectedItem != null)
             {
-                    categoryNames = _courseManager.GetAllCategories();
-                    categoryDataBinding.ItemsSource = categoryNames;
-                    tCategory.ItemsSource = categoryNames;
-
-                    ListBoxCourse.ItemsSource = _courseManager.RetrieveAll();
+                _courseManager.SetSelectedCourse(ListBoxCourse.SelectedItem);
+                PopulateGeneralCourseFields();
+                //ButtonSave.Visibility = Visibility.Visible;
+                //ButtonBook.Visibility = Visibility.Visible;
             }
-
-            private void PopulateCustomerFields()
-            {
-                if (_courseManager.SelectedCourse != null)
-                {
-                    TextId.Text = _courseManager.SelectedCourse.CourseId.ToString();
-                    TextName.Text = _courseManager.SelectedCourse.Title;
-                    TextDescription.Text = _courseManager.SelectedCourse.Title;
-                    TextCity.Text = _courseManager.SelectedCourse.City;
-                    TextPostCode.Text = _courseManager.SelectedCourse.PostCode;
-                    TextPostCode.Text = _courseManager.SelectedCourse.PostCode;
-                    TextPrice.Text = _courseManager.SelectedCourse.PricePerSession.ToString();
-                    TextMaxPeople.Text = _courseManager.SelectedCourse.MaxPeople.ToString();
-                    TextMinutes.Text = _courseManager.SelectedCourse.SessionLengthMinutes.ToString();
-                    TextTotalSessions.Text = _courseManager.SelectedCourse.TotalSessions.ToString();
-
-                }
-            }
-
-            private void ListBoxCustomer_SelectionChanged(object sender, System.Windows.Controls.SelectionChangedEventArgs e)
-            {
-                if (ListBoxCourse.SelectedItem != null)
-                {
-                    _courseManager.SetSelectedCustomer(ListBoxCourse.SelectedItem);
-                    PopulateCustomerFields();
-                }
-            }
+        }
         private void ButtonCreate_Click(object sender, RoutedEventArgs e)
         {
-            _courseManager.Create(Int32.Parse(TextId.Text),tCategory.Text, TName.Text, TDescription.Text, TCity.Text, TPostCode.Text, Convert.ToDouble(TPrice.Text), Int32.Parse(TMinutes.Text), Int32.Parse(TTotalSessions.Text), Int32.Parse(TMaxPeople.Text));
+            _courseManager.Create(Int32.Parse(TextId.Text), tCategory.Text, TName.Text, TDescription.Text, TCity.Text, TPostCode.Text, Convert.ToDouble(TPrice.Text), Int32.Parse(TMinutes.Text), Int32.Parse(TTotalSessions.Text), Int32.Parse(TMaxPeople.Text));
             ListBoxCourse.ItemsSource = null;
             // put back the screen data
             PopulateListBox();
+            PopulateMyListBoxOnMyCoursesTab();
             ListBoxCourse.SelectedItem = _courseManager.SelectedCourse;
-            PopulateCustomerFields();
+            PopulateGeneralCourseFields();
+            PopulateMyCourseFields();
+            //Puts tab to general after adding a new course
+            MainTabs.SelectedIndex = 0;
         }
 
         private void ButtonUpdate_Click(object sender, RoutedEventArgs e)
-            {
-                _courseManager.Update(Int32.Parse(TextId.Text), TextName.Text, TextDescription.Text, TextCity.Text, TextPostCode.Text, Convert.ToDouble(TextPrice.Text), Int32.Parse(TextMaxPeople.Text), Int32.Parse(TextMinutes.Text), Int32.Parse(TextTotalSessions.Text));
-                ListBoxCourse.ItemsSource = null;
-                // put back the screen data
-                PopulateListBox();
-                ListBoxCourse.SelectedItem = _courseManager.SelectedCourse;
-                PopulateCustomerFields();
-            }
+        {
+            _courseManager.Update(Int32.Parse(MyTextId.Text), MyTextName.Text, MyTextDescription.Text, MyTextCity.Text, MyTextPostCode.Text, Convert.ToDouble(MyTextPrice.Text), Int32.Parse(MyTextMaxPeople.Text), Int32.Parse(MyTextMinutes.Text), Int32.Parse(MyTextTotalSessions.Text));
+            ListBoxCourse.ItemsSource = null;
+
+            // put back the screen data
+            PopulateListBox();
+            ListBoxCourse.SelectedItem = _courseManager.SelectedCourse;
+            PopulateGeneralCourseFields();
+
+            MyTextName.IsEnabled = false;
+            MyTextName.IsReadOnlyCaretVisible = true;
+
+            MyTextCity.IsEnabled = false;
+            MyTextCity.IsReadOnlyCaretVisible = true;
+
+            MyTextDescription.IsEnabled = false;
+            MyTextDescription.IsReadOnlyCaretVisible = true;
+
+            MyTextMaxPeople.IsEnabled = false;
+            MyTextMaxPeople.IsReadOnlyCaretVisible = true;
+
+            MyTextMinutes.IsEnabled = false;
+            MyTextMinutes.IsReadOnlyCaretVisible = true;
+
+            MyTextPostCode.IsEnabled = false;
+            MyTextPostCode.IsReadOnlyCaretVisible = true;
+
+            MyTextPrice.IsEnabled = false;
+            MyTextPrice.IsReadOnlyCaretVisible = true;
+
+            MyTextTotalSessions.IsEnabled = false;
+            MyTextTotalSessions.IsReadOnlyCaretVisible = true;
+
+            ButtonEdit.Visibility = Visibility.Visible;
+            ButtonUpdate.Visibility = Visibility.Hidden;
+        }
 
         private void ButtonLogin_Click(object sender, RoutedEventArgs e)
         {
@@ -88,7 +126,7 @@ namespace OfCourseWPF
             loginWindow = new LoginWindow(this);
             loginWindow.Show();
             loginWindow.Login += new EventHandler(UserLoggedIn);
-            
+
 
         }
 
@@ -99,25 +137,106 @@ namespace OfCourseWPF
             ButtonLogin.Background = Brushes.Yellow;
             loginWindow.Close();
             ButtonLogin.Visibility = Visibility.Hidden;
+            PopulateMyListBoxOnMyCoursesTab();
         }
 
-        public void SetSelectedUserTextboxes(Tuple<string, int> value )
+        public void SetSelectedUserTextboxes(Tuple<string, int> value)
         {
-            
-            TextHello.Text = "hello " +  _courseManager.GetName(value);
-            TextType.Text = value.Item1;
-            TextId.Text = value.Item2.ToString();
-            if(value.Item1 == "C" || value.Item1 == "A")
+
+            MyTextHello.Text = TextHello.Text = "hello " + _courseManager.GetName(value);
+            MyTextType.Text = TextType.Text = value.Item1;
+            MyTextId.Text = TextId.Text = value.Item2.ToString();
+
+            if (value.Item1 == "C" || value.Item1 == "A")
             {
                 AddCourseTab.Visibility = Visibility.Hidden;
+                MyCoursesTab.Visibility = Visibility.Hidden;
+            }
+            else
+            {
+                AddCourseTab.Visibility = Visibility.Visible;
+                AddCourseTab.Background = Brushes.Red;
+                AddCourseTab.Foreground = Brushes.Yellow;
+                MyCoursesTab.Foreground = Brushes.Blue;
+                MyCoursesTab.Visibility = Visibility.Visible;
             }
         }
 
-        //public class ListViewModel : INotifyPropertyChanged
-        //{
-        //    // Raise OnPropertyChanged on the setter for game items.. also create backing property
-        //    public ObservableCollection<GameItem> GameItems { get; set; }
-        //}
+
+
+        //for MY COURSES TAB:
+
+        //As a trainer, My courses Tab populates MyListBoxd
+        private void PopulateMyListBoxOnMyCoursesTab()
+        {
+
+            MyCoursesListBox.ItemsSource = _courseManager.RetrieveTrainerCourses(Int32.Parse(MyTextId.Text));
+
+        }
+
+        // Fill the fields of As A Trainer, My Courses Tab
+        private void PopulateMyCourseFields()
+        {
+            if (_courseManager.SelectedCourse != null)
+            {
+                MyTextId.Text = _courseManager.SelectedCourse.CourseId.ToString();
+                MyTextName.Text = _courseManager.SelectedCourse.Title;
+                MyTextDescription.Text = _courseManager.SelectedCourse.Title;
+                MyTextCity.Text = _courseManager.SelectedCourse.City;
+                MyTextPostCode.Text = _courseManager.SelectedCourse.PostCode;
+                MyTextPostCode.Text = _courseManager.SelectedCourse.PostCode;
+                MyTextPrice.Text = _courseManager.SelectedCourse.PricePerSession.ToString();
+                MyTextMaxPeople.Text = _courseManager.SelectedCourse.MaxPeople.ToString();
+                MyTextMinutes.Text = _courseManager.SelectedCourse.SessionLengthMinutes.ToString();
+                MyTextTotalSessions.Text = _courseManager.SelectedCourse.TotalSessions.ToString();
+                MyCategoryTextBox.Text = _courseManager.CategoryTitleFromId(_courseManager.SelectedCourse.CategoryId);
+
+            }
+        }
+
+        private void ButtonEdit_Click(object sender, RoutedEventArgs e)
+        {
+            ButtonEdit.Visibility = Visibility.Hidden;
+            ButtonUpdate.Visibility = Visibility.Visible;
+            //MyCategoryTextBox.Visibility = Visibility.Hidden;
+            //MyCategory.Visibility = Visibility.Visible;
+
+            MyTextName.IsEnabled = true;
+            MyTextName.IsReadOnlyCaretVisible = false;
+
+            MyTextCity.IsEnabled = true;
+            MyTextCity.IsReadOnlyCaretVisible = false;
+
+            MyTextDescription.IsEnabled = true;
+            MyTextDescription.IsReadOnlyCaretVisible = false;
+
+            MyTextMaxPeople.IsEnabled = true;
+            MyTextMaxPeople.IsReadOnlyCaretVisible = false;
+
+            MyTextMinutes.IsEnabled = true;
+            MyTextMinutes.IsReadOnlyCaretVisible = false;
+
+            MyTextPostCode.IsEnabled = true;
+            MyTextPostCode.IsReadOnlyCaretVisible = false;
+
+            MyTextPrice.IsEnabled = true;
+            MyTextPrice.IsReadOnlyCaretVisible = false;
+
+            MyTextTotalSessions.IsEnabled = true;
+            MyTextTotalSessions.IsReadOnlyCaretVisible = false;
+
+
+        }
+
+        //As A trainer, in My courses tab, List box, when clicking different courses
+        private void MyCoursesListBox_SelectionChanged(object sender, System.Windows.Controls.SelectionChangedEventArgs e)
+        {
+            if (MyCoursesListBox.SelectedItem != null)
+            {
+                _courseManager.SetSelectedCourse(MyCoursesListBox.SelectedItem);
+                PopulateMyCourseFields();
+            }
+        }
     }
 
 }

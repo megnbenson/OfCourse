@@ -11,6 +11,9 @@ namespace OfCourseBusiness
     {
 
         public Course SelectedCourse { get; set; }
+        public Customer SelectedCustomer { get; set; }
+        public Trainer SelectedTrainer { get; set; }
+        public Admin SelectedAdmin { get; set; }
 
 
         
@@ -198,10 +201,43 @@ namespace OfCourseBusiness
                 return db.Courses.ToList();
             }
         }
-
-        public void SetSelectedCustomer(object selectedItem)
+        //My CourseTab:
+        public void SetSelectedCourse(object selectedItem)
         {
             SelectedCourse = (Course)selectedItem;
+        }
+
+        public void SetSelectedTrainer(object selected)
+        {
+            SelectedTrainer = (Trainer)selected;
+        }
+
+        public void SetSelectedCustomer(object selectedCustomer)
+        {
+            SelectedCustomer = (Customer)selectedCustomer;
+        }
+
+        public void SetSelectedAdmin(object selected)
+        {
+            SelectedAdmin = (Admin)selected;
+        }
+
+        public string CategoryTitleFromId(int id)
+        {
+            using (var db = new OfCourseContext())
+            {
+                var catName = db.Categories.Where(c => c.CategoryId == id).First().CategoryName;
+                return catName;
+            }
+        }
+
+        public List<Course> RetrieveTrainerCourses(int trainerId)
+        {
+            using (var db = new OfCourseContext())
+            {
+                var justTrainerCourses = db.Courses.Where(c => c.TrainerId == trainerId).ToList();
+                return justTrainerCourses;
+            }
         }
     }
 }
