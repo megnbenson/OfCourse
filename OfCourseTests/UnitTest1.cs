@@ -4,6 +4,7 @@ using OfCourseData;
 using System.Linq;
 using Microsoft.EntityFrameworkCore;
 using System;
+using System.Collections.Generic;
 
 namespace OfCourseTests
 {
@@ -24,6 +25,22 @@ namespace OfCourseTests
                 select c;
 
                 db.Courses.RemoveRange(selectedCourses);
+                db.SaveChanges();
+
+                var selectedCourse =
+                from c in db.Courses
+                where c.Title.Equals("testtest")
+                select c;
+
+                db.Courses.RemoveRange(selectedCourse);
+                db.SaveChanges();
+
+                var selectedCustomer =
+                from c in db.Customers
+                where c.Username.Equals("testJohn")
+                select c;
+
+                db.Customers.RemoveRange(selectedCustomer);
                 db.SaveChanges();
             }
         }
@@ -112,5 +129,38 @@ namespace OfCourseTests
                 Assert.AreEqual("Alabama", updatedCourse.City);
             }
         }
+
+        [Test]
+        public void WhenACourseIsBooked_TheDatabaseIsUpdated()
+        {
+            using (var db = new OfCourseContext())
+            {
+                //make course to book
+                DateTime date = new DateTime(2021, 5, 1, 8, 30, 52);
+                _courseManager.Create(1, "Knitting", "testtest", "Hey sweet purls, come join us for this knit sesh", "Birmingham", "W2", 20.0, 33, 1, date, "Morning", 10);
+
+                //gets the courseID
+                var courseId = db.Courses.Where(c => c.Title.Equals("testtest")).FirstOrDefault().CourseId;
+
+                //make a customer
+                _courseManager.CreateCustomer("John", "Smith", "testJohn", "password", "Shrewsbury", "SH1");
+                var selectedCustomer = db.Customers.Where(c => c.Username.Equals("john")).First();
+
+                var numOfBookedCoursesBefore = selectedCustomer.BookedCourses.Count();
+
+                _courseManager.BookCourse(courseId, selectedCustomer.CustomerId);
+
+
+                //Have to join the booked courses list otherwise you can't find it
+                List<Course> BookedCourses = db.Customers.Include(bc => bc.BookedCourses).Where(c => c.CustomerId == selectedCustomer.CustomerId).FirstOrDefault().BookedCourses.ToList();
+
+                var updatedBookedCoursesNum = BookedCourses.Count();
+                Assert.AreEqual(numOfBookedCoursesBefore+1, updatedBookedCoursesNum);
+            }
+        }
+
+
+
+
     }
 }

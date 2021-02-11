@@ -32,6 +32,19 @@ namespace OfCourseBusiness
             }
         }
 
+       
+        public void CreateCustomer(string firstName, string lastName, string username, string password, string city, string postCode)
+        {
+            using (var db = new OfCourseContext())
+            {
+               
+                var newCustomer = new Customer(){ FirstName = firstName, LastName = lastName, Username = username, Password = password, City = city, PostCode = postCode };
+
+                db.Customers.Add(newCustomer);
+                db.SaveChanges();
+            }
+        }
+
         public List<Course> RetrieveCategories(IList checkedCategories)
         {
             using (var db = new OfCourseContext())
@@ -232,12 +245,7 @@ namespace OfCourseBusiness
             }
         }
 
-        
-
-        public void Delete()
-        {
-
-        }
+    
 
         public List<Course> RetrieveAll()
         {
