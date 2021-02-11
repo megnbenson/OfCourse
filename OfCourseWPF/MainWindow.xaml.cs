@@ -78,7 +78,7 @@ namespace OfCourseWPF
             {
                 _courseManager.SetSelectedCourse(ListBoxCourse.SelectedItem);
                 PopulateGeneralCourseFields();
-                //ButtonSave.Visibility = Visibility.Visible;
+
                 if (loggedIn)
                 {
                     ButtonBook.Visibility = Visibility.Visible;
@@ -86,6 +86,18 @@ namespace OfCourseWPF
                 }
             }
         }
+
+        //BOOKING LIST 
+        private void BookingsList_SelectionChanged(object sender, System.Windows.Controls.SelectionChangedEventArgs e)
+        {
+            if (BookingsList.SelectedItem != null)
+            {
+                _courseManager.SetSelectedCourse(BookingsList.SelectedItem);
+                PopulateBookingFields();
+                
+            }
+        }
+
         private void ButtonCreate_Click(object sender, RoutedEventArgs e)
         {
             _courseManager.Create(Int32.Parse(TextId.Text), tCategory.Text, TName.Text, TDescription.Text, TCity.Text, TPostCode.Text, Convert.ToDouble(TPrice.Text), Int32.Parse(TMinutes.Text), Int32.Parse(TTotalSessions.Text), AvailableDatesCalendar.DisplayDate, AvailableTimes.Text, Int32.Parse(TMaxPeople.Text))  ;
@@ -162,7 +174,7 @@ namespace OfCourseWPF
             loginWindow.Close();
             ButtonLogin.Visibility = Visibility.Hidden;
             PopulateMyListBoxOnMyCoursesTab();
-            //PopulateBookingsList();
+            PopulateBookingsList();
         }
 
         public void SetSelectedUserTextboxes(Tuple<string, int> value)
@@ -272,7 +284,10 @@ namespace OfCourseWPF
         private void PopulateBookingsList()
         {
 
-            MyCoursesListBox.ItemsSource = _courseManager.RetrieveThisCustomersBookings(Int32.Parse(MyTextId.Text));
+            BookingsList.ItemsSource = _courseManager.RetrieveThisCustomersBookings(Int32.Parse(MyTextId.Text));
+
+            //this is GeneralTransform filling:
+            //ListBoxCourse.ItemsSource = _courseManager.RetrieveAll();
 
         }
 
@@ -320,7 +335,10 @@ namespace OfCourseWPF
             //PopulateMyListBoxOnMyCoursesTab();
         }
 
-        
+        private void MainTabs_SelectionChanged(object sender, System.Windows.Controls.SelectionChangedEventArgs e)
+        {
+
+        }
     }
 
 }

@@ -52,9 +52,18 @@ namespace OfCourseTests
         }
 
 
-        //test database
-        // Test there is a customers table,
-        //category, trainer, admin, course tablse
-        // That the login button works
+        //[Test]
+        //public void WhenACustomersDetailsAreChanged_TheDatabaseIsUpdated()
+        //{
+        //    using (var db = new NorthwindContext())
+        //    {
+        //        _customerManager.Create("MAND", "Nish Mandal", "Sparta Global", "Paris");
+
+        //        _customerManager.Update("MAND", "Nish Mandal", "Birmingham", null, null);
+
+        //        var updatedCustomer = db.Customers.Find("MAND");
+        //        Assert.AreEqual("Birmingham", updatedCustomer.City);
+        //    }
+        //}
     }
 }

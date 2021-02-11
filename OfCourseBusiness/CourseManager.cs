@@ -6,6 +6,7 @@ using System.Text;
 using OfCourseData;
 using System.Windows;
 using System.Collections;
+using Microsoft.EntityFrameworkCore;
 
 namespace OfCourseBusiness
 {
@@ -344,21 +345,22 @@ namespace OfCourseBusiness
 
         }
 
-        public IEnumerable RetrieveThisCustomersBookings(int custId)
+        public List<Course> RetrieveThisCustomersBookings(int custId)
         {
             using (var db = new OfCourseContext())
             {
                 //IF error here, customer doesn't exist
-                var bookedCourses = db.Customers.Find(custId).BookedCourses;
+                //var bookedCourses = db.Customers.Find(custId).BookedCourses;
+
 
                 Customer selectedCustomer = db.Customers.Find(custId);
-                selectedCustomer = db.Customers.Where(c => c.CustomerId == custId).FirstOrDefault();
+                List<Course> BookedCourses = db.Customers.Include(bc => bc.BookedCourses).Where(c => c.CustomerId == custId).FirstOrDefault().BookedCourses.ToList();
 
-                var selectCustomer = db.Customers.Where(c => c.CustomerId == custId);
+                //var selectCustomer = db.Customers.Where(c => c.CustomerId == custId);
               
 
-                db.SaveChanges();
-                return selectedCustomer.BookedCourses;
+                //db.SaveChanges();
+                return BookedCourses;
             }
         }
     }

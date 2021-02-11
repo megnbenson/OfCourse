@@ -151,7 +151,7 @@
                     </Grid.ColumnDefinitions>
 
 
-                    <ListBox x:Name="BookingsList" Background="#FFF4EBBE" Grid.Column="2" SelectionChanged="ListBoxCourse_SelectionChanged" Grid.ColumnSpan="3" Margin="0,0,198,0" BorderBrush="#FF180D47"/>
+                    <ListBox x:Name="BookingsList" Background="#FFF4EBBE" Grid.Column="2" SelectionChanged="BookingsList_SelectionChanged" Grid.ColumnSpan="3" Margin="0,0,198,0" BorderBrush="#FF180D47"/>
                     <Grid Grid.Column= "4" Background="#FF180D47">
                         <Grid.RowDefinitions>
                             <RowDefinition Height="*" />
