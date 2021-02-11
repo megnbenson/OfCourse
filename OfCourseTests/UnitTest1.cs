@@ -3,6 +3,7 @@ using OfCourseBusiness;
 using OfCourseData;
 using System.Linq;
 using Microsoft.EntityFrameworkCore;
+using System;
 
 namespace OfCourseTests
 {
@@ -17,13 +18,41 @@ namespace OfCourseTests
             // remove test entry in DB if present
             using (var db = new OfCourseContext())
             {
-                var selectedCustomers =
-                from c in db.Customers
-                where c.Username.Equals("testCust")
+                var selectedCourses =
+                from c in db.Courses
+                where c.Title.Equals("TestCrochetBasics")
                 select c;
 
-                db.Customers.RemoveRange(selectedCustomers);
+                db.Courses.RemoveRange(selectedCourses);
                 db.SaveChanges();
+            }
+        }
+        // for when you have a create category
+        //[Test]
+        //public void WhenANewCategoryIsAdded_TheNumberOfCategoriesIncreasesBy1()
+        //{
+        //    using (var db = new OfCourseContext())
+        //    {
+        //        var numberOfCustomersBefore = db.Categories.Count();
+        //        _courseManager.CreateCategory();
+        //        var numberOfCustomersAfter = db.Categories.Count();
+
+        //        Assert.AreEqual(numberOfCustomersBefore + 1, numberOfCustomersAfter);
+        //    }
+        //}
+
+
+        [Test]
+        public void WhenANewCourseIsAdded_TheNumberOfCoursesIncreasesBy1()
+        {
+            using (var db = new OfCourseContext())
+            {
+                var numberOfCustomersBefore = db.Courses.Count();
+                DateTime date = new DateTime(2021, 5, 1, 8, 30, 52);
+                _courseManager.Create(1, "Knitting", "TestCrochetBasics", "Hey sweet purls, come join us for this knit sesh", "London", "W2", 20.0, 33, 1, date, "Morning", 10);
+                var numberOfCustomersAfter = db.Courses.Count();
+
+                Assert.AreEqual(numberOfCustomersBefore + 1, numberOfCustomersAfter);
             }
         }
 

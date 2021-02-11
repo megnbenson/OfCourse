@@ -174,7 +174,8 @@ namespace OfCourseWPF
             loginWindow.Close();
             ButtonLogin.Visibility = Visibility.Hidden;
             PopulateMyListBoxOnMyCoursesTab();
-            PopulateBookingsList();
+            
+            
         }
 
         public void SetSelectedUserTextboxes(Tuple<string, int> value)
@@ -184,11 +185,13 @@ namespace OfCourseWPF
             MyTextType.Text = TextType.Text = value.Item1;
             MyTextId.Text = TextId.Text = value.Item2.ToString();
 
-            if (value.Item1 == "C" || value.Item1 == "A")
+            if (value.Item1 == "C")
             {
                 AddCourseTab.Visibility = Visibility.Hidden;
                 MyCoursesTab.Visibility = Visibility.Hidden;
                 BookingsTab.Visibility = Visibility.Visible;
+
+                PopulateBookingsList();
             }
             else
             {
