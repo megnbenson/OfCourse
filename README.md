@@ -21,6 +21,16 @@ I could have drawn an ERD with an online tool, but instead I did it manually and
 ### **what is your action plan for next**
 Action plan is to do tests, Add more CRUD operations and bing the category lists on the filters list.
 
+## **Sprint Two Retro**
+### **What went well:**
+By the end, I was using git branches and successfully reverted back to a previous git commit.
+
+### **What could be improved**
+I should have been commiting way more. I should have started the project with a priorities list of a minimum viable product and worked incrementally, adding tests with each part and neatening the edges as I went. 
+
+### **what is your action plan for next**
+I commit more, to use branches for each part of a funcationality, and to strip back the project to its most crucial parts in time for the presentation
+
 #### Overall project retrospective 
   –what have you learned, 
   what would you do differently next time, 
