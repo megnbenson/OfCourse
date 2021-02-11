@@ -8,7 +8,6 @@ namespace OfCourseData
     {
         public Course()
         {
-           // CourseSessionDetailList = new HashSet<CourseSessionDetails>();
             BookedCustomers = new HashSet<Customer>();
         }
 

@@ -3,7 +3,7 @@
 
 --select * from Trainers
 select * from Categories
---select * from Customers
+select * from Customers
 select * from Courses
 --select* from Trainers
 --select * from Courses
