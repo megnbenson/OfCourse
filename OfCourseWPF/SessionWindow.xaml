@@ -6,7 +6,7 @@
         xmlns:local="clr-namespace:OfCourseWPF"
         mc:Ignorable="d"
         Title="SessionWindow" Height="450" Width="800">
-    <Grid>
+    <Grid Background="#FFF9F4EC">
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="*"/>
             <ColumnDefinition Width="*"/>
@@ -29,7 +29,7 @@
             
         </Grid>
         
-        <Grid Grid.Column= "1" Grid.Row="1" Grid.RowSpan="2" Grid.ColumnSpan="2" Background="Bisque">
+        <Grid Grid.Column= "1" Grid.Row="1" Grid.RowSpan="2" Grid.ColumnSpan="2" Background="#FF63ACBE">
             <Grid.RowDefinitions>
                 <RowDefinition Height="*" />
 

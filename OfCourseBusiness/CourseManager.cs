@@ -1,11 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Diagnostics;
 using System.Linq;
-using System.Text;
 using OfCourseData;
-using System.Windows;
-using System.Collections;
 using Microsoft.EntityFrameworkCore;
 
 namespace OfCourseBusiness
@@ -17,8 +13,6 @@ namespace OfCourseBusiness
         public Course SelectedCourse { get; set; }
         
 
-
-        
         public void Create(int trainerId, string categorytitle, string title, string description, string city, string postcode, double pricePerSession, int sessionLengthMinutes, int totalSessions, DateTime availableDate, string availableTime, int maxPeople)
         {
             using (var db = new OfCourseContext())
@@ -31,36 +25,8 @@ namespace OfCourseBusiness
             }
         }
 
-       
-        public void CreateCustomer(string firstName, string lastName, string username, string password, string city, string postCode)
-        {
-            using (var db = new OfCourseContext())
-            {
-               
-                var newCustomer = new Customer(){ FirstName = firstName, LastName = lastName, Username = username, Password = password, City = city, PostCode = postCode };
 
-                db.Customers.Add(newCustomer);
-                db.SaveChanges();
-            }
-        }
-
-        //FOR the FILTER, trying to access only checked categories and then fill up that list with the selected cats
-        public List<Course> RetrieveCategories()
-        {
-            using (var db = new OfCourseContext())
-            {
-                List<Course> coursesOfSelectedCats = new List<Course>();
-                var selecteds = db.Categories.Where(c => c.isSelected == true);
-                foreach (var item in selecteds)
-                {
-                    var catId = db.Categories.Where(c => c.CategoryName.Equals(item)).First().CategoryId;
-                    coursesOfSelectedCats.Add(db.Courses.Find(catId));
-                }
-
-                return coursesOfSelectedCats.ToList();
-            }
-        }
-
+        // In General, Tuple Returns string of user type "C", "t", "a" or "E" for error
         public Tuple<string,int> Login(string username, string password)
         {
             
@@ -72,25 +38,14 @@ namespace OfCourseBusiness
                     var findTrainer = db.Trainers.Where(t => t.Username.ToLower().Equals(username.ToLower()));
                     if(findTrainer.ToList().Count == 0)
                     {
-                        Debug.WriteLine("NO Trainer or Customer WITH THAT USERNAME");
                         var findAdmin = db.Admins.Where(t => t.Username.ToLower().Equals(username.ToLower()));
-                        if (findAdmin.ToList().Count == 0)
+                        if (findAdmin.ToList().Count != 0)
                         {
-                            Debug.WriteLine("NO USER WITH THAT USERNAME");
-                        }
-                        else
-                        {
-                            if(findAdmin.First().Password == password)
+                            if (findAdmin.First().Password == password)
                             {
                                 var userPass = Tuple.Create("A", findAdmin.First().AdminId);
                                 return userPass;
-                                
                             }
-                            else
-                            {
-                                Debug.WriteLine("THROW ERROR WRONG PASSWORD, USERNAME FOUND, ADMIN");
-                            }
-                            
                         }
                     }
                     else
@@ -99,67 +54,24 @@ namespace OfCourseBusiness
                         {
                             var userPass = Tuple.Create("T", findTrainer.First().TrainerId);
                             return userPass;
-                        }
-                        else
-                        {
-                            Debug.WriteLine("THROW ERROR WRONG PASSWORD, USERNAME FOUND, Trainer");
-                        }
-                        
+                        } 
                     }
-
                 }
                 else
                 {
                     if (findCustomer.First().Password == password)
                     {
-                       
+
                         var userPass = Tuple.Create("C", findCustomer.First().CustomerId);
                         return userPass;
-                    }
-                    else
-                    {
-                        Console.WriteLine("THROW ERROR WRONG PASSWORD, USERNAME FOUND, Customer");
-                    }
-                    
+                    } 
                 }
                 var userPast = Tuple.Create("E", -1);
                 return userPast;
             }
-            
         }
 
-        
-
-        public int IsCatTableEmptyReturnIdOfFirst()
-        {
-            using (var db = new OfCourseContext())
-            {
-                if (db.Categories.Any())
-                {
-                   return db.Categories.First().CategoryId;
-                }
-                else
-                {
-                    return -1;
-                }
-            }
-        }
-
-        public int IsCourseTableEmptyReturnIdOfFirst()
-        {
-            using (var db = new OfCourseContext())
-            {
-                if (db.Courses.Any())
-                {
-                    return db.Courses.First().CategoryId;
-                }
-                else
-                {
-                    return -1;
-                }
-            }
-        }
-
+        // For general, to say Hello Name of User
         public string GetName(Tuple<string, int> value)
         {
             string name;
@@ -185,45 +97,9 @@ namespace OfCourseBusiness
             }
             return name;
         }
-        public HashSet<String> GetAllCourseTimes()
-        {
-
-            using (var db = new OfCourseContext())
-            {
-                var availableTimes = new HashSet<string>();
-                foreach (var item in db.Courses)
-                {
-                    availableTimes.Add(item.AvailableTime);
-                }
-                return availableTimes;
-            }
-        }
-
-        public List<Category> GetAllCategories()
-        {
-            
-            using(var db = new OfCourseContext())
-            {
-                return db.Categories.ToList();
-            }
-        }
 
 
-        public List<String> GetAllCategoryNames()
-        {
-            List<string> catList = new List<string>();
-            using (var db = new OfCourseContext())
-            {
-                var categoryQuery = GetAllCategories();
-                foreach (var cat in categoryQuery)
-                {
-                    catList.Add(cat.CategoryName);
-                }
-            }
-            return catList;
-        }
-
-        // if you're updating in WPF, you want to 
+        // My Courses Tab
         public void Update(int courseId, string title, string description, string city, string postcode, double pricePerSession, int maxPeople, int minutes, int totalSessions)
         {
             using (var db = new OfCourseContext())
@@ -315,24 +191,22 @@ namespace OfCourseBusiness
         {
             using (var db = new OfCourseContext())
             {
-               Course selectedCourse = db.Courses.Find(courseId);
+                Course selectedCourse = db.Courses.Find(courseId);
                 Customer selectedCustomer = db.Customers.Find(custId);
 
-               // selectedCourse.BookedCustomers.Add(selectedCustomer);
+              
                 db.Courses.Find(courseId).BookedCustomers.Add(selectedCustomer);
 
                 db.Customers.Find(custId).BookedCourses.Add(selectedCourse);
-                //selectedCustomer.BookedCourses.Add(selectedCourse);
-
-                
 
                 db.SaveChanges();
-                Debug.WriteLine(selectedCourse.BookedCustomers.First());
-                Debug.WriteLine(selectedCustomer.BookedCourses.First().Title);
-                Debug.WriteLine(selectedCustomer.BookedCourses);
+                //Debug.WriteLine(selectedCourse.BookedCustomers.First());
+                //Debug.WriteLine(selectedCustomer.BookedCourses.First().Title);
+                //Debug.WriteLine(selectedCustomer.BookedCourses);
             }
 
         }
+
 
         public List<Course> RetrieveThisCustomersBookings(int custId)
         {
@@ -347,10 +221,59 @@ namespace OfCourseBusiness
             }
         }
 
+
+
+
+
+        ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+        ///FOR TESTS
+        /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+        public int IsCatTableEmptyReturnIdOfFirst()
+        {
+            using (var db = new OfCourseContext())
+            {
+                if (db.Categories.Any())
+                {
+                    return db.Categories.First().CategoryId;
+                }
+                else
+                {
+                    return -1;
+                }
+            }
+        }
+
+        public int IsCourseTableEmptyReturnIdOfFirst()
+        {
+            using (var db = new OfCourseContext())
+            {
+                if (db.Courses.Any())
+                {
+                    return db.Courses.First().CategoryId;
+                }
+                else
+                {
+                    return -1;
+                }
+            }
+        }
+
+        public void CreateCustomer(string firstName, string lastName, string username, string password, string city, string postCode)
+        {
+            using (var db = new OfCourseContext())
+            {
+               
+                var newCustomer = new Customer(){ FirstName = firstName, LastName = lastName, Username = username, Password = password, City = city, PostCode = postCode };
+
+                db.Customers.Add(newCustomer);
+                db.SaveChanges();
+            }
+        }
+
         //This works, as it is being deleted from the database, but it isn't being deleted in the list?
         public void DeleteSelectedBookedCourse(object course, int custId)
         {
-            using(var db = new OfCourseContext())
+            using (var db = new OfCourseContext())
             {
                 Course selectedCourse = (Course)course;
                 var courseId = selectedCourse.CourseId;
@@ -363,7 +286,7 @@ namespace OfCourseBusiness
 
 
                 // call remove range just in case there are multiple, useful to use if you don't know if its in the table or not.
-                if (BookedCourseList.Contains(courseOnList) )
+                if (BookedCourseList.Contains(courseOnList))
                 {
                     var oldList = db.Customers.Include(bc => bc.BookedCourses).Where(c => c.CustomerId == custId).FirstOrDefault().BookedCourses.Count();
 
@@ -376,5 +299,48 @@ namespace OfCourseBusiness
                 }
             }
         }
+
+
+        //FOR extension:
+        //FOR the FILTER, trying to access only checked categories and then fill up that list with the selected cats
+        public List<Course> RetrieveCategories()
+        {
+            using (var db = new OfCourseContext())
+            {
+                List<Course> coursesOfSelectedCats = new List<Course>();
+                var selecteds = db.Categories.Where(c => c.isSelected == true);
+                foreach (var item in selecteds)
+                {
+                    var catId = db.Categories.Where(c => c.CategoryName.Equals(item)).First().CategoryId;
+                    coursesOfSelectedCats.Add(db.Courses.Find(catId));
+                }
+
+                return coursesOfSelectedCats.ToList();
+            }
+        }
+        public List<String> GetAllCategoryNames()
+        {
+            List<string> catList = new List<string>();
+            using (var db = new OfCourseContext())
+            {
+                var categoryQuery = GetAllCategories();
+                foreach (var cat in categoryQuery)
+                {
+                    catList.Add(cat.CategoryName);
+                }
+            }
+            return catList;
+        }
+
+        public List<Category> GetAllCategories()
+        {
+
+            using (var db = new OfCourseContext())
+            {
+                return db.Categories.ToList();
+            }
+        }
+
+
     }
 }

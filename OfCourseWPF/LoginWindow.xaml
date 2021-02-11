@@ -6,7 +6,7 @@
         xmlns:local="clr-namespace:OfCourseWPF"
         mc:Ignorable="d"
         Title="LoginWindow" Height="450" Width="800">
-    <Grid>
+    <Grid Background="#FFF9F4EC">
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="*"/>
             <ColumnDefinition Width="*"/>
@@ -20,8 +20,8 @@
             <RowDefinition Height="*"/>
         </Grid.RowDefinitions>
         
-        <Label Content="Login" Grid.Column="1" Grid.Row="0" Grid.ColumnSpan="2"/>
-        <Grid Grid.Column= "1" Grid.Row="1" Grid.RowSpan="2" Grid.ColumnSpan="2" Background="Bisque">
+        <Label Content="Login" Grid.Column="1" Grid.Row="0" Grid.ColumnSpan="2" FontSize="30" VerticalAlignment="Bottom" HorizontalAlignment="Center"/>
+        <Grid Grid.Column= "1" Grid.Row="1" Grid.RowSpan="2" Grid.ColumnSpan="2" Background="#FF63ACBE">
             <Grid.RowDefinitions>
                 <RowDefinition Height="*" />
                 

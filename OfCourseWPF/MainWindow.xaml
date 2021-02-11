@@ -42,7 +42,7 @@
                         </Grid.RowDefinitions>
 
                         <!--GENERAL FILTER OPTIONS HIDDEN FOR NOW AS THEY AREN't WORKING-->
-                        <Label Content="Filter Options" Grid.Column="0" Grid.RowSpan="1"  Background="#FFF3DDDD" FontSize="30" FontFamily="Sitka Heading" Visibility="Hidden"/>
+                        <!--<Label Content="Filter Options" Grid.Column="0" Grid.RowSpan="1"  Background="#FFF3DDDD" FontSize="30" FontFamily="Sitka Heading" Visibility="Hidden"/>
 
 
                         <ScrollViewer  Background="#FF44348C"  Grid.RowSpan="5" BorderBrush="Black" Foreground="White" Visibility="Hidden">
@@ -60,7 +60,7 @@
 
                                 <Expander Header="Location" Foreground="White">
                                     <StackPanel>
-                                        <!-- EXT. Use location to add box, near me, within 50 miles-->
+                                        --><!-- EXT. Use location to add box, near me, within 50 miles--><!--
                                         <CheckBox Content="South London" Background="#FFF3DDDD" Foreground="White"/>
                                         <CheckBox Content="West London" Background="#FFF3DDDD" Foreground="White"/>
                                         <CheckBox Content="East London" Background="#FFF3DDDD" Foreground="White"/>
@@ -82,7 +82,7 @@
                                 </Expander>
 
                             </StackPanel>
-                        </ScrollViewer>
+                        </ScrollViewer>-->
                     </Grid>
 
                     <ListBox x:Name="ListBoxCourse" Background="#FF63ACBE" Grid.Column="1" SelectionChanged="ListBoxCourse_SelectionChanged" Grid.ColumnSpan="2" BorderBrush="#FF601A4A" BorderThickness="5,5,5,5"/>
@@ -343,83 +343,7 @@
                         <ColumnDefinition Width="100*" />
                         <ColumnDefinition Width="100*" />
                     </Grid.ColumnDefinitions>
-                    <Grid Grid.Column= "0" Background="#FFF3DDDD">
-                        <Grid.RowDefinitions>
-                            <RowDefinition Height="*" />
-                            <RowDefinition Height="*" />
-                            <RowDefinition Height="*" />
-                            <RowDefinition Height="*" />
-                            <RowDefinition Height="*" />
-                            <RowDefinition Height="*" />
-                            <RowDefinition Height="*" />
-                            <RowDefinition Height="*" />
-                            <RowDefinition Height="*" />
-                            <RowDefinition Height="*" />
-
-                        </Grid.RowDefinitions>
-
-                        <!--FILTERS HIDDEN FOR NOW AS THEY AREN't WORKING-->
-                        <Label Content="Filter Options" Grid.Column="0" Grid.RowSpan="1"  Background="#FFF3DDDD" FontSize="30" FontFamily="Sitka Heading" Visibility="Hidden"/>
-
-
-                        <ScrollViewer  Background="Green"  Grid.RowSpan="5" Visibility="Hidden">
-                            <StackPanel Grid.Row="2" Grid.RowSpan="4" Visibility="Hidden">
-                                <Expander Header="Category">
-                                    <ListView Name="DataBindingCheckBoxes" ItemsSource="{Binding bindingCheckBoxesList}" >
-                                        <ListView.ItemTemplate>
-                                            <DataTemplate>
-
-                                                <CheckBox IsChecked="{Binding IsSelected, Mode=TwoWay}" Content="{Binding CategoryName}" />
-                                            </DataTemplate>
-                                        </ListView.ItemTemplate>
-                                    </ListView>
-                                </Expander>
-
-                                <Expander Header="Location">
-                                    <StackPanel>
-
-                                        <!--EXT. Use location to add box, near me, within 50 miles-->
-
-                                        <CheckBox Content="South London" Background="#FFF3DDDD"/>
-                                        <CheckBox Content="West London" Background="#FFF3DDDD"/>
-                                        <CheckBox Content="East London" Background="#FFF3DDDD"/>
-                                        <CheckBox Content="North London" Background="#FFF3DDDD"/>
-                                        <CheckBox Content="Near Me" Background="#FFF3DDDD"/>
-
-                                    </StackPanel>
-                                </Expander>
-                                <Expander Header="Time Preference">
-
-
-
-                                    <StackPanel>
-                                        <ListView Name="TimePreferenceBind">
-                                            <ListView.ItemTemplate>
-                                                <DataTemplate>
-
-                                                    <TextBlock Text="{Binding}" />
-                                                </DataTemplate>
-                                            </ListView.ItemTemplate>
-                                        </ListView>
-                                        <!--<CheckBox Content="Early Morning" Background="#FFF3DDDD"/>
-                                        <CheckBox Content="Late Morning" Background="#FFF3DDDD"/>
-                                        <CheckBox Content="Afternoon" Background="#FFF3DDDD"/>
-                                        <CheckBox Content="Evening" Background="#FFF3DDDD"/>
-                                        <CheckBox Content="Evening" Background="#FFF3DDDD"/>-->
-
-
-                                        <Button>Save Settings</Button>
-                                    </StackPanel>
-                                </Expander>
-
-                            </StackPanel>
-                        </ScrollViewer>
-
-
-
-
-
-                    </Grid>
+                  
 
                     <ListBox x:Name="MyCoursesListBox" Background="#FF601A4A" Grid.Column="0" SelectionChanged="MyCoursesListBox_SelectionChanged" Grid.ColumnSpan="1" BorderBrush="#FF601A4A"/>
                     <Grid Grid.Column= "1" Grid.ColumnSpan="2" Background="#FF601A4A">
