@@ -95,18 +95,22 @@ namespace OfCourseTests
         }
 
 
-        //[Test]
-        //public void WhenACustomersDetailsAreChanged_TheDatabaseIsUpdated()
-        //{
-        //    using (var db = new NorthwindContext())
-        //    {
-        //        _customerManager.Create("MAND", "Nish Mandal", "Sparta Global", "Paris");
+        [Test]
+        public void WhenACourseDetailsAreChanged_TheDatabaseIsUpdated()
+        {
+            using (var db = new OfCourseContext())
+            {
+                DateTime date = new DateTime(2021, 5, 1, 8, 30, 52);
 
-        //        _customerManager.Update("MAND", "Nish Mandal", "Birmingham", null, null);
+                _courseManager.Create(1, "Knitting", "testtest", "Hey sweet purls, come join us for this knit sesh", "Birmingham", "W2", 20.0, 33, 1, date, "Morning", 10);
 
-        //        var updatedCustomer = db.Customers.Find("MAND");
-        //        Assert.AreEqual("Birmingham", updatedCustomer.City);
-        //    }
-        //}
+                var courseId = db.Courses.Where(c => c.Title.Equals("testtest")).FirstOrDefault().CourseId;
+
+                _courseManager.Update(courseId, "testtest", "A course that is surprisingly difficult", "Alabama", "W2", 20.0, 33, 1, 10);
+
+                var updatedCourse = db.Courses.Find(courseId);
+                Assert.AreEqual("Alabama", updatedCourse.City);
+            }
+        }
     }
 }
