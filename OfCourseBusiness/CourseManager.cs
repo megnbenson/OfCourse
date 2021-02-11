@@ -67,14 +67,14 @@ namespace OfCourseBusiness
             
             using(var db = new OfCourseContext())
             {
-                var findCustomer = db.Customers.Where(c => c.Username.Equals(username));
+                var findCustomer = db.Customers.Where(c => c.Username.ToLower().Equals(username.ToLower()));
                 if(findCustomer.ToList().Count == 0)
                 {
-                    var findTrainer = db.Trainers.Where(t => t.Username.Equals(username));
+                    var findTrainer = db.Trainers.Where(t => t.Username.ToLower().Equals(username.ToLower()));
                     if(findTrainer.ToList().Count == 0)
                     {
                         Debug.WriteLine("NO Trainer or Customer WITH THAT USERNAME");
-                        var findAdmin = db.Admins.Where(t => t.Username.Equals(username));
+                        var findAdmin = db.Admins.Where(t => t.Username.ToLower().Equals(username.ToLower()));
                         if (findAdmin.ToList().Count == 0)
                         {
                             Debug.WriteLine("NO USER WITH THAT USERNAME");

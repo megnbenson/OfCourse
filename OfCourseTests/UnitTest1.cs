@@ -27,13 +27,7 @@ namespace OfCourseTests
                 db.Courses.RemoveRange(selectedCourses);
                 db.SaveChanges();
 
-                var selectedCourse =
-                from c in db.Courses
-                where c.Title.Equals("testtest")
-                select c;
 
-                db.Courses.RemoveRange(selectedCourse);
-                db.SaveChanges();
 
                 var selectedCustomer =
                 from c in db.Customers
@@ -119,7 +113,8 @@ namespace OfCourseTests
             {
                 DateTime date = new DateTime(2021, 5, 1, 8, 30, 52);
 
-                _courseManager.Create(1, "Knitting", "testtest", "Hey sweet purls, come join us for this knit sesh", "Birmingham", "W2", 20.0, 33, 1, date, "Morning", 10);
+                //this one sometimes fails especially if I try and take it out in the setup test
+                _courseManager.Create(1, "Knitting", "testtest", "Hey sweet purls, come join us for this knit sesh", "Chump", "W2", 20.0, 33, 1, date, "Morning", 10);
 
                 var courseId = db.Courses.Where(c => c.Title.Equals("testtest")).FirstOrDefault().CourseId;
 
@@ -159,7 +154,37 @@ namespace OfCourseTests
             }
         }
 
+        [Test]
+        public void WhenAUserLogsIn_TheUsernameIsNotCaseSensitive()
+        {
+            using (var db = new OfCourseContext())
+            {
+                //make a customer
+                _courseManager.CreateCustomer("John", "Smith", "testJohn", "password", "Shrewsbury", "SH1");
+                var selectedCustomer = db.Customers.Where(c => c.Username.Equals("john")).First();
 
+                var returnsTuple = _courseManager.Login("testJohn", "password");
+                var returnsTuple2 = _courseManager.Login("TEsTJOhN", "password");
+
+                Assert.AreEqual(returnsTuple, returnsTuple2);
+            }
+        }
+
+        [Test]
+        public void WhenACustomerLogsIn_TheCorrectUserTypeAndIdIsReturned()
+        {
+            using (var db = new OfCourseContext())
+            {
+                //make a customer
+                _courseManager.CreateCustomer("John", "Smith", "testJohn", "password", "Shrewsbury", "SH1");
+                var selectedCustomer = db.Customers.Where(c => c.Username.Equals("testJohn")).First();
+
+                var returnsTuple = _courseManager.Login("testJohn", "password");
+                
+                Assert.AreEqual(returnsTuple.Item1, "C");
+                Assert.AreEqual(returnsTuple.Item2, selectedCustomer.CustomerId);
+            }
+        }
 
 
     }
