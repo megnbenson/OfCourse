@@ -1,8 +1,10 @@
 # OfCourse
-Individual 3 Tier Database Project for Sparta, A system that connects experts with workshops to offer, with customers in the local area
 
-Project goal
-and definition of done
+# Project goal
+To create a functioning system that connects students with trainers for face to face workshops.
+
+# Definition of Done
+Having a working application that allows students to select and book workshop courses, where the code is backed up through version control and all the documentation is complete with a user guide
 
 •For each sprint: 
 oSprint goal
@@ -10,7 +12,11 @@ oOutput of sprint review:
   The list of backlog items "done"in this sprint, actions for any items not “done”
 oSprint retrospective:  
   A list of thingsthat went well, improvements and action plan.
+### Sprint Goal
+Goal of sprint one is to create the class diagram to create a model-first approach to making the database. Once set up, To add data to the database, create a business CRUD layer and finally start the WPF.
+
 ## **Sprint one Retro**
+
 ### **What went well:**
 I now know how databases work, model first. ReCreating a database many times from scratch but in doing so have got a working database, and has taken away the fear from it
 Also explored the WPF toolbox, making use of checkboxes, stack panels and tabs
@@ -33,6 +39,7 @@ I commit more, to use branches for each part of a funcationality, and to strip b
 
 #### Overall project retrospective 
   –what have you learned, 
+  I've learnt that
   what would you do differently next time, 
   what would you do next?
 •A note of which class diagrams are included in your code projects 
