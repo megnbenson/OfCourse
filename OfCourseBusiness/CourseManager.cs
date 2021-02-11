@@ -350,6 +350,7 @@ namespace OfCourseBusiness
             }
         }
 
+        //This works, as it is being deleted from the database, but it isn't being deleted in the list?
         public void DeleteSelectedBookedCourse(object course, int custId)
         {
             using(var db = new OfCourseContext())
@@ -361,50 +362,22 @@ namespace OfCourseBusiness
 
 
                 List<Course> BookedCourseList = db.Customers.Include(bc => bc.BookedCourses).Where(c => c.CustomerId == custId).FirstOrDefault().BookedCourses.ToList();
-                var courseOnList = BookedCourseList.Find(c => c.CourseId == courseId); // NEED
+                var courseOnList = BookedCourseList.Find(c => c.CourseId == courseId);
 
 
                 // call remove range just in case there are multiple, useful to use if you don't know if its in the table or not.
                 if (BookedCourseList.Contains(courseOnList) )
                 {
-                    //found course in customers bookedCoursesList
-                    
-                    db.Customers.Include(bc => bc.BookedCourses).Where(c => c.CustomerId == custId).FirstOrDefault().BookedCourses.ToList().Remove(courseOnList);
+                    var oldList = db.Customers.Include(bc => bc.BookedCourses).Where(c => c.CustomerId == custId).FirstOrDefault().BookedCourses.Count();
+
+                    //This returns true, so it does get removed
+                    db.Customers.Include(bc => bc.BookedCourses).Where(c => c.CustomerId == custId).FirstOrDefault().BookedCourses.Remove(courseOnList);
+
+                    var newBookedCourses = db.Customers.Include(bc => bc.BookedCourses).Where(c => c.CustomerId == custId).FirstOrDefault().BookedCourses.Count();
 
                     db.SaveChanges();
                 }
             }
-
-
-
-
-            //using (var db = new OfCourseContext())
-            //{
-            //    Course selected = (Course)selectedCourse; //NEED
-            //    Customer cust = db.Customers.Find(custId);
-            //    var courseId = selected.CourseId; //NEED
-
-
-
-            //    List<Course> BookedCourseList = db.Customers.Include(bc => bc.BookedCourses).Where(c => c.CustomerId == custId).FirstOrDefault().BookedCourses.ToList(); //NEED
-
-            //    var courseOnList = BookedCourseList.Find(c => c.CourseId == courseId); // NEED
-
-            //    List<Customer> BookedCustomerList = db.Courses.Include(bc => bc.BookedCustomers).Where(c => c.CourseId == courseId).FirstOrDefault().BookedCustomers.ToList();
-
-            //    var customerOnList = BookedCustomerList.Find(c => c.CustomerId == custId);
-
-            //    if (BookedCourseList.Contains(courseOnList) && BookedCustomerList.Contains(customerOnList))
-            //    {
-            //        //found course in customers bookedCoursesList
-            //        db.Customers.Include(bc => bc.BookedCourses).Where(c => c.CustomerId == custId).FirstOrDefault().BookedCourses.ToList().Remove(courseOnList);
-
-            //        db.Courses.Include(bc => bc.BookedCustomers).Where(c => c.CourseId == courseId).FirstOrDefault().BookedCustomers.ToList().Remove(customerOnList);
-            //        db.SaveChanges();
-            //    }
-
-            //    db.SaveChanges();
-            //}
         }
     }
 }

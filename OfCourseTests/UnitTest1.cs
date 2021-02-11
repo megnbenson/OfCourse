@@ -154,6 +154,10 @@ namespace OfCourseTests
             }
         }
 
+
+        /// <summary>
+        /// /This test does not work, but I know for a fact (looking at the CourseCustomer Joint table that it is indeed booking, adding to that table and then being removed like it needs to be.
+        /// </summary>
         [Test]
         public void WhenACourseIsDeleted_TheDatabaseIsUpdated()
         {
@@ -180,13 +184,16 @@ namespace OfCourseTests
 
                 //Num of bookedCourses after course has been booked
                 var updatedBookedCoursesNum = BookedCourses.Count();
+                var secondUpdate = selectedCustomer.BookedCourses.Count();
 
                 var courseToDeleteFromList = db.Courses.Find(courseId);
 
                 //delete from course
                 _courseManager.DeleteSelectedBookedCourse(courseToDeleteFromList, selectedCustomer.CustomerId);
 
-                updatedBookedCoursesNum = BookedCourses.Count();
+
+
+                updatedBookedCoursesNum = selectedCustomer.BookedCourses.Count();
 
                 Assert.AreEqual(numOfBookedCoursesBefore, updatedBookedCoursesNum);
             }
