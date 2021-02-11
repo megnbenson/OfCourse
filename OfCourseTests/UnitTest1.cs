@@ -1,6 +1,8 @@
 using NUnit.Framework;
 using OfCourseBusiness;
 using OfCourseData;
+using System.Linq;
+using Microsoft.EntityFrameworkCore;
 
 namespace OfCourseTests
 {
@@ -11,6 +13,18 @@ namespace OfCourseTests
         [SetUp]
         public void Setup()
         {
+            _courseManager = new CourseManager();
+            // remove test entry in DB if present
+            using (var db = new OfCourseContext())
+            {
+                var selectedCustomers =
+                from c in db.Customers
+                where c.Username.Equals("testCust")
+                select c;
+
+                db.Customers.RemoveRange(selectedCustomers);
+                db.SaveChanges();
+            }
         }
 
         [Test]
@@ -22,7 +36,6 @@ namespace OfCourseTests
             if(categoryNotEmpty  >= 0)
             {
                 Assert.Pass();
-
             }
         }
 
@@ -39,7 +52,8 @@ namespace OfCourseTests
             }
         }
 
-        [TestCase(3,"Floristry 101")]
+        //THIS TEST DEPENDS ON THE DATA IN THE DB
+        [TestCase(3,"Mixology 101")]
         // Test that course list appears, so ToString() is course Title
         public void CheckCoursesToStringShowJustCourseTitle(int id, string expTitle)
         {
