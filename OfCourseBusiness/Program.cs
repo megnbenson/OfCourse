@@ -29,38 +29,38 @@ namespace OfCourseBusiness
                 //construct a new customer
                 var newCategory = new Category()
                 {
-                    CategoryName = "Knitting"
+                    CategoryName = "Craft"
 
                 };
-                //var newCategory3 = new Category()
-                //{
-                //    CategoryName = "Mixology"
+                var newCategory3 = new Category()
+                {
+                    CategoryName = "Cookery"
 
-                //};
-                //var newCategory1 = new Category()
-                //{
-                //    CategoryName = "Floristry"
+                };
+                var newCategory1 = new Category()
+                {
+                    CategoryName = "Gardening"
 
-                //};
-                //var newTrainer = new Trainer()
-                //{
-                //    PostCode = "W1",
-                //    City = "London",
-                //    Username = "megTrainer",
-                //    Password = "password",
-                //    FirstName = "Megan",
-                //    LastName = "Benson"
-                //};
-                //var newCustomer = new Customer()
-                //{
+                };
+                var newTrainer = new Trainer()
+                {
+                    PostCode = "SE1",
+                    City = "London",
+                    Username = "newTrainer",
+                    Password = "password",
+                    FirstName = "Julia",
+                    LastName = "Smith"
+                };
+                var newCustomer = new Customer()
+                {
 
-                //    PostCode = "TN13",
-                //    City = "Sevenoaks",
-                //    Username = "maria",
-                //    Password = "maria",
-                //    FirstName = "Leon",
-                //    LastName = "Benson"
-                //};
+                    PostCode = "TN13",
+                    City = "Sevenoaks",
+                    Username = "newCustomer",
+                    Password = "password",
+                    FirstName = "Shelly",
+                    LastName = "Smith"
+                };
                 //var newCourse = new Course()
                 //{
                 //    CategoryId = 2,
@@ -100,9 +100,9 @@ namespace OfCourseBusiness
                 //// using properties instead of fields
                 //db.Customers.Add(newCustomer);
                 db.Categories.Add(newCategory);
-                //db.Categories.Add(newCategory1);
-                //db.Categories.Add(newCategory3);
-                //db.Trainers.Add(newTrainer);
+                db.Categories.Add(newCategory1);
+                db.Categories.Add(newCategory3);
+                db.Trainers.Add(newTrainer);
                 //db.Courses.Add(newCourse);
                 // db.Admins.Add(newAdmin);
                 db.SaveChanges();

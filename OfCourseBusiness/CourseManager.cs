@@ -242,8 +242,6 @@ namespace OfCourseBusiness
             }
         }
 
-    
-
         public List<Course> RetrieveAll()
         {
             using (var db = new OfCourseContext())
@@ -251,13 +249,12 @@ namespace OfCourseBusiness
                 return db.Courses.ToList();
             }
         }
+
         //My CourseTab:
         public void SetSelectedCourse(object selectedItem)
         {
             SelectedCourse = (Course)selectedItem;
         }
-
-       
 
         public string CategoryTitleFromId(int id)
         {

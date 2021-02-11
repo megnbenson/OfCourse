@@ -27,6 +27,14 @@ namespace OfCourseTests
                 db.Courses.RemoveRange(selectedCourses);
                 db.SaveChanges();
 
+                var selectedCourses2 =
+                from c in db.Courses
+                where c.Title.Equals("testest")
+                select c;
+
+                db.Courses.RemoveRange(selectedCourses);
+                db.SaveChanges();
+
 
 
                 var selectedCustomer =
@@ -38,20 +46,6 @@ namespace OfCourseTests
                 db.SaveChanges();
             }
         }
-        // for when you have a create category
-        //[Test]
-        //public void WhenANewCategoryIsAdded_TheNumberOfCategoriesIncreasesBy1()
-        //{
-        //    using (var db = new OfCourseContext())
-        //    {
-        //        var numberOfCustomersBefore = db.Categories.Count();
-        //        _courseManager.CreateCategory();
-        //        var numberOfCustomersAfter = db.Categories.Count();
-
-        //        Assert.AreEqual(numberOfCustomersBefore + 1, numberOfCustomersAfter);
-        //    }
-        //}
-
 
         [Test]
         public void WhenANewCourseIsAdded_TheNumberOfCoursesIncreasesBy1()
@@ -101,9 +95,7 @@ namespace OfCourseTests
 
             string title = db.Courses.Find(id).ToString();
             Assert.AreEqual(title, expTitle);
-  
-
-        }
+          }
 
 
         [Test]
@@ -227,6 +219,22 @@ namespace OfCourseTests
 
                 Assert.AreEqual(returnsTuple.Item1, "C");
                 Assert.AreEqual(returnsTuple.Item2, selectedCustomer.CustomerId);
+            }
+        }
+
+        [TestCase("2222")]
+        [TestCase("")]
+        [TestCase("!DSDV")]
+        public void WhenACustomerLogsIn_AnErrorIsReturnedIfUserIsntThere(string username)
+        {
+            using (var db = new OfCourseContext())
+            {
+               
+                var selectedCustomer = db.Customers.Where(c => c.Username.Equals(username)).FirstOrDefault();
+
+                var returnsTuple = _courseManager.Login("testJohn", "password");
+
+                Assert.AreEqual(returnsTuple.Item1, "E");
             }
         }
 
