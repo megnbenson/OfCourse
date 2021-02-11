@@ -114,7 +114,7 @@ namespace OfCourseTests
                 DateTime date = new DateTime(2021, 5, 1, 8, 30, 52);
 
                 //this one sometimes fails especially if I try and take it out in the setup test
-                _courseManager.Create(1, "Knitting", "testtest", "Hey sweet purls, come join us for this knit sesh", "Chump", "W2", 20.0, 33, 1, date, "Morning", 10);
+                _courseManager.Create(1, "Knitting", "testtest", "Hey sweet purls, come join us for this knit sesh", "Chilly", "W2", 20.0, 33, 1, date, "Morning", 10);
 
                 var courseId = db.Courses.Where(c => c.Title.Equals("testtest")).FirstOrDefault().CourseId;
 
@@ -139,7 +139,7 @@ namespace OfCourseTests
 
                 //make a customer
                 _courseManager.CreateCustomer("John", "Smith", "testJohn", "password", "Shrewsbury", "SH1");
-                var selectedCustomer = db.Customers.Where(c => c.Username.Equals("john")).First();
+                var selectedCustomer = db.Customers.Where(c => c.Username.Equals("testJohn")).First();
 
                 var numOfBookedCoursesBefore = selectedCustomer.BookedCourses.Count();
 
@@ -154,6 +154,43 @@ namespace OfCourseTests
             }
         }
 
+        [Test]
+        public void WhenACourseIsDeleted_TheDatabaseIsUpdated()
+        {
+            using (var db = new OfCourseContext())
+            {
+                //make course to book
+                DateTime date = new DateTime(2021, 5, 1, 8, 30, 52);
+                _courseManager.Create(1, "Knitting", "testtest", "Hey sweet purls, come join us for this knit sesh", "Birmingham", "W2", 20.0, 33, 1, date, "Morning", 10);
+
+                //gets the courseID
+                var courseId = db.Courses.Where(c => c.Title.Equals("testtest")).FirstOrDefault().CourseId;
+
+                //make a customer
+                _courseManager.CreateCustomer("John", "Smith", "testJohn", "password", "Shrewsbury", "SH1");
+                var selectedCustomer = db.Customers.Where(c => c.Username.Equals("testJohn")).First();
+
+                var numOfBookedCoursesBefore = selectedCustomer.BookedCourses.Count();
+
+                _courseManager.BookCourse(courseId, selectedCustomer.CustomerId);
+
+
+                //Have to join the booked courses list otherwise you can't find it
+                List<Course> BookedCourses = db.Customers.Include(bc => bc.BookedCourses).Where(c => c.CustomerId == selectedCustomer.CustomerId).FirstOrDefault().BookedCourses.ToList();
+
+                //Num of bookedCourses after course has been booked
+                var updatedBookedCoursesNum = BookedCourses.Count();
+
+                var courseToDeleteFromList = db.Courses.Find(courseId);
+
+                //delete from course
+                _courseManager.DeleteSelectedBookedCourse(courseToDeleteFromList, selectedCustomer.CustomerId);
+
+                updatedBookedCoursesNum = BookedCourses.Count();
+
+                Assert.AreEqual(numOfBookedCoursesBefore, updatedBookedCoursesNum);
+            }
+        }
         [Test]
         public void WhenAUserLogsIn_TheUsernameIsNotCaseSensitive()
         {
@@ -198,5 +235,20 @@ namespace OfCourseTests
                 Assert.AreEqual(NumListofCourses, NumOfCoursesFromDB);
             }
         }
+
+
+        [Test]
+        public void CategoryListCanBeRetrievedForTheCategoryDropDownMenus()
+        {
+            using (var db = new OfCourseContext())
+            {
+                var NumListofCats = _courseManager.GetAllCategories().Count();
+
+                var NumOfCatsFromDB = db.Categories.Count();
+
+                Assert.AreEqual(NumListofCats, NumOfCatsFromDB);
+            }
+        }
+
     }
 }

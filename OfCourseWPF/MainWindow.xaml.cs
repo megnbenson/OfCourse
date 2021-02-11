@@ -47,7 +47,7 @@ namespace OfCourseWPF
             var selectedCategory = DataBindingCheckBoxes.Items;
             var selectedCategory2 = DataBindingCheckBoxes.SelectedItem;
             var selectedCategory3 = DataBindingCheckBoxes.SelectedItems;
-            ListBoxCourse.ItemsSource = _courseManager.RetrieveCategories(DataBindingCheckBoxes.SelectedItems);
+            ListBoxCourse.ItemsSource = _courseManager.RetrieveCategories();
             //categoryDataBinding.SelectedItem
         }
 

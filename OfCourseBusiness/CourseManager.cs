@@ -13,10 +13,9 @@ namespace OfCourseBusiness
     public class CourseManager
     {
 
+        //used to change it in the db
         public Course SelectedCourse { get; set; }
-        public Customer SelectedCustomer { get; set; }
-        public Trainer SelectedTrainer { get; set; }
-        public Admin SelectedAdmin { get; set; }
+        
 
 
         
@@ -45,7 +44,8 @@ namespace OfCourseBusiness
             }
         }
 
-        public List<Course> RetrieveCategories(IList checkedCategories)
+        //FOR the FILTER, trying to access only checked categories and then fill up that list with the selected cats
+        public List<Course> RetrieveCategories()
         {
             using (var db = new OfCourseContext())
             {
@@ -59,7 +59,6 @@ namespace OfCourseBusiness
 
                 return coursesOfSelectedCats.ToList();
             }
-            //throw new NotImplementedException();
         }
 
         public Tuple<string,int> Login(string username, string password)
@@ -83,7 +82,6 @@ namespace OfCourseBusiness
                         {
                             if(findAdmin.First().Password == password)
                             {
-                                SetSelectedAdmin(findAdmin.First());
                                 var userPass = Tuple.Create("A", findAdmin.First().AdminId);
                                 return userPass;
                                 
@@ -99,7 +97,6 @@ namespace OfCourseBusiness
                     {
                         if (findTrainer.First().Password == password)
                         {
-                            SetSelectedTrainer(findTrainer.First());
                             var userPass = Tuple.Create("T", findTrainer.First().TrainerId);
                             return userPass;
                         }
@@ -115,7 +112,7 @@ namespace OfCourseBusiness
                 {
                     if (findCustomer.First().Password == password)
                     {
-                        SetSelectedCustomer(findCustomer.First());
+                       
                         var userPass = Tuple.Create("C", findCustomer.First().CustomerId);
                         return userPass;
                     }
@@ -217,7 +214,7 @@ namespace OfCourseBusiness
             List<string> catList = new List<string>();
             using (var db = new OfCourseContext())
             {
-                var categoryQuery = db.Categories;
+                var categoryQuery = GetAllCategories();
                 foreach (var cat in categoryQuery)
                 {
                     catList.Add(cat.CategoryName);
@@ -260,20 +257,7 @@ namespace OfCourseBusiness
             SelectedCourse = (Course)selectedItem;
         }
 
-        public void SetSelectedTrainer(object selected)
-        {
-            SelectedTrainer = (Trainer)selected;
-        }
-
-        public void SetSelectedCustomer(object selectedCustomer)
-        {
-            SelectedCustomer = (Customer)selectedCustomer;
-        }
-
-        public void SetSelectedAdmin(object selected)
-        {
-            SelectedAdmin = (Admin)selected;
-        }
+       
 
         public string CategoryTitleFromId(int id)
         {
@@ -366,8 +350,34 @@ namespace OfCourseBusiness
             }
         }
 
-        public void DeleteSelectedBookedCourse(object selectedCourse, int custId)
+        public void DeleteSelectedBookedCourse(object course, int custId)
         {
+            using(var db = new OfCourseContext())
+            {
+                Course selectedCourse = (Course)course;
+                var courseId = selectedCourse.CourseId;
+
+                //var selectedCustomer = db.Customers.Where(c => c.CustomerId == custId);
+
+
+                List<Course> BookedCourseList = db.Customers.Include(bc => bc.BookedCourses).Where(c => c.CustomerId == custId).FirstOrDefault().BookedCourses.ToList();
+                var courseOnList = BookedCourseList.Find(c => c.CourseId == courseId); // NEED
+
+
+                // call remove range just in case there are multiple, useful to use if you don't know if its in the table or not.
+                if (BookedCourseList.Contains(courseOnList) )
+                {
+                    //found course in customers bookedCoursesList
+                    
+                    db.Customers.Include(bc => bc.BookedCourses).Where(c => c.CustomerId == custId).FirstOrDefault().BookedCourses.ToList().Remove(courseOnList);
+
+                    db.SaveChanges();
+                }
+            }
+
+
+
+
             //using (var db = new OfCourseContext())
             //{
             //    Course selected = (Course)selectedCourse; //NEED

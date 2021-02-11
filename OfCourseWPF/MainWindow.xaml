@@ -26,7 +26,7 @@
                         <ColumnDefinition Width="100*" />
                         <ColumnDefinition Width="100*" />
                     </Grid.ColumnDefinitions>
-                    <Grid Grid.Column= "0" Background="#FF180D47">
+                    <Grid Grid.Column= "0" Background="#FF601A4A">
                         <Grid.RowDefinitions>
                             <RowDefinition Height="*" />
                             <RowDefinition Height="*" />
@@ -85,8 +85,8 @@
                         </ScrollViewer>
                     </Grid>
 
-                    <ListBox x:Name="ListBoxCourse" Background="#FFC6BCF3" Grid.Column="1" SelectionChanged="ListBoxCourse_SelectionChanged" Grid.ColumnSpan="2" BorderBrush="#FF180D47" BorderThickness="5,5,5,5"/>
-                    <Grid Grid.Column= "3" Background="#FF180D47">
+                    <ListBox x:Name="ListBoxCourse" Background="#FF63ACBE" Grid.Column="1" SelectionChanged="ListBoxCourse_SelectionChanged" Grid.ColumnSpan="2" BorderBrush="#FF601A4A" BorderThickness="5,5,5,5"/>
+                    <Grid Grid.Column= "3" Background="#FF601A4A">
                         <Grid.RowDefinitions>
                             <RowDefinition Height="*" />
                             <RowDefinition Height="*" />
@@ -115,21 +115,21 @@
                                 <RowDefinition Height ="*"/>
                             </Grid.RowDefinitions>
 
-                            <TextBox x:Name="TextHello" Grid.Row="0"  Grid.ColumnSpan="2" Grid.Column="0" Background="#FF180D47" IsEnabled="False" IsReadOnlyCaretVisible="True" Foreground="White" BorderBrush="#FF180D47"></TextBox>
-                            <TextBox x:Name="TextType" Grid.Row="1" Grid.ColumnSpan="2" Grid.Column="0" Background="#FF180D47" IsEnabled="False" IsReadOnlyCaretVisible="True" Foreground="White" BorderBrush="#FF180D47"></TextBox>
-                            <TextBox x:Name="TextId" Grid.Row="2" Grid.ColumnSpan="2" Grid.Column="0" Background="#FF180D47" IsEnabled="False" IsReadOnlyCaretVisible="True" Foreground="White" BorderBrush="#FF180D47"></TextBox>
+                            <TextBox x:Name="TextHello" Grid.Row="0"  Grid.ColumnSpan="2" Grid.Column="0" Background="#FF601A4A" IsEnabled="False" IsReadOnlyCaretVisible="True" Foreground="White" BorderBrush="#FF601A4A"></TextBox>
+                            <TextBox x:Name="TextType" Grid.Row="1" Grid.ColumnSpan="2" Grid.Column="0" Background="#FF601A4A" IsEnabled="False" IsReadOnlyCaretVisible="True" Foreground="White" BorderBrush="#FF601A4A"></TextBox>
+                            <TextBox x:Name="TextId" Grid.Row="2" Grid.ColumnSpan="2" Grid.Column="0" Background="#FF601A4A" IsEnabled="False" IsReadOnlyCaretVisible="True" Foreground="White" BorderBrush="#FF601A4A"></TextBox>
                         </Grid>
-                        <Button x:Name="ButtonLogin" Grid.Row="0" Grid.Column="1" Background="#8db0e8" Click="ButtonLogin_Click" Content="Login" />
+                        <Button x:Name="ButtonLogin" Grid.Row="0" Grid.Column="1" Background="#FFEE442F" Click="ButtonLogin_Click" Content="Login" />
 
-                        <TextBox x:Name="TextName" Grid.Row="2" Grid.Column="0" Background="#FF6C55D4" IsEnabled="False" IsReadOnlyCaretVisible="True" Foreground="White" BorderBrush="#FF180D47" BorderThickness="1,1,1,1">Name</TextBox>
-                        <TextBox x:Name="TextDescription" Grid.ColumnSpan="2" Grid.Row="3"  Grid.RowSpan="2" Background="#FF6C55D4" IsEnabled="False" IsReadOnlyCaretVisible="True" Foreground="White" BorderBrush="#FF180D47" BorderThickness="1,1,1,1">Description</TextBox>
+                        <TextBox x:Name="TextName" Grid.Row="2" Grid.Column="0" Background="#FFF9F4EC" IsEnabled="False" IsReadOnlyCaretVisible="True" Foreground="Black" BorderBrush="#FF601A4A" BorderThickness="1,1,1,1">Name</TextBox>
+                        <TextBox x:Name="TextDescription" Grid.ColumnSpan="2" Grid.Row="3"  Grid.RowSpan="2" Background="#FFF9F4EC" IsEnabled="False" IsReadOnlyCaretVisible="True" Foreground="Black" BorderBrush="#FF601A4A" BorderThickness="1,1,1,1">Description</TextBox>
 
-                        <TextBox x:Name="TextCity" Grid.Row="5"   Grid.Column="0" Background="#FF5F4BB6" IsEnabled="False" IsReadOnlyCaretVisible="True" Foreground="White" BorderBrush="#FF180D47" BorderThickness="1,1,1,1">City</TextBox>
-                        <TextBox x:Name="TextPostCode" Grid.Row="5" Grid.Column="1" Background="#FF5F4BB6" IsEnabled="False" IsReadOnlyCaretVisible="True" Foreground="White" BorderBrush="#FF180D47" BorderThickness="1,1,1,1">Post Code</TextBox>
-                        <TextBox x:Name="TextPrice" Grid.Row="7" Grid.Column="0" Background="#FF1D0D63" IsEnabled="False" IsReadOnlyCaretVisible="True" Foreground="White" BorderBrush="#FF180D47" BorderThickness="1,1,1,1">Price</TextBox>
-                        <TextBox x:Name="TextMaxPeople" Grid.Row="7" Grid.Column="1" Background="#FF1D0D63" IsEnabled="False" IsReadOnlyCaretVisible="True" Foreground="White" BorderBrush="#FF180D47" BorderThickness="1,1,1,1">Max. People</TextBox>
-                        <TextBox x:Name="TextMinutes" Grid.Row="6" Grid.Column="0" Background="#FF44348C" IsEnabled="False" IsReadOnlyCaretVisible="True" Foreground="White" BorderBrush="#FF180D47" BorderThickness="1,1,1,1" TextWrapping="Wrap">Session Length (in mins)</TextBox>
-                        <TextBox x:Name="TextTotalSessions" Grid.Row="6" Grid.Column="1" Background="#FF44348C" IsEnabled="False" IsReadOnlyCaretVisible="True" Foreground="White" BorderBrush="#FF180D47" BorderThickness="1,1,1,1">TotalSessions</TextBox>
+                        <TextBox x:Name="TextCity" Grid.Row="5"   Grid.Column="0" Background="#FFF9F4EC" IsEnabled="False" IsReadOnlyCaretVisible="True" Foreground="Black" BorderBrush="#FF601A4A" BorderThickness="1,1,1,1">City</TextBox>
+                        <TextBox x:Name="TextPostCode" Grid.Row="5" Grid.Column="1" Background="#FFF9F4EC" IsEnabled="False" IsReadOnlyCaretVisible="True" Foreground="Black" BorderBrush="#FF601A4A" BorderThickness="1,1,1,1">Post Code</TextBox>
+                        <TextBox x:Name="TextPrice" Grid.Row="7" Grid.Column="0" Background="#FFF9F4EC" IsEnabled="False" IsReadOnlyCaretVisible="True" Foreground="Black" BorderBrush="#FF601A4A" BorderThickness="1,1,1,1">Price</TextBox>
+                        <TextBox x:Name="TextMaxPeople" Grid.Row="7" Grid.Column="1" Background="#FFF9F4EC" IsEnabled="False" IsReadOnlyCaretVisible="True" Foreground="Black" BorderBrush="#FF601A4A" BorderThickness="1,1,1,1">Max. People</TextBox>
+                        <TextBox x:Name="TextMinutes" Grid.Row="6" Grid.Column="0" Background="#FFF9F4EC" IsEnabled="False" IsReadOnlyCaretVisible="True" Foreground="Black" BorderBrush="#FF601A4A" BorderThickness="1,1,1,1" TextWrapping="Wrap">Session Length (in mins)</TextBox>
+                        <TextBox x:Name="TextTotalSessions" Grid.Row="6" Grid.Column="1" Background="#FFF9F4EC" IsEnabled="False" IsReadOnlyCaretVisible="True" Foreground="Black" BorderBrush="#FF601A4A" BorderThickness="1,1,1,1">TotalSessions</TextBox>
 
                         <Button x:Name="ButtonBook" Grid.Row="9" Grid.Column="0" Background="#8db0e8" Content="Book" Click="ButtonBook_Click" Visibility="Hidden"/>
                         <Button x:Name="ButtonSave" Grid.Row="9" Grid.Column="1" Background="BlueViolet"  Content="Save" Visibility="Hidden"/>
@@ -139,7 +139,7 @@
             </TabItem>
             <TabItem Header="Bookings" Name="BookingsTab" Visibility="Hidden">
 
-                <Grid Background="#FF180D47">
+                <Grid Background="#FF601A4A">
                     <Grid.RowDefinitions>
                         <RowDefinition Height="*" />
                     </Grid.RowDefinitions>
@@ -152,8 +152,8 @@
                     </Grid.ColumnDefinitions>
 
 
-                    <ListBox x:Name="BookingsList" Background="#FFF4EBBE" Grid.Column="2" SelectionChanged="BookingsList_SelectionChanged" Grid.ColumnSpan="3" Margin="0,0,198,0" BorderBrush="#FF180D47"/>
-                    <Grid Grid.Column= "4" Background="#FF180D47">
+                    <ListBox x:Name="BookingsList" Background="#FF63ACBE" Grid.Column="2" SelectionChanged="BookingsList_SelectionChanged" Grid.ColumnSpan="3" Margin="0,0,198,0" BorderBrush="#FF180D47"/>
+                    <Grid Grid.Column= "4" Background="#FF601A4A">
                         <Grid.RowDefinitions>
                             <RowDefinition Height="*" />
                             <RowDefinition Height="*" />
@@ -182,14 +182,14 @@
                                 <RowDefinition Height ="*"/>
                             </Grid.RowDefinitions>
 
-                            <TextBox x:Name="BookingTextHello" Grid.Row="0"  Grid.ColumnSpan="2" Grid.Column="0" Background="#FF180D47" IsEnabled="False" IsReadOnlyCaretVisible="True" BorderBrush="#FF180D47"></TextBox>
-                            <TextBox x:Name="BookingTextType" Grid.Row="1" Grid.ColumnSpan="2" Grid.Column="0" Background="#FF180D47" IsEnabled="False" IsReadOnlyCaretVisible="True" BorderBrush="#FF180D47"></TextBox>
-                            <TextBox x:Name="BookingTextId" Grid.Row="2" Grid.ColumnSpan="2" Grid.Column="0" Background="#FF180D47" IsEnabled="False" IsReadOnlyCaretVisible="True" BorderBrush="#FF180D47"></TextBox>
+                            <TextBox x:Name="BookingTextHello" Grid.Row="0"  Grid.ColumnSpan="2" Grid.Column="0" Background="#FF601A4A" IsEnabled="False" IsReadOnlyCaretVisible="True" BorderBrush="#FF601A4A"></TextBox>
+                            <TextBox x:Name="BookingTextType" Grid.Row="1" Grid.ColumnSpan="2" Grid.Column="0" Background="#FF601A4A" IsEnabled="False" IsReadOnlyCaretVisible="True" BorderBrush="#FF601A4A"></TextBox>
+                            <TextBox x:Name="BookingTextId" Grid.Row="2" Grid.ColumnSpan="2" Grid.Column="0" Background="#FF601A4A" IsEnabled="False" IsReadOnlyCaretVisible="True" BorderBrush="#FF601A4A"></TextBox>
                         </Grid>
 
                         <!--Cancel button not working, shelved for now-->
                         <!--<Button x:Name="ButtonCancelBooking" Grid.Row="8" Grid.Column="0" Background="#FF5F4BB6"  Content="Cancel Booking" BorderBrush="#FF180D47" Foreground="White" Click="ButtonCancelBooking_Click" />-->
-                            
+
                         <!--LABELS-->
                         <TextBox x:Name="BookingTextName_Copy" Grid.Row="2" Grid.Column="0" Background="#FF6C55D4" IsEnabled="False" IsReadOnlyCaretVisible="True" BorderBrush="#FF180D47" TextWrapping="Wrap" Foreground="White" TextAlignment="Left" VerticalContentAlignment="Bottom" Text="Name"/>
                         <TextBox x:Name="BookingTextDescription_Copy" Grid.ColumnSpan="2" Grid.Row="3"  Grid.RowSpan="2" Background="#FF6C55D4" IsEnabled="False" IsReadOnlyCaretVisible="True" BorderBrush="#FF180D47" TextWrapping="Wrap" Foreground="White" TextAlignment="Left" VerticalContentAlignment="Bottom" Text="Description"/>
@@ -203,18 +203,18 @@
                         <TextBox x:Name="BookingTextAvailableDate_Copy" Grid.Row="8" Grid.Column="0" Background="#FF44348C" IsEnabled="False" IsReadOnlyCaretVisible="True" BorderBrush="#FF180D47" TextWrapping="Wrap" Foreground="White" TextAlignment="Left" VerticalContentAlignment="Bottom" Text="Date"/>
 
 
-                        <TextBox x:Name="BookingTextName" Grid.Row="2" Grid.Column="0" Background="#FF6C55D4" IsEnabled="False" IsReadOnlyCaretVisible="True" BorderBrush="#FF180D47" TextWrapping="Wrap" Foreground="White" TextAlignment="Left" VerticalContentAlignment="Top">Name</TextBox>
-                        <TextBox x:Name="BookingTextDescription" Grid.ColumnSpan="2" Grid.Row="3"  Grid.RowSpan="2" Background="#FF6C55D4" IsEnabled="False" IsReadOnlyCaretVisible="True" BorderBrush="#FF180D47" TextWrapping="Wrap" Foreground="White" TextAlignment="Left" VerticalContentAlignment="Top">Description</TextBox>
+                        <TextBox x:Name="BookingTextName" Grid.Row="2" Grid.Column="0" Background="#FFF9F4EC" IsEnabled="False" IsReadOnlyCaretVisible="True" BorderBrush="#FF601A4A" TextWrapping="Wrap" Foreground="Black" TextAlignment="Left" VerticalContentAlignment="Top">Name</TextBox>
+                        <TextBox x:Name="BookingTextDescription" Grid.ColumnSpan="2" Grid.Row="3"  Grid.RowSpan="2" Background="#FFF9F4EC" IsEnabled="False" IsReadOnlyCaretVisible="True" BorderBrush="#FF601A4A" TextWrapping="Wrap" Foreground="Black" TextAlignment="Left" VerticalContentAlignment="Top">Description</TextBox>
 
-                        <TextBox x:Name="BookingTextCity" Grid.Row="5"   Grid.Column="0" Background="#FF5F4BB6" IsEnabled="False" IsReadOnlyCaretVisible="True" BorderBrush="#FF180D47" TextWrapping="Wrap" Foreground="White" TextAlignment="Left" VerticalContentAlignment="Top">City</TextBox>
-                        <TextBox x:Name="BookingTextPostCode" Grid.Row="5" Grid.Column="1" Background="#FF5F4BB6" IsEnabled="False" IsReadOnlyCaretVisible="True" BorderBrush="#FF180D47" TextWrapping="Wrap" Foreground="White" TextAlignment="Left" VerticalContentAlignment="Top">Post Code</TextBox>
-                        <TextBox x:Name="BookingTextPrice" Grid.Row="7" Grid.Column="0" Background="#FF44348C" IsEnabled="False" IsReadOnlyCaretVisible="True" BorderBrush="#FF180D47" TextWrapping="Wrap" Foreground="White" TextAlignment="Left" VerticalContentAlignment="Top">Price</TextBox>
-                        <TextBox x:Name="BookingTextMaxPeople" Grid.Row="7" Grid.Column="1" Background="#FF44348C" IsEnabled="False" IsReadOnlyCaretVisible="True" BorderBrush="#FF180D47" TextWrapping="Wrap" Foreground="White" TextAlignment="Left" VerticalContentAlignment="Top">Max. People</TextBox>
-                        <TextBox x:Name="BookingTextMinutes" Grid.Row="6" Grid.Column="0" Background="#FF44348C" IsEnabled="False" IsReadOnlyCaretVisible="True" BorderBrush="#FF180D47" TextWrapping="Wrap" Foreground="White" TextAlignment="Left" VerticalContentAlignment="Top">Session Length (in mins)</TextBox>
-                        <TextBox x:Name="BookingTextTotalSessions" Grid.Row="6" Grid.Column="1" Background="#FF44348C" IsEnabled="False" IsReadOnlyCaretVisible="True" BorderBrush="#FF180D47" TextWrapping="Wrap" Foreground="White" TextAlignment="Left" VerticalContentAlignment="Top">TotalSessions</TextBox>
-                        <TextBox x:Name="BookingTextAvailableTime" Grid.Row="8" Grid.Column="1" Background="#FF44348C" IsEnabled="False" IsReadOnlyCaretVisible="True" BorderBrush="#FF180D47" TextWrapping="Wrap" Foreground="White" TextAlignment="Left" VerticalContentAlignment="Top">Time</TextBox>
-                        <TextBox x:Name="BookingTextAvailableDate" Grid.Row="8" Grid.Column="0" Background="#FF44348C" IsEnabled="False" IsReadOnlyCaretVisible="True" BorderBrush="#FF180D47" TextWrapping="Wrap" Foreground="White" TextAlignment="Left" VerticalContentAlignment="Top">Date</TextBox>
-                        
+                        <TextBox x:Name="BookingTextCity" Grid.Row="5"   Grid.Column="0" Background="#FFF9F4EC" IsEnabled="False" IsReadOnlyCaretVisible="True" BorderBrush="#FF601A4A" TextWrapping="Wrap" Foreground="Black" TextAlignment="Left" VerticalContentAlignment="Top">City</TextBox>
+                        <TextBox x:Name="BookingTextPostCode" Grid.Row="5" Grid.Column="1" Background="#FFF9F4EC" IsEnabled="False" IsReadOnlyCaretVisible="True" BorderBrush="#FF601A4A" TextWrapping="Wrap" Foreground="Black" TextAlignment="Left" VerticalContentAlignment="Top">Post Code</TextBox>
+                        <TextBox x:Name="BookingTextPrice" Grid.Row="7" Grid.Column="0" Background="#FFF9F4EC" IsEnabled="False" IsReadOnlyCaretVisible="True" BorderBrush="#FF601A4A" TextWrapping="Wrap" Foreground="Black" TextAlignment="Left" VerticalContentAlignment="Top">Price</TextBox>
+                        <TextBox x:Name="BookingTextMaxPeople" Grid.Row="7" Grid.Column="1" Background="#FFF9F4EC" IsEnabled="False" IsReadOnlyCaretVisible="True" BorderBrush="#FF601A4A" TextWrapping="Wrap" Foreground="Black" TextAlignment="Left" VerticalContentAlignment="Top">Max. People</TextBox>
+                        <TextBox x:Name="BookingTextMinutes" Grid.Row="6" Grid.Column="0" Background="#FFF9F4EC" IsEnabled="False" IsReadOnlyCaretVisible="True" BorderBrush="#FF601A4A" TextWrapping="Wrap" Foreground="Black" TextAlignment="Left" VerticalContentAlignment="Top">Session Length (in mins)</TextBox>
+                        <TextBox x:Name="BookingTextTotalSessions" Grid.Row="6" Grid.Column="1" Background="#FFF9F4EC" IsEnabled="False" IsReadOnlyCaretVisible="True" BorderBrush="#FF601A4A" TextWrapping="Wrap" Foreground="Black" TextAlignment="Left" VerticalContentAlignment="Top">TotalSessions</TextBox>
+                        <TextBox x:Name="BookingTextAvailableTime" Grid.Row="8" Grid.Column="1" Background="#FFF9F4EC" IsEnabled="False" IsReadOnlyCaretVisible="True" BorderBrush="#FF601A4A" TextWrapping="Wrap" Foreground="Black" TextAlignment="Left" VerticalContentAlignment="Top">Time</TextBox>
+                        <TextBox x:Name="BookingTextAvailableDate" Grid.Row="8" Grid.Column="0" Background="#FFF9F4EC" IsEnabled="False" IsReadOnlyCaretVisible="True" BorderBrush="#FF601A4A" TextWrapping="Wrap" Foreground="Black" TextAlignment="Left" VerticalContentAlignment="Top">Date</TextBox>
+
 
 
                     </Grid>
@@ -235,9 +235,9 @@
                         <ColumnDefinition Width="*" />
                         <ColumnDefinition Width="*" />
                     </Grid.ColumnDefinitions>
-                    <ListBox x:Name="AddCourseListBoxCourse" Background="#FF180D47"  Grid.Row="4" Grid.Column="0" SelectionChanged="ListBoxCourse_SelectionChanged">
+                    <ListBox x:Name="AddCourseListBoxCourse" Background="#FF601A4A"  Grid.Row="4" Grid.Column="0" SelectionChanged="ListBoxCourse_SelectionChanged">
                     </ListBox>
-                    <Grid Grid.Column= "1" Grid.ColumnSpan="3" Background="#FF180D47">
+                    <Grid Grid.Column= "1" Grid.ColumnSpan="3" Background="#FF63ACBE">
                         <Grid.RowDefinitions>
                             <RowDefinition Height="*" />
                             <RowDefinition Height="*" />
@@ -257,28 +257,28 @@
                             <ColumnDefinition Width="*" />
                             <ColumnDefinition Width="*" />
                         </Grid.ColumnDefinitions>
-                        <Label x:Name="LabelId" Grid.Row="0" Grid.Column="0" Background="#FF6C55D4" BorderBrush="#FF180D47" Foreground="White" BorderThickness="1,1,1,1" >Id</Label>
-                        <Label x:Name="LabelName" Grid.Row="1" Grid.Column="0" Background="#FF6C55D4" BorderBrush="#FF180D47" Foreground="White" BorderThickness="1,1,1,1">Name</Label>
-                        <Label x:Name="LabelCity" Grid.Row="2" Grid.Column="0" Background="#FF6C55D4" BorderBrush="#FF180D47" Foreground="White" BorderThickness="1,1,1,1">City</Label>
-                        <Label x:Name="LabelPostCode" Grid.Row="3" Grid.Column="0" Background="#FF5F4BB6" Content="Post Code" BorderBrush="#FF180D47" Foreground="White" BorderThickness="1,1,1,1"/>
-                        <Label x:Name="LabelDescription" Grid.Row="4" Grid.Column="0" Background="#FF5F4BB6" BorderBrush="#FF180D47" Foreground="White" BorderThickness="1,1,1,1">Description</Label>
-                        <Label x:Name="LabelPrice" Grid.Row="5" Grid.Column="0" Background="#FF5F4BB6" BorderBrush="#FF180D47" Foreground="White" BorderThickness="1,1,1,1">Price</Label>
-                        <Label x:Name="LabelMaxPeople" Grid.Row="6" Grid.Column="0" Background="#FF44348C" BorderBrush="#FF180D47" Foreground="White" BorderThickness="1,1,1,1">Max. People</Label>
-                        <Label x:Name="LabelSessionLength" Grid.Row="7" Grid.Column="0" Background="#FF44348C" BorderBrush="#FF180D47" Foreground="White" BorderThickness="1,1,1,1">Session Length (in mins)</Label>
-                        <Label x:Name="LabelTotalSessions" Grid.Row="8" Grid.Column="0" Background="#FF44348C" BorderBrush="#FF180D47" Foreground="White" BorderThickness="1,1,1,1">TotalSessions</Label>
-                        <Label x:Name="LabelCategory" Grid.Row="9" Grid.Column="0" Background="#FF1D0D63" Foreground="White" BorderBrush="#FF180D47" BorderThickness="1,1,1,1">Category</Label>
-                        <Label x:Name="LabelAvailableDates" Grid.Row="10" Grid.Column="0" Background="#FF1D0D63" Foreground="White" BorderBrush="#FF180D47" BorderThickness="1,1,1,1">Available Dates</Label>
-                        <Label x:Name="LabelCategoryAvailableTimes" Grid.Row="11" Grid.Column="0" Background="#FF1D0D63" Foreground="White" BorderBrush="#FF180D47" BorderThickness="1,1,1,1">Available Times</Label>
+                        <Label x:Name="LabelId" Grid.Row="0" Grid.Column="0" Background="#FF63ACBE" BorderBrush="#FF601A4A" Foreground="White" BorderThickness="1,1,1,1" >Id</Label>
+                        <Label x:Name="LabelName" Grid.Row="1" Grid.Column="0" Background="#FF63ACBE" BorderBrush="#FF601A4A" Foreground="White" BorderThickness="1,1,1,1">Name</Label>
+                        <Label x:Name="LabelCity" Grid.Row="2" Grid.Column="0" Background="#FF63ACBE" BorderBrush="#FF601A4A" Foreground="White" BorderThickness="1,1,1,1">City</Label>
+                        <Label x:Name="LabelPostCode" Grid.Row="3" Grid.Column="0" Background="#FF63ACBE" Content="Post Code" BorderBrush="#FF601A4A" Foreground="White" BorderThickness="1,1,1,1"/>
+                        <Label x:Name="LabelDescription" Grid.Row="4" Grid.Column="0" Background="#FF63ACBE" BorderBrush="#FF601A4A" Foreground="White" BorderThickness="1,1,1,1">Description</Label>
+                        <Label x:Name="LabelPrice" Grid.Row="5" Grid.Column="0" Background="#FF63ACBE" BorderBrush="#FF601A4A" Foreground="White" BorderThickness="1,1,1,1">Price</Label>
+                        <Label x:Name="LabelMaxPeople" Grid.Row="6" Grid.Column="0" Background="#FF63ACBE" BorderBrush="#FF601A4A" Foreground="White" BorderThickness="1,1,1,1">Max. People</Label>
+                        <Label x:Name="LabelSessionLength" Grid.Row="7" Grid.Column="0" Background="#FF63ACBE" BorderBrush="#FF601A4A" Foreground="White" BorderThickness="1,1,1,1">Session Length (in mins)</Label>
+                        <Label x:Name="LabelTotalSessions" Grid.Row="8" Grid.Column="0" Background="#FF63ACBE" BorderBrush="#FF601A4A" Foreground="White" BorderThickness="1,1,1,1">TotalSessions</Label>
+                        <Label x:Name="LabelCategory" Grid.Row="9" Grid.Column="0" Background="#FF63ACBE" Foreground="White" BorderBrush="#FF601A4A" BorderThickness="1,1,1,1">Category</Label>
+                        <Label x:Name="LabelAvailableDates" Grid.Row="10" Grid.Column="0" Background="#FF63ACBE" Foreground="White" BorderBrush="#FF601A4A" BorderThickness="1,1,1,1">Available Dates</Label>
+                        <Label x:Name="LabelCategoryAvailableTimes" Grid.Row="11" Grid.Column="0" Background="#FF63ACBE" Foreground="White" BorderBrush="#FF601A4A" BorderThickness="1,1,1,1">Available Times</Label>
 
-                        <TextBox x:Name="TId" Grid.Row="0" Grid.Column="1" Background="#FF6C55D4" IsEnabled="False" BorderBrush="#FF180D47"></TextBox>
-                        <TextBox x:Name="TName" Grid.Row="1" Grid.Column="1" Background="#FF6C55D4" BorderBrush="#FF180D47"></TextBox>
-                        <TextBox x:Name="TCity" Grid.Row="2" Grid.Column="1" Background="#FF6C55D4" BorderBrush="#FF180D47"></TextBox>
-                        <TextBox x:Name="TPostCode" Grid.Row="3" Grid.Column="1" Background="#FF5F4BB6" BorderBrush="#FF180D47"></TextBox>
-                        <TextBox x:Name="TDescription" Grid.Row="4" Grid.Column="1" Background="#FF5F4BB6" BorderBrush="#FF180D47"></TextBox>
-                        <TextBox x:Name="TPrice" Grid.Row="5" Grid.Column="1" Background="#FF5F4BB6" BorderBrush="#FF180D47"></TextBox>
-                        <TextBox x:Name="TMaxPeople" Grid.Row="6" Grid.Column="1" Background="#FF44348C" BorderBrush="#FF180D47"></TextBox>
-                        <TextBox x:Name="TMinutes" Grid.Row="7" Grid.Column="1" Background="#FF44348C" BorderBrush="#FF180D47"></TextBox>
-                        <TextBox x:Name="TTotalSessions" Grid.Row="8" Grid.Column="1" Background="#FF44348C" BorderBrush="#FF180D47"></TextBox>
+                        <TextBox x:Name="TId" Grid.Row="0" Grid.Column="1" Background="#FF63ACBE" IsEnabled="False" BorderBrush="#FF180D47"></TextBox>
+                        <TextBox x:Name="TName" Grid.Row="1" Grid.Column="1" Background="#FF63ACBE" BorderBrush="#FF601A4A" Foreground="White"></TextBox>
+                        <TextBox x:Name="TCity" Grid.Row="2" Grid.Column="1" Background="#FF63ACBE" BorderBrush="#FF601A4A" Foreground="White"></TextBox>
+                        <TextBox x:Name="TPostCode" Grid.Row="3" Grid.Column="1" Background="#FF63ACBE" BorderBrush="#FF601A4A" Foreground="White"></TextBox>
+                        <TextBox x:Name="TDescription" Grid.Row="4" Grid.Column="1" Background="#FF63ACBE" BorderBrush="#FF601A4A" Foreground="White"></TextBox>
+                        <TextBox x:Name="TPrice" Grid.Row="5" Grid.Column="1" Background="#FF63ACBE" BorderBrush="#FF601A4A" Foreground="White"></TextBox>
+                        <TextBox x:Name="TMaxPeople" Grid.Row="6" Grid.Column="1" Background="#FF63ACBE" BorderBrush="#FF601A4A" Foreground="White"></TextBox>
+                        <TextBox x:Name="TMinutes" Grid.Row="7" Grid.Column="1" Background="#FF63ACBE" BorderBrush="#FF601A4A" Foreground="White"></TextBox>
+                        <TextBox x:Name="TTotalSessions" Grid.Row="8" Grid.Column="1" Background="#FF63ACBE" BorderBrush="#FF601A4A" Foreground="White"></TextBox>
 
                         <ComboBox ItemsSource="{Binding Path=categoryDataBinding}" x:Name="tCategory" Grid.Row="9" Grid.Column="1" Background="#FF1D0D63" BorderBrush="#FF180D47">
                             <ComboBox.ItemTemplate>
@@ -307,9 +307,9 @@
 
                         </ComboBox>
 
-                        <Button x:Name="ButtonCreate" Grid.Row="12" Grid.Column="2" Background="#FFF4EBBE" Content="Create" Click="ButtonCreate_Click"/>
+                        <Button x:Name="ButtonCreate" Grid.Row="12" Grid.Column="2" Background="#FFEE442F" Content="Create" Click="ButtonCreate_Click"/>
                     </Grid>
-                    <Grid Grid.Column="4" Background="#FF180D47">
+                    <Grid Grid.Column="4" Background="#FF601A4A">
                         <Grid.ColumnDefinitions>
                             <ColumnDefinition Width="*"/>
                         </Grid.ColumnDefinitions>
@@ -322,7 +322,7 @@
                             <RowDefinition Height="*"/>
                             <RowDefinition Height="*"/>
                         </Grid.RowDefinitions>
-                        <TextBox Grid.Row="5" Name="availableDate" Text="{Binding ElementName=AvailableDatesCalendar, Path=SelectedDate, StringFormat=d, UpdateSourceTrigger=PropertyChanged}" Background="#FF180D47" BorderBrush="#FF180D47" VerticalContentAlignment="Bottom" Foreground="White" TextAlignment="Center" />
+                        <TextBox Grid.Row="5" Name="availableDate" Text="{Binding ElementName=AvailableDatesCalendar, Path=SelectedDate, StringFormat=d, UpdateSourceTrigger=PropertyChanged}" Background="#FF601A4A" BorderBrush="#FF180D47" VerticalContentAlignment="Bottom" Foreground="White" TextAlignment="Center" />
                         <Label Visibility="Visible" Content="Selected Date" Grid.Row="5" Background="{x:Null}" FontSize="18" Foreground="White" Margin="10,0,0,0"></Label>
 
                         <!--<ListBox Name="AvailableDatesList"  Grid.RowSpan="2" Grid.Row="2" />-->
@@ -421,8 +421,8 @@
 
                     </Grid>
 
-                    <ListBox x:Name="MyCoursesListBox" Background="#FF180D47" Grid.Column="0" SelectionChanged="MyCoursesListBox_SelectionChanged" Grid.ColumnSpan="1"/>
-                    <Grid Grid.Column= "1" Grid.ColumnSpan="2" Background="#FF180D47">
+                    <ListBox x:Name="MyCoursesListBox" Background="#FF601A4A" Grid.Column="0" SelectionChanged="MyCoursesListBox_SelectionChanged" Grid.ColumnSpan="1" BorderBrush="#FF601A4A"/>
+                    <Grid Grid.Column= "1" Grid.ColumnSpan="2" Background="#FF601A4A">
                         <Grid.RowDefinitions>
                             <RowDefinition Height="*" />
                             <RowDefinition Height="*" />
@@ -451,14 +451,14 @@
                                 <RowDefinition Height ="*"/>
                             </Grid.RowDefinitions>
 
-                            <TextBox x:Name="MyTextHello" Grid.Row="0"  Grid.ColumnSpan="2" Grid.Column="0" Background="#FFAEA7CB" IsEnabled="False" IsReadOnlyCaretVisible="True" BorderBrush="#FF180D47" Foreground="White"></TextBox>
-                            <TextBox x:Name="MyTextType" Grid.Row="1" Grid.ColumnSpan="2" Grid.Column="0" Background="#FF9286CA" IsEnabled="False" IsReadOnlyCaretVisible="True" BorderBrush="#FF180D47" Foreground="White"></TextBox>
-                            <TextBox x:Name="MyTextId" Grid.Row="2" Grid.ColumnSpan="2" Grid.Column="0" Background="#FF8371D3" IsEnabled="False" IsReadOnlyCaretVisible="True" BorderBrush="#FF180D47" Foreground="White"></TextBox>
+                            <TextBox x:Name="MyTextHello" Grid.Row="0"  Grid.ColumnSpan="2" Grid.Column="0" Background="#FF63ACBE" IsEnabled="False" IsReadOnlyCaretVisible="True" BorderBrush="#FF601A4A" Foreground="Black"></TextBox>
+                            <TextBox x:Name="MyTextType" Grid.Row="1" Grid.ColumnSpan="2" Grid.Column="0" Background="#FF63ACBE" IsEnabled="False" IsReadOnlyCaretVisible="True" BorderBrush="#FF601A4A" Foreground="Black"></TextBox>
+                            <TextBox x:Name="MyTextId" Grid.Row="2" Grid.ColumnSpan="2" Grid.Column="0" Background="#FF63ACBE" IsEnabled="False" IsReadOnlyCaretVisible="True" BorderBrush="#FF601A4A" Foreground="Black"></TextBox>
                         </Grid>
 
 
-                        <TextBox x:Name="MyTextName" Grid.Row="2" Grid.Column="0" Background="#FF5F4BB6" IsEnabled="False" IsReadOnlyCaretVisible="True" BorderBrush="#FF180D47" Foreground="White" >Name</TextBox>
-                        <TextBox x:Name="MyCategoryTextBox" Grid.Row="2" Grid.Column="1" Background="#FF5F4BB6" IsEnabled="False" IsReadOnlyCaretVisible="True" BorderBrush="#FF180D47" Foreground="White">Category</TextBox>
+                        <TextBox x:Name="MyTextName" Grid.Row="2" Grid.Column="0" Background="#FF63ACBE" IsEnabled="False" IsReadOnlyCaretVisible="True" BorderBrush="#FF601A4A" Foreground="Black" >Name</TextBox>
+                        <TextBox x:Name="MyCategoryTextBox" Grid.Row="2" Grid.Column="1" Background="#FF63ACBE" IsEnabled="False" IsReadOnlyCaretVisible="True" BorderBrush="#FF601A4A" Foreground="Black">Category</TextBox>
 
 
                         <ComboBox ItemsSource="{Binding Path=categoryDataBinding}" x:Name="MyCategory" Grid.Row="2" Grid.Column="1" Background="LightGreen" SelectedIndex="0" Visibility="Hidden">
@@ -470,16 +470,16 @@
                                 </DataTemplate>
                             </ComboBox.ItemTemplate>
                         </ComboBox>
-                        <TextBox x:Name="MyTextDescription" Grid.ColumnSpan="2" Grid.Row="3"  Grid.RowSpan="2" Background="#FF5543A3" IsEnabled="False" IsReadOnlyCaretVisible="True" BorderBrush="#FF180D47" Foreground="White">Description</TextBox>
+                        <TextBox x:Name="MyTextDescription" Grid.ColumnSpan="2" Grid.Row="3"  Grid.RowSpan="2" Background="#FF63ACBE" IsEnabled="False" IsReadOnlyCaretVisible="True" BorderBrush="#FF601A4A" Foreground="Black" CaretBrush="#FF63ACBE">Description</TextBox>
 
-                        <TextBox x:Name="MyTextCity" Grid.Row="5"   Grid.Column="0" Background="#FF44348C" IsEnabled="False" IsReadOnlyCaretVisible="True" BorderBrush="#FF180D47" Foreground="White">City</TextBox>
-                        <TextBox x:Name="MyTextPostCode" Grid.Row="5" Grid.Column="1" Background="#FF44348C" IsEnabled="False" IsReadOnlyCaretVisible="True" BorderBrush="#FF180D47" Foreground="White">Post Code</TextBox>
-                        <TextBox x:Name="MyTextPrice" Grid.Row="7" Grid.Column="0" Background="#FF1C0F56" IsEnabled="False" IsReadOnlyCaretVisible="True" Foreground="White" BorderBrush="#FF180D47">Price</TextBox>
-                        <TextBox x:Name="MyTextMaxPeople" Grid.Row="7" Grid.Column="1" Background="#FF1C0F56" IsEnabled="False" IsReadOnlyCaretVisible="True" Foreground="White" BorderBrush="#FF180D47">Max. People</TextBox>
-                        <TextBox x:Name="MyTextMinutes" Grid.Row="6" Grid.Column="0" Background="#FF1D0D63" IsEnabled="False" IsReadOnlyCaretVisible="True" Foreground="White" BorderBrush="#FF180D47">Session Length (in mins)</TextBox>
-                        <TextBox x:Name="MyTextTotalSessions" Grid.Row="6" Grid.Column="1" Background="#FF1D0D63" IsEnabled="False" IsReadOnlyCaretVisible="True" Foreground="White" BorderBrush="#FF180D47">TotalSessions</TextBox>
+                        <TextBox x:Name="MyTextCity" Grid.Row="5"   Grid.Column="0" Background="#FF63ACBE" IsEnabled="False" IsReadOnlyCaretVisible="True" BorderBrush="#FF601A4A" Foreground="Black">City</TextBox>
+                        <TextBox x:Name="MyTextPostCode" Grid.Row="5" Grid.Column="1" Background="#FF63ACBE" IsEnabled="False" IsReadOnlyCaretVisible="True" BorderBrush="#FF601A4A" Foreground="Black">Post Code</TextBox>
+                        <TextBox x:Name="MyTextPrice" Grid.Row="7" Grid.Column="0" Background="#FF63ACBE" IsEnabled="False" IsReadOnlyCaretVisible="True" Foreground="Black" BorderBrush="#FF601A4A">Price</TextBox>
+                        <TextBox x:Name="MyTextMaxPeople" Grid.Row="7" Grid.Column="1" Background="#FF63ACBE" IsEnabled="False" IsReadOnlyCaretVisible="True" Foreground="Black" BorderBrush="#FF601A4A">Max. People</TextBox>
+                        <TextBox x:Name="MyTextMinutes" Grid.Row="6" Grid.Column="0" Background="#FF63ACBE" IsEnabled="False" IsReadOnlyCaretVisible="True" Foreground="Black" BorderBrush="#FF601A4A">Session Length (in mins)</TextBox>
+                        <TextBox x:Name="MyTextTotalSessions" Grid.Row="6" Grid.Column="1" Background="#FF63ACBE" IsEnabled="False" IsReadOnlyCaretVisible="True" Foreground="Black" BorderBrush="#FF601A4A">TotalSessions</TextBox>
                     </Grid>
-                    <Grid Grid.Column= "3" Grid.ColumnSpan="1" Background="#FF180D47">
+                    <Grid Grid.Column= "3" Grid.ColumnSpan="1" Background="#FF601A4A">
                         <Grid.RowDefinitions>
                             <RowDefinition Height="*" />
                             <RowDefinition Height="*" />
@@ -500,7 +500,7 @@
                         <!--TextId to type, Login button to be-->
                         <Button x:Name="ButtonUpdate" Grid.Row="2" Grid.Column="0" Background="#8db0e8" Content="Update" Click="ButtonUpdate_Click"/>
                         <Button x:Name="ButtonEdit" Grid.Row="2" Grid.Column="0" Background="#FFF4EBBE" Content="Edit" Click="ButtonEdit_Click"/>
-                        
+
                         <!--DELETE FUNCTIONALITY NEEDED STILL-->
                         <!--<Button x:Name="ButtonDelete" Grid.Row="3" Grid.Column="0" Background="#FF6C55D4" Content="Delete" Click="ButtonUpdate_Click"/>-->
 
