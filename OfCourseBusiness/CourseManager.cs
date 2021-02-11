@@ -350,18 +350,43 @@ namespace OfCourseBusiness
             using (var db = new OfCourseContext())
             {
                 //IF error here, customer doesn't exist
-                //var bookedCourses = db.Customers.Find(custId).BookedCourses;
-
 
                 Customer selectedCustomer = db.Customers.Find(custId);
                 List<Course> BookedCourses = db.Customers.Include(bc => bc.BookedCourses).Where(c => c.CustomerId == custId).FirstOrDefault().BookedCourses.ToList();
 
-                //var selectCustomer = db.Customers.Where(c => c.CustomerId == custId);
-              
-
-                //db.SaveChanges();
                 return BookedCourses;
             }
+        }
+
+        public void DeleteSelectedBookedCourse(object selectedCourse, int custId)
+        {
+            //using (var db = new OfCourseContext())
+            //{
+            //    Course selected = (Course)selectedCourse; //NEED
+            //    Customer cust = db.Customers.Find(custId);
+            //    var courseId = selected.CourseId; //NEED
+
+
+
+            //    List<Course> BookedCourseList = db.Customers.Include(bc => bc.BookedCourses).Where(c => c.CustomerId == custId).FirstOrDefault().BookedCourses.ToList(); //NEED
+
+            //    var courseOnList = BookedCourseList.Find(c => c.CourseId == courseId); // NEED
+
+            //    List<Customer> BookedCustomerList = db.Courses.Include(bc => bc.BookedCustomers).Where(c => c.CourseId == courseId).FirstOrDefault().BookedCustomers.ToList();
+
+            //    var customerOnList = BookedCustomerList.Find(c => c.CustomerId == custId);
+
+            //    if (BookedCourseList.Contains(courseOnList) && BookedCustomerList.Contains(customerOnList))
+            //    {
+            //        //found course in customers bookedCoursesList
+            //        db.Customers.Include(bc => bc.BookedCourses).Where(c => c.CustomerId == custId).FirstOrDefault().BookedCourses.ToList().Remove(courseOnList);
+
+            //        db.Courses.Include(bc => bc.BookedCustomers).Where(c => c.CourseId == courseId).FirstOrDefault().BookedCustomers.ToList().Remove(customerOnList);
+            //        db.SaveChanges();
+            //    }
+
+            //    db.SaveChanges();
+            //}
         }
     }
 }

@@ -41,10 +41,11 @@
 
                         </Grid.RowDefinitions>
 
-                        <Label Content="Filter Options" Grid.Column="0" Grid.RowSpan="1"  Background="#FFF3DDDD" FontSize="30" FontFamily="Sitka Heading"/>
+                        <!--GENERAL FILTER OPTIONS HIDDEN FOR NOW AS THEY AREN't WORKING-->
+                        <Label Content="Filter Options" Grid.Column="0" Grid.RowSpan="1"  Background="#FFF3DDDD" FontSize="30" FontFamily="Sitka Heading" Visibility="Hidden"/>
 
 
-                        <ScrollViewer  Background="#FF44348C"  Grid.RowSpan="5" BorderBrush="Black" Foreground="White" >
+                        <ScrollViewer  Background="#FF44348C"  Grid.RowSpan="5" BorderBrush="Black" Foreground="White" Visibility="Hidden">
                             <StackPanel Grid.Row="2" Grid.RowSpan="4">
                                 <Expander Header="Category" Foreground="White">
 
@@ -181,24 +182,39 @@
                                 <RowDefinition Height ="*"/>
                             </Grid.RowDefinitions>
 
-                            <!--Change these to use selected customer??-->
                             <TextBox x:Name="BookingTextHello" Grid.Row="0"  Grid.ColumnSpan="2" Grid.Column="0" Background="#FF180D47" IsEnabled="False" IsReadOnlyCaretVisible="True" BorderBrush="#FF180D47"></TextBox>
                             <TextBox x:Name="BookingTextType" Grid.Row="1" Grid.ColumnSpan="2" Grid.Column="0" Background="#FF180D47" IsEnabled="False" IsReadOnlyCaretVisible="True" BorderBrush="#FF180D47"></TextBox>
                             <TextBox x:Name="BookingTextId" Grid.Row="2" Grid.ColumnSpan="2" Grid.Column="0" Background="#FF180D47" IsEnabled="False" IsReadOnlyCaretVisible="True" BorderBrush="#FF180D47"></TextBox>
                         </Grid>
-                        <Button x:Name="ButtonCancelBooking" Grid.Row="8" Grid.Column="0" Background="#FF5F4BB6"  Content="Cancel Booking" BorderBrush="#FF180D47" Foreground="White" />
 
-                        <TextBox x:Name="BookingTextName" Grid.Row="2" Grid.Column="0" Background="#FF6C55D4" IsEnabled="False" IsReadOnlyCaretVisible="True" BorderBrush="#FF180D47" TextWrapping="Wrap" Foreground="White">Name</TextBox>
-                        <TextBox x:Name="BookingTextDescription" Grid.ColumnSpan="2" Grid.Row="3"  Grid.RowSpan="2" Background="#FF6C55D4" IsEnabled="False" IsReadOnlyCaretVisible="True" BorderBrush="#FF180D47" TextWrapping="Wrap" Foreground="White">Description</TextBox>
+                        <!--Cancel button not working, shelved for now-->
+                        <!--<Button x:Name="ButtonCancelBooking" Grid.Row="8" Grid.Column="0" Background="#FF5F4BB6"  Content="Cancel Booking" BorderBrush="#FF180D47" Foreground="White" Click="ButtonCancelBooking_Click" />-->
+                            
+                        <!--LABELS-->
+                        <TextBox x:Name="BookingTextName_Copy" Grid.Row="2" Grid.Column="0" Background="#FF6C55D4" IsEnabled="False" IsReadOnlyCaretVisible="True" BorderBrush="#FF180D47" TextWrapping="Wrap" Foreground="White" TextAlignment="Left" VerticalContentAlignment="Bottom" Text="Name"/>
+                        <TextBox x:Name="BookingTextDescription_Copy" Grid.ColumnSpan="2" Grid.Row="3"  Grid.RowSpan="2" Background="#FF6C55D4" IsEnabled="False" IsReadOnlyCaretVisible="True" BorderBrush="#FF180D47" TextWrapping="Wrap" Foreground="White" TextAlignment="Left" VerticalContentAlignment="Bottom" Text="Description"/>
+                        <TextBox x:Name="BookingTextCity_Copy" Grid.Row="5"   Grid.Column="0" Background="#FF5F4BB6" IsEnabled="False" IsReadOnlyCaretVisible="True" BorderBrush="#FF180D47" TextWrapping="Wrap" Foreground="White" TextAlignment="Left" VerticalContentAlignment="Bottom" Text="City"/>
+                        <TextBox x:Name="BookingTextPostCode_Copy" Grid.Row="5" Grid.Column="1" Background="#FF5F4BB6" IsEnabled="False" IsReadOnlyCaretVisible="True" BorderBrush="#FF180D47" TextWrapping="Wrap" Foreground="White" TextAlignment="Left" VerticalContentAlignment="Bottom" Text="Post Code"/>
+                        <TextBox x:Name="BookingTextPrice_Copy" Grid.Row="7" Grid.Column="0" Background="#FF44348C" IsEnabled="False" IsReadOnlyCaretVisible="True" BorderBrush="#FF180D47" TextWrapping="Wrap" Foreground="White" TextAlignment="Left" VerticalContentAlignment="Bottom" Text="Price"/>
+                        <TextBox x:Name="BookingTextMaxPeople_Copy" Grid.Row="7" Grid.Column="1" Background="#FF44348C" IsEnabled="False" IsReadOnlyCaretVisible="True" BorderBrush="#FF180D47" TextWrapping="Wrap" Foreground="White" TextAlignment="Left" VerticalContentAlignment="Bottom" Text="Max. People"/>
+                        <TextBox x:Name="BookingTextMinutes_Copy" Grid.Row="6" Grid.Column="0" Background="#FF44348C" IsEnabled="False" IsReadOnlyCaretVisible="True" BorderBrush="#FF180D47" TextWrapping="Wrap" Foreground="White" TextAlignment="Left" VerticalContentAlignment="Bottom" Text="Session Length (in mins)"/>
+                        <TextBox x:Name="BookingTextTotalSessions_Copy" Grid.Row="6" Grid.Column="1" Background="#FF44348C" IsEnabled="False" IsReadOnlyCaretVisible="True" BorderBrush="#FF180D47" TextWrapping="Wrap" Foreground="White" TextAlignment="Left" VerticalContentAlignment="Bottom" Text="TotalSessions"/>
+                        <TextBox x:Name="BookingTextAvailableTime_Copy" Grid.Row="8" Grid.Column="1" Background="#FF44348C" IsEnabled="False" IsReadOnlyCaretVisible="True" BorderBrush="#FF180D47" TextWrapping="Wrap" Foreground="White" TextAlignment="Left" VerticalContentAlignment="Bottom" Text="Time"/>
+                        <TextBox x:Name="BookingTextAvailableDate_Copy" Grid.Row="8" Grid.Column="0" Background="#FF44348C" IsEnabled="False" IsReadOnlyCaretVisible="True" BorderBrush="#FF180D47" TextWrapping="Wrap" Foreground="White" TextAlignment="Left" VerticalContentAlignment="Bottom" Text="Date"/>
 
-                        <TextBox x:Name="BookingTextCity" Grid.Row="5"   Grid.Column="0" Background="#FF5F4BB6" IsEnabled="False" IsReadOnlyCaretVisible="True" BorderBrush="#FF180D47" TextWrapping="Wrap" Foreground="White">City</TextBox>
-                        <TextBox x:Name="BookingTextPostCode" Grid.Row="5" Grid.Column="1" Background="#FF5F4BB6" IsEnabled="False" IsReadOnlyCaretVisible="True" BorderBrush="#FF180D47" TextWrapping="Wrap" Foreground="White">Post Code</TextBox>
-                        <TextBox x:Name="BookingTextPrice" Grid.Row="7" Grid.Column="0" Background="#FF44348C" IsEnabled="False" IsReadOnlyCaretVisible="True" BorderBrush="#FF180D47" TextWrapping="Wrap" Foreground="White">Price</TextBox>
-                        <TextBox x:Name="BookingTextMaxPeople" Grid.Row="7" Grid.Column="1" Background="#FF44348C" IsEnabled="False" IsReadOnlyCaretVisible="True" BorderBrush="#FF180D47" TextWrapping="Wrap" Foreground="White">Max. People</TextBox>
-                        <TextBox x:Name="BookingTextMinutes" Grid.Row="6" Grid.Column="0" Background="#FF44348C" IsEnabled="False" IsReadOnlyCaretVisible="True" BorderBrush="#FF180D47" TextWrapping="Wrap" Foreground="White">Session Length (in mins)</TextBox>
-                        <TextBox x:Name="BookingTextTotalSessions" Grid.Row="6" Grid.Column="1" Background="#FF44348C" IsEnabled="False" IsReadOnlyCaretVisible="True" BorderBrush="#FF180D47" TextWrapping="Wrap" Foreground="White">TotalSessions</TextBox>
 
+                        <TextBox x:Name="BookingTextName" Grid.Row="2" Grid.Column="0" Background="#FF6C55D4" IsEnabled="False" IsReadOnlyCaretVisible="True" BorderBrush="#FF180D47" TextWrapping="Wrap" Foreground="White" TextAlignment="Left" VerticalContentAlignment="Top">Name</TextBox>
+                        <TextBox x:Name="BookingTextDescription" Grid.ColumnSpan="2" Grid.Row="3"  Grid.RowSpan="2" Background="#FF6C55D4" IsEnabled="False" IsReadOnlyCaretVisible="True" BorderBrush="#FF180D47" TextWrapping="Wrap" Foreground="White" TextAlignment="Left" VerticalContentAlignment="Top">Description</TextBox>
 
+                        <TextBox x:Name="BookingTextCity" Grid.Row="5"   Grid.Column="0" Background="#FF5F4BB6" IsEnabled="False" IsReadOnlyCaretVisible="True" BorderBrush="#FF180D47" TextWrapping="Wrap" Foreground="White" TextAlignment="Left" VerticalContentAlignment="Top">City</TextBox>
+                        <TextBox x:Name="BookingTextPostCode" Grid.Row="5" Grid.Column="1" Background="#FF5F4BB6" IsEnabled="False" IsReadOnlyCaretVisible="True" BorderBrush="#FF180D47" TextWrapping="Wrap" Foreground="White" TextAlignment="Left" VerticalContentAlignment="Top">Post Code</TextBox>
+                        <TextBox x:Name="BookingTextPrice" Grid.Row="7" Grid.Column="0" Background="#FF44348C" IsEnabled="False" IsReadOnlyCaretVisible="True" BorderBrush="#FF180D47" TextWrapping="Wrap" Foreground="White" TextAlignment="Left" VerticalContentAlignment="Top">Price</TextBox>
+                        <TextBox x:Name="BookingTextMaxPeople" Grid.Row="7" Grid.Column="1" Background="#FF44348C" IsEnabled="False" IsReadOnlyCaretVisible="True" BorderBrush="#FF180D47" TextWrapping="Wrap" Foreground="White" TextAlignment="Left" VerticalContentAlignment="Top">Max. People</TextBox>
+                        <TextBox x:Name="BookingTextMinutes" Grid.Row="6" Grid.Column="0" Background="#FF44348C" IsEnabled="False" IsReadOnlyCaretVisible="True" BorderBrush="#FF180D47" TextWrapping="Wrap" Foreground="White" TextAlignment="Left" VerticalContentAlignment="Top">Session Length (in mins)</TextBox>
+                        <TextBox x:Name="BookingTextTotalSessions" Grid.Row="6" Grid.Column="1" Background="#FF44348C" IsEnabled="False" IsReadOnlyCaretVisible="True" BorderBrush="#FF180D47" TextWrapping="Wrap" Foreground="White" TextAlignment="Left" VerticalContentAlignment="Top">TotalSessions</TextBox>
+                        <TextBox x:Name="BookingTextAvailableTime" Grid.Row="8" Grid.Column="1" Background="#FF44348C" IsEnabled="False" IsReadOnlyCaretVisible="True" BorderBrush="#FF180D47" TextWrapping="Wrap" Foreground="White" TextAlignment="Left" VerticalContentAlignment="Top">Time</TextBox>
+                        <TextBox x:Name="BookingTextAvailableDate" Grid.Row="8" Grid.Column="0" Background="#FF44348C" IsEnabled="False" IsReadOnlyCaretVisible="True" BorderBrush="#FF180D47" TextWrapping="Wrap" Foreground="White" TextAlignment="Left" VerticalContentAlignment="Top">Date</TextBox>
+                        
 
 
                     </Grid>
@@ -302,9 +318,13 @@
                             <RowDefinition Height="*"/>
                             <RowDefinition Height="*"/>
                             <RowDefinition Height="*"/>
+                            <RowDefinition Height="*"/>
+                            <RowDefinition Height="*"/>
+                            <RowDefinition Height="*"/>
                         </Grid.RowDefinitions>
-                        <Label Content="Selected Date" Grid.Row="1" Background="#FF180D47" FontSize="20" Foreground="White" Margin="10,0,0,0"></Label>
-                        <TextBox Grid.Row="3" Name="availableDate" Text="{Binding ElementName=AvailableDatesCalendar, Path=SelectedDate, StringFormat=d, UpdateSourceTrigger=PropertyChanged}" Background="#FF180D47" BorderBrush="#FF180D47" />
+                        <TextBox Grid.Row="5" Name="availableDate" Text="{Binding ElementName=AvailableDatesCalendar, Path=SelectedDate, StringFormat=d, UpdateSourceTrigger=PropertyChanged}" Background="#FF180D47" BorderBrush="#FF180D47" VerticalContentAlignment="Bottom" Foreground="White" TextAlignment="Center" />
+                        <Label Visibility="Visible" Content="Selected Date" Grid.Row="5" Background="{x:Null}" FontSize="18" Foreground="White" Margin="10,0,0,0"></Label>
+
                         <!--<ListBox Name="AvailableDatesList"  Grid.RowSpan="2" Grid.Row="2" />-->
                     </Grid>
                 </Grid>
@@ -338,11 +358,12 @@
 
                         </Grid.RowDefinitions>
 
-                        <Label Content="Filter Options" Grid.Column="0" Grid.RowSpan="1"  Background="#FFF3DDDD" FontSize="30" FontFamily="Sitka Heading"/>
+                        <!--FILTERS HIDDEN FOR NOW AS THEY AREN't WORKING-->
+                        <Label Content="Filter Options" Grid.Column="0" Grid.RowSpan="1"  Background="#FFF3DDDD" FontSize="30" FontFamily="Sitka Heading" Visibility="Hidden"/>
 
 
-                        <ScrollViewer  Background="Green"  Grid.RowSpan="5" >
-                            <StackPanel Grid.Row="2" Grid.RowSpan="4">
+                        <ScrollViewer  Background="Green"  Grid.RowSpan="5" Visibility="Hidden">
+                            <StackPanel Grid.Row="2" Grid.RowSpan="4" Visibility="Hidden">
                                 <Expander Header="Category">
                                     <ListView Name="DataBindingCheckBoxes" ItemsSource="{Binding bindingCheckBoxesList}" >
                                         <ListView.ItemTemplate>
@@ -479,12 +500,15 @@
                         <!--TextId to type, Login button to be-->
                         <Button x:Name="ButtonUpdate" Grid.Row="2" Grid.Column="0" Background="#8db0e8" Content="Update" Click="ButtonUpdate_Click"/>
                         <Button x:Name="ButtonEdit" Grid.Row="2" Grid.Column="0" Background="#FFF4EBBE" Content="Edit" Click="ButtonEdit_Click"/>
-                        <Button x:Name="ButtonDelete" Grid.Row="3" Grid.Column="0" Background="#FF6C55D4" Content="Delete" Click="ButtonUpdate_Click"/>
+                        
+                        <!--DELETE FUNCTIONALITY NEEDED STILL-->
+                        <!--<Button x:Name="ButtonDelete" Grid.Row="3" Grid.Column="0" Background="#FF6C55D4" Content="Delete" Click="ButtonUpdate_Click"/>-->
 
                     </Grid>
                 </Grid>
 
             </TabItem>
+            <!--ACCOUNT TAB FOR FUTURE LOGGING OUT FUNCTIONALITY-->
             <TabItem Header="Account" Name="AccountTab" Visibility="Hidden">
                 <Label Background="#FF180D47" Foreground="White">Add Log out button here</Label>
             </TabItem>

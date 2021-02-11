@@ -306,6 +306,8 @@ namespace OfCourseWPF
                 BookingTextMaxPeople.Text = _courseManager.SelectedCourse.MaxPeople.ToString();
                 BookingTextMinutes.Text = _courseManager.SelectedCourse.SessionLengthMinutes.ToString();
                 BookingTextTotalSessions.Text = _courseManager.SelectedCourse.TotalSessions.ToString();
+                BookingTextAvailableDate.Text = _courseManager.SelectedCourse.AvailableDate.ToString();
+                BookingTextAvailableTime.Text = _courseManager.SelectedCourse.AvailableTime.ToString();
                 //BookingCategoryTextBox.Text = _courseManager.CategoryTitleFromId(_courseManager.SelectedCourse.CategoryId);
 
             }
@@ -335,10 +337,14 @@ namespace OfCourseWPF
             //PopulateMyListBoxOnMyCoursesTab();
         }
 
-        private void MainTabs_SelectionChanged(object sender, System.Windows.Controls.SelectionChangedEventArgs e)
+        private void ButtonCancelBooking_Click(object sender, RoutedEventArgs e)
         {
-
+            /// Cancel Not Working, Shelved for now
+            //_courseManager.DeleteSelectedBookedCourse(BookingsList.SelectedItem, Int32.Parse(MyTextId.Text));
+            //PopulateBookingsList();
         }
+
+     
     }
 
 }
