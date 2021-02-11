@@ -180,12 +180,23 @@ namespace OfCourseTests
                 var selectedCustomer = db.Customers.Where(c => c.Username.Equals("testJohn")).First();
 
                 var returnsTuple = _courseManager.Login("testJohn", "password");
-                
+
                 Assert.AreEqual(returnsTuple.Item1, "C");
                 Assert.AreEqual(returnsTuple.Item2, selectedCustomer.CustomerId);
             }
         }
 
+        [Test]
+        public void CoursesListCanBeRetrieved()
+        {
+            using (var db = new OfCourseContext())
+            {
+                var NumListofCourses = _courseManager.RetrieveAll().Count();
 
+                var NumOfCoursesFromDB = db.Courses.Count();
+
+                Assert.AreEqual(NumListofCourses, NumOfCoursesFromDB);
+            }
+        }
     }
 }
