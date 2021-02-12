@@ -27,30 +27,30 @@ namespace OfCourseBusiness
 
                 //CREATE(add a new customer)
                 //construct a new customer
-                var newCategory = new Category()
-                {
-                    CategoryName = "Craft"
+                //var newCategory = new Category()
+                //{
+                //    CategoryName = "Craft"
 
-                };
-                var newCategory3 = new Category()
-                {
-                    CategoryName = "Cookery"
+                //};
+                //var newCategory3 = new Category()
+                //{
+                //    CategoryName = "Cookery"
 
-                };
-                var newCategory1 = new Category()
-                {
-                    CategoryName = "Gardening"
+                //};
+                //var newCategory1 = new Category()
+                //{
+                //    CategoryName = "Gardening"
 
-                };
-                var newTrainer = new Trainer()
-                {
-                    PostCode = "SE1",
-                    City = "London",
-                    Username = "newTrainer",
-                    Password = "password",
-                    FirstName = "Julia",
-                    LastName = "Smith"
-                };
+                //};
+                //var newTrainer = new Trainer()
+                //{
+                //    PostCode = "SE1",
+                //    City = "London",
+                //    Username = "newTrainer",
+                //    Password = "password",
+                //    FirstName = "Julia",
+                //    LastName = "Smith"
+                //};
                 var newCustomer = new Customer()
                 {
 
@@ -98,11 +98,11 @@ namespace OfCourseBusiness
                 //ADD the customer
                 //made a new customer, adding it to the customers database adn then saving.
                 //// using properties instead of fields
-                //db.Customers.Add(newCustomer);
-                db.Categories.Add(newCategory);
-                db.Categories.Add(newCategory1);
-                db.Categories.Add(newCategory3);
-                db.Trainers.Add(newTrainer);
+                db.Customers.Add(newCustomer);
+                //db.Categories.Add(newCategory);
+                //db.Categories.Add(newCategory1);
+                //db.Categories.Add(newCategory3);
+                //db.Trainers.Add(newTrainer);
                 //db.Courses.Add(newCourse);
                 // db.Admins.Add(newAdmin);
                 db.SaveChanges();

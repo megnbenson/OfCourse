@@ -95,10 +95,29 @@ namespace OfCourseWPF
             ListBoxCourse.SelectedItem = _courseManager.SelectedCourse;
             PopulateGeneralCourseFields();
             PopulateMyCourseFields();
+
+            //Empty fields after creating
+            EmptyCreateCourseFields();
+
             //Puts tab to general after adding a new course
             MainTabs.SelectedIndex = 0;
 
             //Take list of selected dates, and Available time
+        }
+
+        private void EmptyCreateCourseFields()
+        {
+
+            TName.Text = "";
+            TDescription.Text = "";
+            TCity.Text = "";
+            TPostCode.Text = "";
+            TPrice.Text = "";
+            TMinutes.Text = "";
+            TTotalSessions.Text = "";
+            TMaxPeople.Text = "";
+
+
         }
 
         private void ButtonUpdate_Click(object sender, RoutedEventArgs e)
@@ -187,7 +206,7 @@ namespace OfCourseWPF
                 AddCourseTab.Foreground = Brushes.Yellow;
                 MyCoursesTab.Foreground = Brushes.Blue;
                 MyCoursesTab.Visibility = Visibility.Visible;
-                BookingsTab.Visibility = Visibility.Visible;
+                BookingsTab.Visibility = Visibility.Hidden;
             }
         }
 

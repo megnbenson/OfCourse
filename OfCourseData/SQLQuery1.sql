@@ -2,15 +2,14 @@
 --Delete __EFMigrationsHistory
 
 --select * from Trainers
---select * from Categories
+select * from Categories
 select * from Customers
 select * from Courses
-select * from Courses
---select* from Trainers
+select* from Trainers
 --select * from Courses
-delete from Courses where Title = 'testtest'
---delete from CourseCustomer where BookedCustomersCustomerId = 5
-select * from CourseCustomer
+--delete from Trainers where TrainerId = '4'
+----delete from CourseCustomer where BookedCustomersCustomerId = 5
+--select * from CourseCustomer
 
 
 

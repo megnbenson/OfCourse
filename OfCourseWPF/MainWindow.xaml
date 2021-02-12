@@ -300,7 +300,7 @@
                                 </Calendar.Background>
                             </Calendar>
                         </ComboBox>
-                        <ComboBox Name="AvailableTimes" Grid.Row="11" Grid.Column="1" Background="#FF1D0D63" Foreground="White" BorderBrush="#FF180D47">
+                        <ComboBox Name="AvailableTimes" Grid.Row="11" Grid.Column="1" Background="#FF1D0D63" Foreground="Black" BorderBrush="#FF180D47">
                             <ComboBoxItem Content="Morning"/>
                             <ComboBoxItem Content="Afternoon"/>
                             <ComboBoxItem Content="Evening"/>
@@ -345,7 +345,7 @@
                     </Grid.ColumnDefinitions>
                   
 
-                    <ListBox x:Name="MyCoursesListBox" Background="#FF601A4A" Grid.Column="0" SelectionChanged="MyCoursesListBox_SelectionChanged" Grid.ColumnSpan="1" BorderBrush="#FF601A4A"/>
+                    <ListBox x:Name="MyCoursesListBox" Background="#FF601A4A" Grid.Column="0" Foreground="White"  SelectionChanged="MyCoursesListBox_SelectionChanged" Grid.ColumnSpan="1" BorderBrush="#FF601A4A"/>
                     <Grid Grid.Column= "1" Grid.ColumnSpan="2" Background="#FF601A4A">
                         <Grid.RowDefinitions>
                             <RowDefinition Height="*" />
