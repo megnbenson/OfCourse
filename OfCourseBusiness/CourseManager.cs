@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using OfCourseData;
+using OfCourseData.Services;
 using Microsoft.EntityFrameworkCore;
 
 namespace OfCourseBusiness
@@ -19,7 +20,22 @@ namespace OfCourseBusiness
     /// </summary>
     public class CourseManager
     {
+        private ICourseService _service;
 
+        // This is dependency injection, rather than making a new
+        // course manager we inject it in
+        // new is glue
+        // the customerService will go do things for us
+        // breaking the dependency between db and course manager
+        public CourseManager(ICourseService service)
+        {
+            _service = service;
+        }
+
+        public CourseManager()
+        {
+            _service = new CourseService();
+        }
         //used to change it in the db
         public Course SelectedCourse { get; set; }
 
@@ -110,11 +126,12 @@ namespace OfCourseBusiness
 
 
         // My Courses Tab
+
+        //ICourseService being used
         public void Update(int courseId, string title, string description, string city, string postcode, double pricePerSession, int maxPeople, int minutes, int totalSessions)
         {
-            using (var db = new OfCourseContext())
-            {
-                SelectedCourse = db.Courses.Where(c => c.CourseId == courseId).FirstOrDefault();
+
+            SelectedCourse = _service.GetCourseById(courseId);
                 SelectedCourse.Title = title;
                 SelectedCourse.Description = description;
                 SelectedCourse.City = city;
@@ -123,17 +140,16 @@ namespace OfCourseBusiness
                 SelectedCourse.MaxPeople = maxPeople;
                 SelectedCourse.SessionLengthMinutes = minutes;
                 SelectedCourse.TotalSessions = totalSessions;
-                // write changes to database
-                db.SaveChanges();
-            }
+            // write changes to database
+            _service.SaveCourseChanges();
+            
         }
 
         public List<Course> RetrieveAll()
         {
-            using (var db = new OfCourseContext())
-            {
-                return db.Courses.ToList();
-            }
+            // implemented in ICourseService
+            return _service.GetCourseList();
+
         }
 
         //My CourseTab:
@@ -268,11 +284,10 @@ namespace OfCourseBusiness
 
         public void CreateCustomer(string firstName, string lastName, string username, string password, string city, string postCode)
         {
+            var newCustomer = new Customer() { FirstName = firstName, LastName = lastName, Username = username, Password = password, City = city, PostCode = postCode };
+
             using (var db = new OfCourseContext())
             {
-
-                var newCustomer = new Customer() { FirstName = firstName, LastName = lastName, Username = username, Password = password, City = city, PostCode = postCode };
-
                 db.Customers.Add(newCustomer);
                 db.SaveChanges();
             }

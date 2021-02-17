@@ -6,7 +6,7 @@ namespace OfCourseData
 {
     public partial class CourseSession
     {
-        public int CourseSessionDetailsId { get; set; }
+        public int CourseSessionId { get; set; }
         public int CourseId { get; set; }
         public DateTime TimeOfSession { get; set; }
         public DateTime DateOfSession { get; set; }
