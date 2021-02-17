@@ -8,7 +8,7 @@ Having a working application that allows students to select and book workshop co
 
 # Sprint One
 ### Sprint Goal
-Goal of sprint one is to create the class diagram to create a model-first approach to making the database. Once set up, To add data to the database, create a business CRUD layer and finally start the WPF.
+Goal of sprint one is to **create the class diagram** to create a model-first approach to making the database. Once set up, To **add data** to the database, create a **business CRUD layer** and finally start the **WPF**.
 
 ### Output of Sprint Review
 ![sprint1 output](https://github.com/megnbenson/OfCourse/blob/main/PostSprintOne.png)
@@ -26,14 +26,14 @@ Goal of sprint one is to create the class diagram to create a model-first approa
 ## **Sprint one Retro**
 
 ### **What went well:**
-I now know how databases work, model first. ReCreating a database many times from scratch but in doing so have got a working database, and has taken away the fear from it
-Also explored the WPF toolbox, making use of checkboxes, stack panels and tabs
+I now know **how databases work, model first**. Re-creating a database many times from scratch but in doing so have got a working database, and has taken away the fear from it
+Also explored the **WPF toolbox**, making use of checkboxes, stack panels and tabs
 
 ### **What could be improved**
-Take breaks! Look carefully at the error messages and the migrations.
+Take breaks! **Look carefully at the error messages and the migrations.**
 I could have drawn an ERD with an online tool, but instead I did it manually and then made a class diagram.
 ### **What is your action plan for next**
-Action plan is to do tests, Add more CRUD operations and bind the category lists on the filters list.
+Action plan is to **do tests**, Add more CRUD operations and bind the category lists on the filters list. 
 
 # Sprint Two
 ![before sprint2](https://github.com/megnbenson/OfCourse/blob/main/PreSprint2.png)
@@ -70,10 +70,10 @@ Action plan is to do tests, Add more CRUD operations and bind the category lists
 By the end, I was using git branches and successfully reverted back to a previous git commit.
 
 ### **What could be improved**
-I should have been commiting way more. I should have started the project with a priorities list of a minimum viable product and worked incrementally, adding tests with each part and neatening the edges as I went. The issue with my booking function was literally not including a 'using Microsoft.EntityFrameworkCore' which stripped 3 hours of my day. Taking frequent breaks and allowing frech eyes would have probably solved with quicker.
+I should have been **commiting more**. I should have started the project with a **priorities list** of a minimum viable product and worked incrementally, **adding tests with each part** and neatening the edges as I went. The issue with my booking function was literally not including a 'using Microsoft.EntityFrameworkCore' which stripped 3 hours of my day. Taking frequent breaks and allowing frech eyes would have probably solved this quicker.
 
 ### **what is your action plan for next**
-I commit more, to use branches for each part of a funcationality, and to strip back the project to its most crucial parts in time for the presentation. Take more frequent breaks!!
+**To commit more, to use branches for each part of a funcationality, and to strip back the project to its most crucial parts in time for the presentation. Take more frequent breaks!!**
 
 # Sprint Three
 ![before sprint3](https://github.com/megnbenson/OfCourse/blob/main/PreSprint3.png)
@@ -104,7 +104,7 @@ I commit more, to use branches for each part of a funcationality, and to strip b
 
 ## **Sprint Three Retro**
 ### **What went well:**
-Todaty was much better, More breaks made me more focussed, most of the tests went very smoothly and the priority of the application (for customers to order courses and sellers to create courses) has been fulfilled.
+Todaty was much better, **More frequent breaks made me more focussed**, most of the tests went very smoothly and **the priority of the application (for customers to order courses and sellers to create courses) has been fulfilled.**
 
 ### **What could be improved**
 Perhaps more tasks to be added, but with the documentation and testing the day was quite full.
@@ -115,11 +115,12 @@ Much more functionality to be added, but to test as I add! And to continue makin
 # Overall project retrospective 
 ### What have you learned?
   I've learnt:
- - Committing regularly should be second nature
- - That working out the priority of the MVP is most important and to start the sprint tasks with that (or an action plan to get to that)
- - Tasks are to be broken down into simple check offable tasks, Vague means time wasted as you're unclear what the task really is when you start
+ - **Committing regularly** should be second nature
+ - That **working out the priority** of the MVP is most important and to start the sprint tasks with that (or an action plan to get to that)
+ - **Tasks are to be broken down** into simple check offable tasks, Vague means time wasted as you're unclear what the task really is when you start
  - When doing a database, model first is good but needs tweaking with thought out structures of what you need each class to do
- - KISS. To work incrementally, and adding tests as you go, seems slow but makes for a more robust program at the end.
+ - **KISS.** To work incrementally, and adding tests as you go, seems slow but makes for a more robust program at the end.
+ 
 ### What would you do differently next time?
 I would follow my lessons learnt from above, take regular breaks so as to increase focus and maintain healthy stress levels. 
 ### What would you do next?
