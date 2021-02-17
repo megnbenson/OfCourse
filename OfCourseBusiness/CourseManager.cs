@@ -6,37 +6,47 @@ using Microsoft.EntityFrameworkCore;
 
 namespace OfCourseBusiness
 {
+    /// <summary>
+    /// TO REFACTOR:
+    ///  - Have a login class
+    ///  - Have a TrainerManager Class
+    ///  - Have a CustomerManager class
+    ///  - Make a booking tab class - to refer to courseManager make an instance of courseManager.Create e.g.
+    ///  
+    /// - FOR LOGIN
+    /// - Have a find cust / trainer / admin methods, to simplify nested loops
+    /// 
+    /// </summary>
     public class CourseManager
     {
 
         //used to change it in the db
         public Course SelectedCourse { get; set; }
-        
 
         public void Create(int trainerId, string categorytitle, string title, string description, string city, string postcode, double pricePerSession, int sessionLengthMinutes, int totalSessions, DateTime availableDate, string availableTime, int maxPeople)
         {
             using (var db = new OfCourseContext())
             {
                 var catId = db.Categories.Where(c => c.CategoryName.Equals(categorytitle)).First().CategoryId;
-                var newCourse = new Course() { AvailableTime = availableTime, AvailableDate=availableDate, TrainerId = trainerId, CategoryId = catId, Title = title, Description = description, City = city, PostCode = postcode, PricePerSession = pricePerSession, SessionLengthMinutes = sessionLengthMinutes, TotalSessions = totalSessions };
+                var newCourse = new Course() { AvailableTime = availableTime, AvailableDate = availableDate, TrainerId = trainerId, CategoryId = catId, Title = title, Description = description, City = city, PostCode = postcode, PricePerSession = pricePerSession, SessionLengthMinutes = sessionLengthMinutes, TotalSessions = totalSessions };
 
                 db.Courses.Add(newCourse);
                 db.SaveChanges();
             }
         }
 
-
-        // In General, Tuple Returns string of user type "C", "t", "a" or "E" for error
-        public Tuple<string,int> Login(string username, string password)
+        // In General tab, Tuple Returns string of user type "C", "t", "a" or "E" for error
+        public Tuple<string, int> Login(string username, string password)
         {
-            
-            using(var db = new OfCourseContext())
+
+            using (var db = new OfCourseContext())
             {
+
                 var findCustomer = db.Customers.Where(c => c.Username.ToLower().Equals(username.ToLower()));
-                if(findCustomer.ToList().Count == 0)
+                if (findCustomer.ToList().Count == 0)
                 {
                     var findTrainer = db.Trainers.Where(t => t.Username.ToLower().Equals(username.ToLower()));
-                    if(findTrainer.ToList().Count == 0)
+                    if (findTrainer.ToList().Count == 0)
                     {
                         var findAdmin = db.Admins.Where(t => t.Username.ToLower().Equals(username.ToLower()));
                         if (findAdmin.ToList().Count != 0)
@@ -54,7 +64,7 @@ namespace OfCourseBusiness
                         {
                             var userPass = Tuple.Create("T", findTrainer.First().TrainerId);
                             return userPass;
-                        } 
+                        }
                     }
                 }
                 else
@@ -64,7 +74,7 @@ namespace OfCourseBusiness
 
                         var userPass = Tuple.Create("C", findCustomer.First().CustomerId);
                         return userPass;
-                    } 
+                    }
                 }
                 var userPast = Tuple.Create("E", -1);
                 return userPast;
@@ -75,7 +85,7 @@ namespace OfCourseBusiness
         public string GetName(Tuple<string, int> value)
         {
             string name;
-            
+
             using (var db = new OfCourseContext())
             {
 
@@ -194,15 +204,13 @@ namespace OfCourseBusiness
                 Course selectedCourse = db.Courses.Find(courseId);
                 Customer selectedCustomer = db.Customers.Find(custId);
 
-              
+
                 db.Courses.Find(courseId).BookedCustomers.Add(selectedCustomer);
 
                 db.Customers.Find(custId).BookedCourses.Add(selectedCourse);
 
                 db.SaveChanges();
-                //Debug.WriteLine(selectedCourse.BookedCustomers.First());
-                //Debug.WriteLine(selectedCustomer.BookedCourses.First().Title);
-                //Debug.WriteLine(selectedCustomer.BookedCourses);
+
             }
 
         }
@@ -262,8 +270,8 @@ namespace OfCourseBusiness
         {
             using (var db = new OfCourseContext())
             {
-               
-                var newCustomer = new Customer(){ FirstName = firstName, LastName = lastName, Username = username, Password = password, City = city, PostCode = postCode };
+
+                var newCustomer = new Customer() { FirstName = firstName, LastName = lastName, Username = username, Password = password, City = city, PostCode = postCode };
 
                 db.Customers.Add(newCustomer);
                 db.SaveChanges();

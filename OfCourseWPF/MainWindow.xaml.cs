@@ -46,7 +46,7 @@ namespace OfCourseWPF
             {
                 TextId.Text = _courseManager.SelectedCourse.CourseId.ToString();
                 TextName.Text = _courseManager.SelectedCourse.Title;
-                TextDescription.Text = _courseManager.SelectedCourse.Title;
+                TextDescription.Text = _courseManager.SelectedCourse.Description;
                 TextCity.Text = _courseManager.SelectedCourse.City;
                 TextPostCode.Text = _courseManager.SelectedCourse.PostCode;
                 TextPostCode.Text = _courseManager.SelectedCourse.PostCode;
@@ -117,6 +117,14 @@ namespace OfCourseWPF
             TTotalSessions.Text = "";
             TMaxPeople.Text = "";
 
+            //MyTextName.Text = "";
+            //MyTextDescription.Text = "";
+            //MyTextCity.Text = "";
+            //MyTextPostCode.Text = "";
+            //MyTextPrice.Text = "";
+            //MyTextMinutes.Text = "";
+            //TotalSessions.Text = "";
+            //TMaxPeople.Text = "";
 
         }
 
@@ -127,6 +135,7 @@ namespace OfCourseWPF
 
             // put back the screen data
             PopulateListBox();
+
             ListBoxCourse.SelectedItem = _courseManager.SelectedCourse;
             PopulateGeneralCourseFields();
 
@@ -156,6 +165,7 @@ namespace OfCourseWPF
 
             ButtonEdit.Visibility = Visibility.Visible;
             ButtonUpdate.Visibility = Visibility.Hidden;
+
         }
 
         private void ButtonLogin_Click(object sender, RoutedEventArgs e)
@@ -178,7 +188,7 @@ namespace OfCourseWPF
             loggedIn = true;
             ButtonLogin.Background = Brushes.Yellow;
             loginWindow.Close();
-            ButtonLogin.Visibility = Visibility.Hidden;
+            ButtonLogin.Content = "Logout";
             PopulateMyListBoxOnMyCoursesTab();
             
             
@@ -222,25 +232,7 @@ namespace OfCourseWPF
 
         }
 
-        // Fill the fields of As A Trainer, My Courses Tab
-        private void PopulateMyCourseFields()
-        {
-            if (_courseManager.SelectedCourse != null)
-            {
-                MyTextId.Text = _courseManager.SelectedCourse.CourseId.ToString();
-                MyTextName.Text = _courseManager.SelectedCourse.Title;
-                MyTextDescription.Text = _courseManager.SelectedCourse.Title;
-                MyTextCity.Text = _courseManager.SelectedCourse.City;
-                MyTextPostCode.Text = _courseManager.SelectedCourse.PostCode;
-                MyTextPostCode.Text = _courseManager.SelectedCourse.PostCode;
-                MyTextPrice.Text = _courseManager.SelectedCourse.PricePerSession.ToString();
-                MyTextMaxPeople.Text = _courseManager.SelectedCourse.MaxPeople.ToString();
-                MyTextMinutes.Text = _courseManager.SelectedCourse.SessionLengthMinutes.ToString();
-                MyTextTotalSessions.Text = _courseManager.SelectedCourse.TotalSessions.ToString();
-                MyCategoryTextBox.Text = _courseManager.CategoryTitleFromId(_courseManager.SelectedCourse.CategoryId);
-
-            }
-        }
+        
 
         private void ButtonEdit_Click(object sender, RoutedEventArgs e)
         {
@@ -301,13 +293,33 @@ namespace OfCourseWPF
         }
 
         // Fill the fields of As A Trainer, My Courses Tab
+        private void PopulateMyCourseFields()
+        {
+            if (_courseManager.SelectedCourse != null)
+            {
+                MyTextId.Text = _courseManager.SelectedCourse.CourseId.ToString();
+                MyTextName.Text = _courseManager.SelectedCourse.Title;
+                MyTextDescription.Text = _courseManager.SelectedCourse.Description;
+                MyTextCity.Text = _courseManager.SelectedCourse.City;
+                MyTextPostCode.Text = _courseManager.SelectedCourse.PostCode;
+                MyTextPostCode.Text = _courseManager.SelectedCourse.PostCode;
+                MyTextPrice.Text = _courseManager.SelectedCourse.PricePerSession.ToString();
+                MyTextMaxPeople.Text = _courseManager.SelectedCourse.MaxPeople.ToString();
+                MyTextMinutes.Text = _courseManager.SelectedCourse.SessionLengthMinutes.ToString();
+                MyTextTotalSessions.Text = _courseManager.SelectedCourse.TotalSessions.ToString();
+                MyCategoryTextBox.Text = _courseManager.CategoryTitleFromId(_courseManager.SelectedCourse.CategoryId);
+
+            }
+        }
+
+        // Fill the fields of As A Trainer, My Courses Tab
         private void PopulateBookingFields()
         {
             if (_courseManager.SelectedCourse != null)
             {
                 BookingTextId.Text = _courseManager.SelectedCourse.CourseId.ToString();
                 BookingTextName.Text = _courseManager.SelectedCourse.Title;
-                BookingTextDescription.Text = _courseManager.SelectedCourse.Title;
+                BookingTextDescription.Text = _courseManager.SelectedCourse.Description;
                 BookingTextCity.Text = _courseManager.SelectedCourse.City;
                 BookingTextPostCode.Text = _courseManager.SelectedCourse.PostCode;
                 BookingTextPostCode.Text = _courseManager.SelectedCourse.PostCode;
@@ -338,12 +350,10 @@ namespace OfCourseWPF
         private void CourseBooked(object sender, EventArgs e)
         {
             // is user customer or trainer
-            //
-            //ButtonLogin.Background = Brushes.Yellow;
+
             PopulateBookingsList();
             bookSessionWindow.Close();
-            //ButtonLogin.Visibility = Visibility.Hidden;
-            //PopulateMyListBoxOnMyCoursesTab();
+
         }
 
         private void ButtonCancelBooking_Click(object sender, RoutedEventArgs e)

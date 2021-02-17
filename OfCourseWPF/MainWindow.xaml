@@ -375,14 +375,14 @@
                                 <RowDefinition Height ="*"/>
                             </Grid.RowDefinitions>
 
-                            <TextBox x:Name="MyTextHello" Grid.Row="0"  Grid.ColumnSpan="2" Grid.Column="0" Background="#FF63ACBE" IsEnabled="False" IsReadOnlyCaretVisible="True" BorderBrush="#FF601A4A" Foreground="Black"></TextBox>
-                            <TextBox x:Name="MyTextType" Grid.Row="1" Grid.ColumnSpan="2" Grid.Column="0" Background="#FF63ACBE" IsEnabled="False" IsReadOnlyCaretVisible="True" BorderBrush="#FF601A4A" Foreground="Black"></TextBox>
-                            <TextBox x:Name="MyTextId" Grid.Row="2" Grid.ColumnSpan="2" Grid.Column="0" Background="#FF63ACBE" IsEnabled="False" IsReadOnlyCaretVisible="True" BorderBrush="#FF601A4A" Foreground="Black"></TextBox>
+                            <TextBox x:Name="MyTextHello" Grid.Row="0"  Grid.ColumnSpan="2" Grid.Column="0" Background="#FF63ACBE" IsEnabled="False" IsReadOnlyCaretVisible="True" BorderBrush="#FF601A4A" Foreground="White"></TextBox>
+                            <TextBox x:Name="MyTextType" Grid.Row="1" Grid.ColumnSpan="2" Grid.Column="0" Background="#FF63ACBE" IsEnabled="False" IsReadOnlyCaretVisible="True" BorderBrush="#FF601A4A" Foreground="White"></TextBox>
+                            <TextBox x:Name="MyTextId" Grid.Row="2" Grid.ColumnSpan="2" Grid.Column="0" Background="#FF63ACBE" IsEnabled="False" IsReadOnlyCaretVisible="True" BorderBrush="#FF601A4A" Foreground="White"></TextBox>
                         </Grid>
 
 
-                        <TextBox x:Name="MyTextName" Grid.Row="2" Grid.Column="0" Background="#FF63ACBE" IsEnabled="False" IsReadOnlyCaretVisible="True" BorderBrush="#FF601A4A" Foreground="Black" >Name</TextBox>
-                        <TextBox x:Name="MyCategoryTextBox" Grid.Row="2" Grid.Column="1" Background="#FF63ACBE" IsEnabled="False" IsReadOnlyCaretVisible="True" BorderBrush="#FF601A4A" Foreground="Black">Category</TextBox>
+                        <TextBox x:Name="MyTextName" Grid.Row="2" Grid.Column="0" Background="#FF63ACBE" IsEnabled="False" IsReadOnlyCaretVisible="True" BorderBrush="#FF601A4A" Foreground="White" >Name</TextBox>
+                        <TextBox x:Name="MyCategoryTextBox" Grid.Row="2" Grid.Column="1" Background="#FF63ACBE" IsEnabled="False" IsReadOnlyCaretVisible="True" BorderBrush="#FF601A4A" Foreground="White">Category</TextBox>
 
 
                         <ComboBox ItemsSource="{Binding Path=categoryDataBinding}" x:Name="MyCategory" Grid.Row="2" Grid.Column="1" Background="LightGreen" SelectedIndex="0" Visibility="Hidden">
@@ -394,14 +394,14 @@
                                 </DataTemplate>
                             </ComboBox.ItemTemplate>
                         </ComboBox>
-                        <TextBox x:Name="MyTextDescription" Grid.ColumnSpan="2" Grid.Row="3"  Grid.RowSpan="2" Background="#FF63ACBE" IsEnabled="False" IsReadOnlyCaretVisible="True" BorderBrush="#FF601A4A" Foreground="Black" CaretBrush="#FF63ACBE">Description</TextBox>
+                        <TextBox x:Name="MyTextDescription" Grid.ColumnSpan="2" Grid.Row="3"  Grid.RowSpan="2" Background="#FF63ACBE" IsEnabled="False" IsReadOnlyCaretVisible="True" BorderBrush="#FF601A4A" Foreground="White" CaretBrush="#FF63ACBE">Description</TextBox>
 
-                        <TextBox x:Name="MyTextCity" Grid.Row="5"   Grid.Column="0" Background="#FF63ACBE" IsEnabled="False" IsReadOnlyCaretVisible="True" BorderBrush="#FF601A4A" Foreground="Black">City</TextBox>
-                        <TextBox x:Name="MyTextPostCode" Grid.Row="5" Grid.Column="1" Background="#FF63ACBE" IsEnabled="False" IsReadOnlyCaretVisible="True" BorderBrush="#FF601A4A" Foreground="Black">Post Code</TextBox>
-                        <TextBox x:Name="MyTextPrice" Grid.Row="7" Grid.Column="0" Background="#FF63ACBE" IsEnabled="False" IsReadOnlyCaretVisible="True" Foreground="Black" BorderBrush="#FF601A4A">Price</TextBox>
-                        <TextBox x:Name="MyTextMaxPeople" Grid.Row="7" Grid.Column="1" Background="#FF63ACBE" IsEnabled="False" IsReadOnlyCaretVisible="True" Foreground="Black" BorderBrush="#FF601A4A">Max. People</TextBox>
-                        <TextBox x:Name="MyTextMinutes" Grid.Row="6" Grid.Column="0" Background="#FF63ACBE" IsEnabled="False" IsReadOnlyCaretVisible="True" Foreground="Black" BorderBrush="#FF601A4A">Session Length (in mins)</TextBox>
-                        <TextBox x:Name="MyTextTotalSessions" Grid.Row="6" Grid.Column="1" Background="#FF63ACBE" IsEnabled="False" IsReadOnlyCaretVisible="True" Foreground="Black" BorderBrush="#FF601A4A">TotalSessions</TextBox>
+                        <TextBox x:Name="MyTextCity" Grid.Row="5"   Grid.Column="0" Background="#FF63ACBE" IsEnabled="False" IsReadOnlyCaretVisible="True" BorderBrush="#FF601A4A" Foreground="White">City</TextBox>
+                        <TextBox x:Name="MyTextPostCode" Grid.Row="5" Grid.Column="1" Background="#FF63ACBE" IsEnabled="False" IsReadOnlyCaretVisible="True" BorderBrush="#FF601A4A" Foreground="White">Post Code</TextBox>
+                        <TextBox x:Name="MyTextPrice" Grid.Row="7" Grid.Column="0" Background="#FF63ACBE" IsEnabled="False" IsReadOnlyCaretVisible="True" Foreground="White" BorderBrush="#FF601A4A">Price</TextBox>
+                        <TextBox x:Name="MyTextMaxPeople" Grid.Row="7" Grid.Column="1" Background="#FF63ACBE" IsEnabled="False" IsReadOnlyCaretVisible="True" Foreground="White" BorderBrush="#FF601A4A">Max. People</TextBox>
+                        <TextBox x:Name="MyTextMinutes" Grid.Row="6" Grid.Column="0" Background="#FF63ACBE" IsEnabled="False" IsReadOnlyCaretVisible="True" Foreground="White" BorderBrush="#FF601A4A">Session Length (in mins)</TextBox>
+                        <TextBox x:Name="MyTextTotalSessions" Grid.Row="6" Grid.Column="1" Background="#FF63ACBE" IsEnabled="False" IsReadOnlyCaretVisible="True" Foreground="White" BorderBrush="#FF601A4A">TotalSessions</TextBox>
                     </Grid>
                     <Grid Grid.Column= "3" Grid.ColumnSpan="1" Background="#FF601A4A">
                         <Grid.RowDefinitions>

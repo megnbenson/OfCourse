@@ -9,6 +9,7 @@ namespace OfCourseData
         public Course()
         {
             BookedCustomers = new HashSet<Customer>();
+            BookedSessions = new HashSet<CourseSession>();
         }
 
         public int CourseId { get; set; }
@@ -41,6 +42,7 @@ namespace OfCourseData
         public virtual Trainer Trainer { get; set; }
         //public virtual ICollection<CourseSessionDetails> CourseSessionDetailList { get; set; }
         public virtual ICollection<Customer> BookedCustomers { get; set; }
+        public virtual ICollection<CourseSession> BookedSessions { get; set; }
 
         public override string ToString()
         {

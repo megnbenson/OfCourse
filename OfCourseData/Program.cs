@@ -9,7 +9,6 @@ namespace OfCourseData
             Console.Write("Hello Data");
             
             
-            //cust.InterestTags = "saucy";
         }
     }
 }
