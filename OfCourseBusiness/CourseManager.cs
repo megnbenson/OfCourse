@@ -36,65 +36,34 @@ namespace OfCourseBusiness
         {
             _service = new CourseService();
         }
+
         //used to change it in the db
         public Course SelectedCourse { get; set; }
 
         public void Create(int trainerId, string categorytitle, string title, string description, string city, string postcode, double pricePerSession, int sessionLengthMinutes, int totalSessions, DateTime availableDate, string availableTime, int maxPeople)
         {
-            using (var db = new OfCourseContext())
-            {
-                var catId = db.Categories.Where(c => c.CategoryName.Equals(categorytitle)).First().CategoryId;
+             
+                 int catId = _service.GetCategoryIdFromTitle(categorytitle);
                 var newCourse = new Course() { AvailableTime = availableTime, AvailableDate = availableDate, TrainerId = trainerId, CategoryId = catId, Title = title, Description = description, City = city, PostCode = postcode, PricePerSession = pricePerSession, SessionLengthMinutes = sessionLengthMinutes, TotalSessions = totalSessions };
-
-                db.Courses.Add(newCourse);
-                db.SaveChanges();
-            }
+                 _service.Add(newCourse);
+                _service.SaveCourseChanges();
+ 
         }
 
         // In General tab, Tuple Returns string of user type "C", "t", "a" or "E" for error
         public Tuple<string, int> Login(string username, string password)
         {
+            Tuple<string, int> typeAndId;
+            // if this is not "E" then 
+            typeAndId = _service.CheckIfCustomer(username, password);
 
-            using (var db = new OfCourseContext())
-            {
-
-                var findCustomer = db.Customers.Where(c => c.Username.ToLower().Equals(username.ToLower()));
-                if (findCustomer.ToList().Count == 0)
-                {
-                    var findTrainer = db.Trainers.Where(t => t.Username.ToLower().Equals(username.ToLower()));
-                    if (findTrainer.ToList().Count == 0)
-                    {
-                        var findAdmin = db.Admins.Where(t => t.Username.ToLower().Equals(username.ToLower()));
-                        if (findAdmin.ToList().Count != 0)
-                        {
-                            if (findAdmin.First().Password == password)
-                            {
-                                var userPass = Tuple.Create("A", findAdmin.First().AdminId);
-                                return userPass;
-                            }
-                        }
-                    }
-                    else
-                    {
-                        if (findTrainer.First().Password == password)
-                        {
-                            var userPass = Tuple.Create("T", findTrainer.First().TrainerId);
-                            return userPass;
-                        }
-                    }
-                }
-                else
-                {
-                    if (findCustomer.First().Password == password)
-                    {
-
-                        var userPass = Tuple.Create("C", findCustomer.First().CustomerId);
-                        return userPass;
-                    }
-                }
-                var userPast = Tuple.Create("E", -1);
-                return userPast;
+            while(typeAndId.Item2 < 0){
+                typeAndId = _service.CheckIfTrainer(username, password);
+                typeAndId = _service.CheckIfAdmin(username, password);
+                break;
             }
+            return typeAndId;
+
         }
 
         // For general, to say Hello Name of User
@@ -102,25 +71,7 @@ namespace OfCourseBusiness
         {
             string name;
 
-            using (var db = new OfCourseContext())
-            {
-
-                switch (value.Item1)
-                {
-                    case "A":
-                        name = db.Admins.Find(value.Item2).FirstName;
-                        break;
-                    case "T":
-                        name = db.Trainers.Find(value.Item2).FirstName;
-                        break;
-                    case "C":
-                        name = db.Customers.Find(value.Item2).FirstName;
-                        break;
-                    default:
-                        name = " ERROR ";
-                        break;
-                }
-            }
+            name = _service.RetrieveName(value);
             return name;
         }
 
@@ -131,7 +82,7 @@ namespace OfCourseBusiness
         public void Update(int courseId, string title, string description, string city, string postcode, double pricePerSession, int maxPeople, int minutes, int totalSessions)
         {
 
-            SelectedCourse = _service.GetCourseById(courseId);
+                SelectedCourse = _service.GetCourseById(courseId);
                 SelectedCourse.Title = title;
                 SelectedCourse.Description = description;
                 SelectedCourse.City = city;

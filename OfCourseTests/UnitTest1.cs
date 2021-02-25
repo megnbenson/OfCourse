@@ -5,6 +5,7 @@ using System.Linq;
 using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
+using Moq;
 
 namespace OfCourseTests
 {
@@ -29,7 +30,7 @@ namespace OfCourseTests
 
                 var selectedCourses2 =
                 from c in db.Courses
-                where c.Title.Equals("testest")
+                where c.Title.Equals("testtest")
                 select c;
 
                 db.Courses.RemoveRange(selectedCourses);
@@ -91,11 +92,20 @@ namespace OfCourseTests
         // Test that course list appears, so ToString() is course Title
         public void CheckCoursesToStringShowJustCourseTitle(int id, string expTitle)
         {
+            //trying to add a moq test
+            //// Arrange
+            //var mockCatalogItemManager = new Mock<ICourseManager>();
+            //var mockExchangeRateService = new Mock<IExchangeRateService>();
+            //// Act
+            //_sut = new SaleCreator(mockCatalogItemManager.Object, mockExchangeRateService.Object);
+            //// Assert
+            //Assert.That(_sut, Is.InstanceOf<SaleCreator>());
+
             using var db = new OfCourseContext();
 
             string title = db.Courses.Find(id).ToString();
             Assert.AreEqual(title, expTitle);
-          }
+        }
 
 
         [Test]
@@ -106,7 +116,7 @@ namespace OfCourseTests
                 DateTime date = new DateTime(2021, 5, 1, 8, 30, 52);
 
                 //this one sometimes fails especially if I try and take it out in the setup test
-                _courseManager.Create(1, "Knitting", "testtest", "Hey sweet purls, come join us for this knit sesh", "Chilly", "W2", 20.0, 33, 1, date, "Morning", 10);
+                _courseManager.Create(1, "Knitting", "testtest", "Hey sweet purls, come join us for this knit sesh", "Alabama", "W2", 20.0, 33, 1, date, "Morning", 10);
 
                 var courseId = db.Courses.Where(c => c.Title.Equals("testtest")).FirstOrDefault().CourseId;
 
@@ -157,10 +167,10 @@ namespace OfCourseTests
             {
                 //make course to book
                 DateTime date = new DateTime(2021, 5, 1, 8, 30, 52);
-                _courseManager.Create(1, "Knitting", "testtest", "Hey sweet purls, come join us for this knit sesh", "Birmingham", "W2", 20.0, 33, 1, date, "Morning", 10);
+                _courseManager.Create(1, "Knitting", "testDelete", "Hey sweet purls, come join us for this knit sesh", "Birmingham", "W2", 20.0, 33, 1, date, "Morning", 10);
 
                 //gets the courseID
-                var courseId = db.Courses.Where(c => c.Title.Equals("testtest")).FirstOrDefault().CourseId;
+                var courseId = db.Courses.Where(c => c.Title.Equals("testDelete")).FirstOrDefault().CourseId;
 
                 //make a customer
                 _courseManager.CreateCustomer("John", "Smith", "testJohn", "password", "Shrewsbury", "SH1");
